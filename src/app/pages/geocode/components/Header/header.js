@@ -2,6 +2,10 @@ import React, { useState, useContext } from 'react';
 // @mui material components
 //import Card from "@mui/material/Card";
 import axios from "axios";
+import { KTIcon, toAbsoluteUrl } from '../../../../../_metronic/helpers';
+import {Link} from 'react-router-dom'
+import {Dropdown1} from '../../../../../_metronic/partials'
+import {useLocation} from 'react-router'
 
 // Material Dashboard 2 React components
 // import MDInput from "components/MDInput";
@@ -19,6 +23,7 @@ function Header() {
   const [open, setOpen] = React.useState(false);
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
+  const location = useLocation()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,7 +60,52 @@ function Header() {
 
   return (
     <div id="geocode">
-      <div p={1} display="flex" alignItems="center">
+
+      <div className='card mb-5 mb-xl-10'>
+        <div className='card-body pt-9 pb-0'>
+          <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
+            <div className='flex-grow-1'>
+              <div className='d-flex justify-content-between align-items-start flex-wrap mb-2'>
+                <div className='d-flex flex-column'>
+                  <div className='d-flex align-items-center mb-2'>
+                    <a href='#' className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
+                      Max Smith
+                    </a>
+                    <a
+                      href='#'
+                      className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3'
+                      data-bs-toggle='modal'
+                      data-bs-target='#kt_modal_upgrade_plan'
+                    >
+                      Admin
+                    </a>
+                  </div>
+
+                  <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
+
+                    <a
+                      href='#'
+                      className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
+                    >
+                      <KTIcon iconName='geolocation' className='fs-4 me-1' />
+                      SF, Bay Area
+                    </a>
+                    <a
+                      href='#'
+                      className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
+                    >
+                      <KTIcon iconName='sms' className='fs-4 me-1' />
+                      max@kt.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div p={1} display="flex" alignItems="center">
         <div p={2}>
           <div variant="subtitle2">Address</div>
           <input 
@@ -100,7 +150,7 @@ function Header() {
           onClose={handleClose}
           geocodeResponse={geocodeResponse}
       />
-      </div>
+      </div> */}
     </div>
   );
 }

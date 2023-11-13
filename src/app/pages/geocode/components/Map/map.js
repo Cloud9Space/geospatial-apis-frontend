@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import geocodeContext from '../../context/geocode/geocodeContext';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
+const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
 const GeocodeMap = () => {
   const { geocodeResponse } = useContext(geocodeContext)
@@ -34,9 +34,9 @@ const GeocodeMap = () => {
   }, [defaultCenter, geocodeResponse])
 
   return (
-    <LoadScript googleMapsApiKey={API_KEY}>
+    <LoadScript googleMapsApiKey={GOOGLE_MAP_API_KEY}>
       <GoogleMap
-        mapContainerStyle={{ width: '100%', height: '530px' }}
+        mapContainerStyle={{ width: '100%', height: '580px' }}
         center={markerPosition}
         zoom={13}
       >

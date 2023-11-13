@@ -17,9 +17,9 @@ const SidebarMenuMain = () => {
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem
-        to='/GeoCode'
+        to='/geocode'
         icon='element-11'
-        title= 'GeoCode'
+        title= 'Geocode'
         fontIcon='bi-app-indicator'
       />
       {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />

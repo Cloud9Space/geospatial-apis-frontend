@@ -12,9 +12,9 @@
 // import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 // import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
-import Header from "./Components/Header/header";
-import GeocodeMap from "./Components/Map/map";
-import LinearIndeterminate from "./Components/Loader/Loader";
+import Header from "./components/Header/header";
+import GeocodeMap from "./components/Map/map";
+import LinearIndeterminate from "./components/Loader/Loader";
 // Billing page components
 // import Header from "./components/Header/header";
 // import GeocodeMap from "./components/Map/map";
