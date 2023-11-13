@@ -16,13 +16,19 @@ const SidebarMenuMain = () => {
         title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
         fontIcon='bi-app-indicator'
       />
-      <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
+      <SidebarMenuItem
+        to='/GeoCode'
+        icon='element-11'
+        title= 'GeoCode'
+        fontIcon='bi-app-indicator'
+      />
+      {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Crafted</span>
         </div>
-      </div>
-      <SidebarMenuItemWithSub
+      </div> */}
+      {/* <SidebarMenuItemWithSub
         to='/crafted/pages'
         title='Pages'
         fontIcon='bi-archive'
@@ -46,17 +52,17 @@ const SidebarMenuMain = () => {
             title='Connections'
             hasBullet={true}
           />
-        </SidebarMenuItemWithSub>
+        </SidebarMenuItemWithSub> */}
 
-        <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='Wizards' hasBullet={true}>
+        {/* <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='Wizards' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/wizards/horizontal'
             title='Horizontal'
             hasBullet={true}
           />
           <SidebarMenuItem to='/crafted/pages/wizards/vertical' title='Vertical' hasBullet={true} />
-        </SidebarMenuItemWithSub>
-      </SidebarMenuItemWithSub>
+        </SidebarMenuItemWithSub> */}
+      {/* </SidebarMenuItemWithSub>
       <SidebarMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'
@@ -69,8 +75,8 @@ const SidebarMenuMain = () => {
       <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
         <SidebarMenuItem to='/error/500' title='Error 500' hasBullet={true} />
-      </SidebarMenuItemWithSub>
-      <SidebarMenuItemWithSub
+      </SidebarMenuItemWithSub> */}
+      {/* <SidebarMenuItemWithSub
         to='/crafted/widgets'
         title='Widgets'
         icon='element-7'
@@ -82,8 +88,8 @@ const SidebarMenuMain = () => {
         <SidebarMenuItem to='/crafted/widgets/mixed' title='Mixed' hasBullet={true} />
         <SidebarMenuItem to='/crafted/widgets/tables' title='Tables' hasBullet={true} />
         <SidebarMenuItem to='/crafted/widgets/feeds' title='Feeds' hasBullet={true} />
-      </SidebarMenuItemWithSub>
-      <div className='menu-item'>
+      </SidebarMenuItemWithSub> */}
+      {/* <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Apps</span>
         </div>
@@ -115,7 +121,7 @@ const SidebarMenuMain = () => {
           </span>
           <span className='menu-title'>Changelog {process.env.REACT_APP_VERSION}</span>
         </a>
-      </div>
+      </div> */}
     </>
   )
 }
