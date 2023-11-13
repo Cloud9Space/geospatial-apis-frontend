@@ -26,6 +26,7 @@ function Header() {
   const location = useLocation()
 
   const handleClickOpen = () => {
+    console.log("Hiiii");
     setOpen(true);
   };
 
@@ -60,49 +61,95 @@ function Header() {
 
   return (
     <div id="geocode">
-
       <div className='card mb-5 mb-xl-10'>
-        <div className='card-body pt-9 pb-0'>
-          <div className='d-flex flex-wrap flex-sm-nowrap mb-3'>
-            <div className='flex-grow-1'>
-              <div className='d-flex justify-content-between align-items-start flex-wrap mb-2'>
-                <div className='d-flex flex-column'>
-                  <div className='d-flex align-items-center mb-2'>
-                    <a href='#' className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
+                    {/* <a href='#' className='text-gray-800 text-hover-primary fs-2 fw-bolder me-1'>
                       Max Smith
-                    </a>
-                    <a
+                    </a> */}
+                    {/* <a
                       href='#'
                       className='btn btn-sm btn-light-success fw-bolder ms-2 fs-8 py-1 px-3'
                       data-bs-toggle='modal'
                       data-bs-target='#kt_modal_upgrade_plan'
                     >
                       Admin
-                    </a>
+                    </a> */}
+                  
+                  <div className="mb-10">
+                  <div>
+      {/* Labels, Inputs, and Buttons in One Line */}
+                <div style={{ display: 'flex', alignItems: 'center', width: '500px', padding: '16px' }}>
+                  <div style={{ marginRight: '15px' }}>
+                    <label htmlFor="address">Address:</label>
+                    <input
+                      type="text"
+                      id="address"
+                      style={{ width: '300px', padding: '2px' }}
+                      value={geocodeInputData.address}
+                      onChange={(e) => setGeocodeInputData({ ...geocodeInputData, address: e.target.value })}
+                    />
                   </div>
 
-                  <div className='d-flex flex-wrap fw-bold fs-6 mb-4 pe-2'>
+                  <div style={{ marginRight: '10px' }}>
+                    <label htmlFor="city">City:</label>
+                    <input
+                      type="text"
+                      id="city"
+                      style={{ width: '300px', padding: '2px' }}
+                      value={geocodeInputData.city}
+                      onChange={(e) => setGeocodeInputData({ ...geocodeInputData, city: e.target.value })}
+                    />
+                  </div>
 
-                    <a
+                  <div style={{ marginRight: '10px' }}>
+                    <label htmlFor="pincode">Pincode:</label>
+                    <input
+                      type="text"
+                      id="pincode"
+                      style={{ width: '300px', padding: '2px' }}
+                      value={geocodeInputData.pincode}
+                      onChange={(e) => setGeocodeInputData({ ...geocodeInputData, pincode: e.target.value })}
+                    />
+                  </div>
+
+                {/* Submit Button */}
+                <button
+                  type="button"
+                  className="btn btn-lg btn-primary"
+                  data-kt-stepper-action="submit"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
+      
+                  {isEnabled && 
+                  <button 
+                  type='button'
+                  className='btn btn-lg btn-primary'
+                  data-kt-stepper-action='view response'
+                  onClick={handleClickOpen}>View Response</button>
+                } 
+                <SimpleDialog
+                  open={open}
+                  onClose={handleClose}
+                  geocodeResponse={geocodeResponse}
+                />
+
+                    {/* <a
                       href='#'
                       className='d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2'
                     >
                       <KTIcon iconName='geolocation' className='fs-4 me-1' />
                       SF, Bay Area
-                    </a>
-                    <a
+                    </a> */}
+                    {/* <a
                       href='#'
                       className='d-flex align-items-center text-gray-400 text-hover-primary mb-2'
                     >
                       <KTIcon iconName='sms' className='fs-4 me-1' />
                       max@kt.com
-                    </a>
+                    </a> */}
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                
       </div>
 
       {/* <div p={1} display="flex" alignItems="center">
@@ -151,7 +198,9 @@ function Header() {
           geocodeResponse={geocodeResponse}
       />
       </div> */}
-    </div>
+      </div>
+      </div>
+      </div>
   );
 }
 
