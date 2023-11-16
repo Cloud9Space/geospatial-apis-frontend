@@ -47,7 +47,7 @@ function Header() {
       //   }
       // });
 
-      response = {
+      const response = {
         'latitude': 19.77,
         'longitude': 74.44,
         'full_address': 'pune, maharashtra'
