@@ -144,6 +144,7 @@ function Header() {
         <button
           type="button"
           className="btn btn-lg btn-primary"
+          style={{ height: '60px', width: '150px', marginRight: '200px' }}
           data-kt-stepper-action="submit"
           onClick={handleSubmit}
         >
@@ -154,6 +155,7 @@ function Header() {
           <button 
           type='button'
           className='btn btn-lg btn-primary'
+          style={{ height: '60px', width: '200px', marginRight: '200px' }}
           data-kt-stepper-action='view response'
           onClick={handleClickOpen}>View Response</button>
         } 
