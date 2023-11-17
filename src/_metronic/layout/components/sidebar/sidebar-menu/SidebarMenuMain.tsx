@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import {useIntl} from 'react-intl'
-import {KTIcon} from '../../../../helpers'
-import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
-import {SidebarMenuItem} from './SidebarMenuItem'
+import { useIntl } from 'react-intl'
+import { KTIcon } from '../../../../helpers'
+import { SidebarMenuItemWithSub } from './SidebarMenuItemWithSub'
+import { SidebarMenuItem } from './SidebarMenuItem'
 
 const SidebarMenuMain = () => {
   const intl = useIntl()
@@ -13,15 +13,34 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem
         to='/dashboard'
         icon='element-11'
-        title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
+        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem
         to='/geocode'
         icon='element-11'
-        title= 'Geocode'
+        title='Geocode'
         fontIcon='bi-app-indicator'
       />
+      <SidebarMenuItem
+        to='/negativeAreaByAddress'
+        icon='element-11'
+        title='Negative Area By Address'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/negativeAreaByLatLon'
+        icon='element-11'
+        title='Negative Area By lat lon'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/geographicalLimitCheck'
+        icon='element-11'
+        title='Geographical Limit Check'
+        fontIcon='bi-app-indicator'
+      />
+
       {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
@@ -54,7 +73,7 @@ const SidebarMenuMain = () => {
           />
         </SidebarMenuItemWithSub> */}
 
-        {/* <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='Wizards' hasBullet={true}>
+      {/* <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='Wizards' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/wizards/horizontal'
             title='Horizontal'
@@ -126,4 +145,4 @@ const SidebarMenuMain = () => {
   )
 }
 
-export {SidebarMenuMain}
+export { SidebarMenuMain }

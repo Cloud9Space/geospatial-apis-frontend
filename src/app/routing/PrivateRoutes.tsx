@@ -7,6 +7,9 @@ import {MenuTestPage} from '../pages/MenuTestPage'
 import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 import {WithChildren} from '../../_metronic/helpers'
 import Geocode from '../pages/geocode'
+import NegativeAreaByAddress from '../pages/negativeAreaByAddress'
+import NegativeAreaByLatLon from '../pages/negativeAreaByLatLon'
+import GeographicalLimitCheck from '../pages/geographicalLimitCheck'
 
 
 //import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
@@ -30,6 +33,9 @@ const PrivateRoutes = () => {
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
         <Route path='geocode' element={<Geocode />} />
+        <Route path='negativeAreaByAddress' element={<NegativeAreaByAddress />} />
+        <Route path='negativeAreaByLatlon' element={<NegativeAreaByLatLon />} />
+        <Route path='geographicalLimitCheck' element={<GeographicalLimitCheck/>} />
 
         {/* <Route
           path='crafted/pages/profile/*'
