@@ -64,6 +64,12 @@ const SidebarMenuMain = () => {
         title='Disaster Zone'
         fontIcon='bi-app-indicator'
       />
+      <SidebarMenuItem
+        to='/addressAutofill'
+        icon='element-11'
+        title='Address Autofill'
+        fontIcon='bi-app-indicator'
+      />
       
 
       {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />

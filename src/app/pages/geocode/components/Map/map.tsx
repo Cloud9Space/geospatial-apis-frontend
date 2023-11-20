@@ -28,6 +28,7 @@ const GeocodeMap = () => {
         lat: geocodeResponse.latitude,
         lng: geocodeResponse.longitude
       });
+      console.log(markerPosition)
     }
     else{
       setMarkerPosition(defaultCenter)

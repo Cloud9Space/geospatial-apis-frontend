@@ -56,8 +56,8 @@ function ArielDistance() {
   return (
     <div >
       <div className="absolute isMini" />
-      <arielDistanceContext.Provider value={{arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse}}  >
-      
+      <arielDistanceContext.Provider value={{ arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse }}  >
+
         <div className=" mt={4}" >
           <div className="mb={1}">
             <div className="container spacing={3}">
@@ -69,7 +69,7 @@ function ArielDistance() {
           </div>
           <div className=" mb={1}">
             <div className=" container spacing={3}">
-              <div className = "item xs={12} md={12} lg={12}" style={{}}>
+              <div className="item xs={12} md={12} lg={12}" style={{}}>
                 <ArielDistanceMap />
               </div>
             </div>

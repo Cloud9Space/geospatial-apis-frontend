@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
 import { KTIcon, toAbsoluteUrl } from '../../../../../_metronic/helpers';
 import { Link } from 'react-router-dom'
@@ -16,13 +16,22 @@ import SimpleDialog from '../Info/SimpleDialog';
 import geocodeContext from '../../context/geocode/geocodeContext';
 
 function Header() {
-  const { geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, setIsLoading } = useContext(geocodeContext)
+  const { geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, setIsLoading, isDataLoaded, setIsDataLoaded } = useContext(geocodeContext)
   const [isEnabled, setIsEnabled] = useState(false)
   const [open, setOpen] = React.useState(false);
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
   const location = useLocation()
   const [isValidInput, setIsValidInput] = useState(true);
+
+  useEffect(() => {
+    console.log(isDataLoaded);
+    if (isDataLoaded)
+      handleSubmit();
+    console.log("hii")
+  }, [])
+
+
 
   const handleClickOpen = () => {
     console.log("Hiiii");
@@ -71,8 +80,10 @@ function Header() {
             'full_address': 'pune, maharashtra'
           }
         }
+        console.log("response" + response)
+
         if ("data" in response) {
-          console.log(response)
+          console.log("response" + response)
           setGeocodeResponse(response)
         }
       } catch (error) {
