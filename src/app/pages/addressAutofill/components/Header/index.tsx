@@ -33,17 +33,17 @@ function Header() {
   const [subLocalityList, setSubLocalityList] = useState([]);
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
-  let navigate  = useNavigate();
+  let navigate = useNavigate();
 
   useEffect(() => {
 
     const data_ogl = async () => {
-      const response:any = await fetchCsvData()
+      const response: any = await fetchCsvData()
       setCsvData(response)
       console.log(response)
-      const cityList:any = [...new Set(response.map(item => item.city))];
+      const cityList: any = [...new Set(response.map(item => item.city))];
       setCityList(cityList)
-    }  
+    }
     data_ogl()
     // console.log("cityList"+cityList)
   }, [])
@@ -52,11 +52,11 @@ function Header() {
   useEffect(() => {
     console.log("city has been changed")
     console.log(inputData.city)
-    
+
     const fetchPincodes = () => {
 
-      const pincodeList : any = [...new Set(csvData.filter(item => item.city === inputData.city)
-      .map(item => item.pincode))];
+      const pincodeList: any = [...new Set(csvData.filter(item => item.city === inputData.city)
+        .map(item => item.pincode))];
 
       setPincodeList(pincodeList)
       setLocalityList([])
@@ -80,7 +80,7 @@ function Header() {
       //   console.error(error);
       // }
     };
-    if (inputData.city != ''){
+    if (inputData.city != '') {
       fetchPincodes();
     }
   }, [inputData.city]);
@@ -88,9 +88,9 @@ function Header() {
   // useEffect(() => {
   //   console.log("pincode has been changed")
   //   console.log(inputData.pincode)
-    
+
   //   const fetchCity = () => {
-      
+
   //     // console.log("getCity api called")
   //     // try {
   //     //   const response = axios.get(api_url + "addressAutofill/getCity", {
@@ -117,11 +117,11 @@ function Header() {
   useEffect(() => {
     console.log("locality has been changed")
     console.log(inputData.locality)
-    
+
     const fetchLocality = () => {
 
-      const localityList :any = [...new Set(csvData.filter(item => item.city === inputData.city && item.pincode === inputData.pincode )
-      .map(item => item.locality))];
+      const localityList: any = [...new Set(csvData.filter(item => item.city === inputData.city && item.pincode === inputData.pincode)
+        .map(item => item.locality))];
 
       setLocalityList(localityList)
       setSubLocalityList([])
@@ -144,18 +144,18 @@ function Header() {
       //   console.error(error);
       // }
     };
-    if (inputData.city != '' && inputData.pincode != ''){
+    if (inputData.city != '' && inputData.pincode != '') {
       fetchLocality();
     }
   }, [inputData.pincode]);
 
   // called once 
   useEffect(() => {
-   
+
     const fetchSubLocality = () => {
 
       const subLocalityList: any = [...new Set(csvData.filter(item => item.city === inputData.city && item.pincode === inputData.pincode && item.locality === inputData.locality)
-      .map(item => item.sublocality))];
+        .map(item => item.sublocality))];
 
       setSubLocalityList(subLocalityList)
 
@@ -178,13 +178,13 @@ function Header() {
       //   console.error(error);
       // }
     };
-    if (inputData.city != '' && inputData.pincode != '' && inputData.locality != ''){
+    if (inputData.city != '' && inputData.pincode != '' && inputData.locality != '') {
       fetchSubLocality();
     }
   }, [inputData.locality]);
 
 
-  const HandleSubmit = async()=>{
+  const HandleSubmit = async () => {
     console.log(inputData)
 
 
@@ -208,12 +208,12 @@ function Header() {
         'full_address': 'pune, maharashtra'
       }
     }
-    console.log("response",response)
+    console.log("response", response)
     let latLonData;
     if ("data" in response) {
       console.log("inresponse" + response.data.latitude
       );
-      
+
       latLonData = {
         full_address: "",
         latitude: response.data.latitude,
@@ -221,13 +221,13 @@ function Header() {
       }
     }
 
-    
-    navigate("/geocode", { state: { ...inputData, ...latLonData }})
+
+    navigate("/geocode", { state: { ...inputData, ...latLonData } })
   }
 
   return (
     <div id="address-autofill">
-      <div className="p={1}" style={{ }}>
+      <div className="p={1}" style={{}}>
         <div className="p={2}">
           <div style={{ minWidth: 150 }}>
             <label >City</label>
@@ -237,8 +237,9 @@ function Header() {
               value={inputData.city}
               onChange={e => setInputData({ ...inputData, city: e.target.value })}
             >
+              <option key="Default" value="Default">Default</option >
               {cityList.map((item, index) => (
-                <option  key={index} value={item}>{item}</option >
+                <option key={index} value={item}>{item}</option >
               ))}
             </select>
           </div>
@@ -252,8 +253,10 @@ function Header() {
               value={inputData.pincode}
               onChange={e => setInputData({ ...inputData, pincode: e.target.value })}
             >
+              <option key="Default" value="Default">Default</option >
+
               {pincodeList.map((item, index) => (
-                <option  key={index} value={item}>{item}</option >
+                <option key={index} value={item}>{item}</option >
               ))}
             </select>
           </div>
@@ -267,8 +270,10 @@ function Header() {
               value={inputData.locality}
               onChange={e => setInputData({ ...inputData, locality: e.target.value })}
             >
+              <option key="Default" value="Default">Default</option >
+
               {localityList.map((item, index) => (
-                <option  key={index} value={item}>{item}</option >
+                <option key={index} value={item}>{item}</option >
               ))}
             </select>
           </div>
@@ -282,20 +287,22 @@ function Header() {
               value={inputData.sublocality}
               onChange={e => setInputData({ ...inputData, sublocality: e.target.value })}
             >
+              <option key="Default" value="Default">Default</option >
+
               {subLocalityList.map((item, index) => (
-                <option  key={index} value={item}>{item}</option >
+                <option key={index} value={item}>{item}</option >
               ))}
             </select>
           </div>
         </div>
         <div className="p={2}">
           <label >Address</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             // size="small"
-            value={inputData.address} 
-            style={{width: 300}}
-            onChange = {e => setInputData({ ...inputData, address: e.target.value })}
+            value={inputData.address}
+            style={{ width: 300 }}
+            onChange={e => setInputData({ ...inputData, address: e.target.value })}
           />
         </div>
         <div className=" pt={3}">
