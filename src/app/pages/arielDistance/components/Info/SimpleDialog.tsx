@@ -6,10 +6,10 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
 
 
   const createData = (key, value) => {
-    if (value === true) value = "Yes";
-    else if (value === false) value = "No";
-    if(key === "lat") key = "Latitude";
-    else if(key === "lon") key = "Longitude";
+    if (value === true)
+      value = "Yes";
+    else if (value === false)
+      value = "No";
     return { key, value };
   };
 
@@ -54,13 +54,10 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
           display: 'flex',
           flexDirection: 'column',
           // flex:'1',
-          // justifyContent: 'center',
-          // alignItems: 'center',
-          minWidth: '40%',
+          justifyContent: 'center',
+          width: 'fit-content',
           height: 'auto',
-          minHeight: 'auto',
-          fontSize: '20px',
-          padding: '3vw',
+          padding: '2vw',
           marginLeft: 'auto',
           marginRight: 'auto',
           marginTop: 'auto',
@@ -76,19 +73,19 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
     >
 
       <div className='d-flex flex-column  '>
-        <h2 className='text-center' style={{fontSize: '30px'}}>NegativeArea Response</h2><br />
-        <table  style={{ width: 'auto', border: '1px solid black' }}>
+        <h2>NegativeArea Response</h2><br />
+        <table style={{ width: 'auto' }}>
           <thead>
-            <tr className='text-center' style={{border: '1px solid black'}}>
-              <th style={{border: '1px solid black'}}>Key</th>
-              <th style={{border: '1px solid black'}}>Value</th>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             {rows.map((row) => (
               <tr key={row.key}>
-                <td style={{border: '1px solid black',padding: '10px'}}>{row.key}</td>
-                <td style={{border: '1px solid black',padding: '10px'}}>{row.value}</td>
+                <td>{row.key}</td>
+                <td>{row.value}</td>
               </tr>
             ))}
           </tbody>

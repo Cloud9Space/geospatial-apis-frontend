@@ -13,7 +13,7 @@
 // import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import Header from "./components/Header/header";
-import NegativeAreaMap from "./components/Map/map";
+import ArielDistanceMap from "./components/Map/map";
 import LinearIndeterminate from "./components/Loader/Loader";
 // Billing page components
 // import Header from "./components/Header/header";
@@ -21,38 +21,44 @@ import LinearIndeterminate from "./components/Loader/Loader";
 // import LinearIndeterminate from "./components/Loader/Loader";
 
 //import geocodeContext from "./Context/geocode/geocodeContext";
-import negativeAreaByAddressContext from "./context/negativeAreaByAddress/negativeAreaByAddressContext";
 import { useState } from "react";
+import arielDistanceContext from "./context/arielDistance/arielDistance";
 
-export const initnegativeAreaData = {
-  address: "",
-  city: "",
-  pincode: ""
+export const aerialDistanceInitData = {
+  sourceLatitude: "",
+  sourceLongitude: "",
+  destinationLatitude: "",
+  destinationLongitude: "",
 }
 
-export const negativeAreaInitResponse = {
-  data: {
-    isInNegativeArea: "",
-    lat: 18.5568147,
-    lon: 73.79745869999999,
-    geo_accuracy: "",
-    input_quality: "",
-    city: "",
-    mis_match: ""}
+export const arielDistanceInitResponse = {
+  withInGeolimit: ""
 }
 
-function NegativeAreaByAddress() {
+export const arielDistanceInitMapData = {
+  sourceLatitude: 18.463435,
+  sourceLongitude: 73.866851,
+  destinationLatitude: 18.463435,
+  destinationLongitude:  73.870000,
+  response: {
+    arielDistance: null
+  }
+}
 
-  const [negativeAreaInputData, setnegativeAreaInputData] = useState(initnegativeAreaData)
-  const [negativeAreaResponse, setNegativeAreaResponse] = useState(negativeAreaInitResponse)
+
+function ArielDistance() {
+
+  const [arielDistanceInputData, setArielDistanceInputData] = useState(aerialDistanceInitData)
+  const [arielDistanceResponse, setArielDistanceResponse] = useState(arielDistanceInitResponse)
   const [isLoading, setIsLoading] = useState(false);
-
+  const [arielDistanceMapData, setArielDistanceMapData] = useState(arielDistanceInitMapData)
   // const google = window.google
   return (
-    <div>
-      <div className="absolute isMini"/>
-      <negativeAreaByAddressContext.Provider value={{ negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, isLoading, setIsLoading }}>
-        <div className=" mt={4}">
+    <div >
+      <div className="absolute isMini" />
+      <arielDistanceContext.Provider value={{arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse}}  >
+      
+        <div className=" mt={4}" >
           <div className="mb={1}">
             <div className="container spacing={3}">
               <div className=" item xs={12}">
@@ -64,14 +70,14 @@ function NegativeAreaByAddress() {
           <div className=" mb={1}">
             <div className=" container spacing={3}">
               <div className = "item xs={12} md={12} lg={12}" style={{}}>
-                <NegativeAreaMap />
+                <ArielDistanceMap />
               </div>
             </div>
           </div>
         </div>
-      </negativeAreaByAddressContext.Provider>
+      </arielDistanceContext.Provider>
     </div>
   );
 }
 
-export default NegativeAreaByAddress;
+export default ArielDistance;

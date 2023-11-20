@@ -62,7 +62,7 @@ function NegativeAreaByLatLon() {
           </div>
           <div className=" mb={1}">
             <div className=" container spacing={3}">
-              <div className = "item xs={12} md={12} lg={12}" style={{ border: '10px solid #dee2e6' }}>
+              <div className = "item xs={12} md={12} lg={12}" >
                 <NegativeAreaMap />
               </div>
             </div>

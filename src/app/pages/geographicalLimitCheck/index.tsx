@@ -25,9 +25,9 @@ import geolimitContext from "./context/geographicalLimitCheck/geolimitContext";
 import { useState } from "react";
 
 export const geolimitInitData = {
-  latitude: "18.7391977",
-  longitude: "73.6830521",
-  city: "PUNE"
+  latitude: "",
+  longitude: "",
+  city: ""
 }
 
 export const geolimitInitResponse = {
@@ -35,8 +35,8 @@ export const geolimitInitResponse = {
 }
 
 export const geolimitInitMapData = {
-  latitude: 18.58339,
-  longitude: 73.90823,
+  latitude: 18.463435,
+  longitude: 73.866851,
   radius: 2,
   response: {
     isOgl: null
@@ -52,11 +52,11 @@ function GeographicalLimitCheck() {
   const [geolimitMapData, setGeolimitMapData] = useState(geolimitInitMapData)
   // const google = window.google
   return (
-    <div>
-      <div className="absolute isMini"/>
-      <geolimitContext.Provider value={{geolimitInputData, setGeolimitInputData, geolimitMapData, setGeolimitMapData, isLoading, setIsLoading, geolimitResponse, setGeolimitResponse}} >
+    <div >
+      <div className="absolute isMini" />
+      <geolimitContext.Provider value={{geolimitInputData, setGeolimitInputData, geolimitMapData, setGeolimitMapData, isLoading, setIsLoading, geolimitResponse, setGeolimitResponse}}  >
       
-        <div className=" mt={4}">
+        <div className=" mt={4}" >
           <div className="mb={1}">
             <div className="container spacing={3}">
               <div className=" item xs={12}">
@@ -67,7 +67,7 @@ function GeographicalLimitCheck() {
           </div>
           <div className=" mb={1}">
             <div className=" container spacing={3}">
-              <div className = "item xs={12} md={12} lg={12}" style={{ border: '10px solid #dee2e6',borderTop:'none' }}>
+              <div className = "item xs={12} md={12} lg={12}" style={{}}>
                 <GeoLimitMap />
               </div>
             </div>

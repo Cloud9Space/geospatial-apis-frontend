@@ -21,7 +21,7 @@ function Header() {
   const [open, setOpen] = React.useState(false);
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
-
+  const [isValidInput, setIsValidInput] = useState(true)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -29,9 +29,23 @@ function Header() {
   const handleClose = (value) => {
     setOpen(false);
   };
+  const validate = () => {
+    if (
+      negativeAreaInputData.latitude === "" ||
+      negativeAreaInputData.longitude === ""
+    ) {
+      console.log("hiii")
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 
   const handleSubmit = async () => {
     setIsLoading(true);
+    if (validate()) {
+      setIsValidInput(true);
     try {
       // const response = await axios.get(api_url + "negativeAreaByLatLon", {
       //   params: {
@@ -47,7 +61,7 @@ function Header() {
         'data': {
           'lat': 18.531905,
           'lon': 73.847874,
-          'isInNegativeArea': true
+          'isInNegativeArea': false
         }
       }
       console.log(response)
@@ -56,12 +70,18 @@ function Header() {
     } catch (error) {
       console.error(error);
     }
-    setIsEnabled(true)
+    
+    setIsEnabled(true);
+  }
+  else
+  {
+    setIsValidInput(false);
+  }
     setIsLoading(false);
   };
 
   return (
-    <div className='current' style={{ border: '10px solid #dee2e6', borderBottom: 'none' }} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
+    <div className='current' style={{ }} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
         <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
           <div className='' style={{ flex: '1', padding: '10px' }}>
             <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
@@ -80,7 +100,7 @@ function Header() {
               value={negativeAreaInputData.latitude}
               onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, latitude: e.target.value })}
             />
-            {!negativeAreaInputData.latitude && (
+            {!isValidInput && (
               <div className='fv-plugins-message-container'>
                 <div data-field='latitude' data-validator='notEmpty' className='fv-help-block'>
                 latitude is required
@@ -105,7 +125,7 @@ function Header() {
               value={negativeAreaInputData.longitude}
               onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, longitude: e.target.value })}
             />
-            {!negativeAreaInputData.longitude && (
+            {!isValidInput && (
               <div className='fv-plugins-message-container'>
                 <div data-field='longitude' data-validator='notEmpty' className='fv-help-block'>
                 longitude is required

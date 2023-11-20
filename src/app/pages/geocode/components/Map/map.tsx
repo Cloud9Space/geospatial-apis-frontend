@@ -22,19 +22,20 @@ const GeocodeMap = () => {
   };
 
   useEffect(() => {
+    console.log("geocodeResponse" + geocodeResponse)
     if ('data' in geocodeResponse){
         setMarkerPosition({
-        lat: geocodeResponse.data.data.latitude,
-        lng: geocodeResponse.data.data.longitude
+        lat: geocodeResponse.latitude,
+        lng: geocodeResponse.longitude
       });
     }
     else{
       setMarkerPosition(defaultCenter)
     }
-  }, [defaultCenter, geocodeResponse])
+  }, [geocodeResponse])
 
   return (
-    <LoadScript googleMapsApiKey={GOOGLE_MAP_API_KEY}>
+    <LoadScript googleMapsApiKey={GOOGLE_MAP_API_KEY!}>
       <GoogleMap
         mapContainerStyle={{ width: '100%', height: '580px' }}
         center={markerPosition}

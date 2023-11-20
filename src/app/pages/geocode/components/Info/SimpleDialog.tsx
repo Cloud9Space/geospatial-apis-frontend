@@ -2,7 +2,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
+const SimpleDialog = ({ isOpen, onRequestClose, geocodeResponse }) => {
 
 
   const createData = (key, value) => {
@@ -15,9 +15,9 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
 
   let rows: any = [];
 
-  if (negativeAreaResponse.data) {
-    rows = Object.keys(negativeAreaResponse.data).map((key) =>
-      createData(key, negativeAreaResponse.data[key])
+  if (geocodeResponse.data) {
+    rows = Object.keys(geocodeResponse.data).map((key) =>
+      createData(key, geocodeResponse.data[key])
     );
   }
   console.log(rows)

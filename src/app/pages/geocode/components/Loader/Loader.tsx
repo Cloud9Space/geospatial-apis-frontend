@@ -4,8 +4,9 @@ import * as React from 'react';
 
 export default function LinearIndeterminate() {
   return (
-    <div sx={{ width: '100%' }}>
-      <div variant='determinate' color="info" />
-    </div>  
+    // <div sx={{ width: '100%' }}>
+    //   <div variant='determinate' color="info" />
+    // </div>  
+    <div>hii</div>
   );
 }

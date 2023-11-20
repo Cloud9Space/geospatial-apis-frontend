@@ -1,41 +1,61 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
-import { KTIcon, toAbsoluteUrl } from '../../../../../_metronic/helpers';
-import { Link } from 'react-router-dom'
-import { Dropdown1 } from '../../../../../_metronic/partials'
-import { useLocation } from 'react-router'
-import SimpleDialog from '../Info/SimpleDialog';
-// Material Dashboard 2 React components
-// import MDInput from "components/MDInput";
-// import MDBox from "components/MDBox";
-// import MDTypography from "components/MDTypography";
-// import MDButton from "components/MDButton";
-// import geocodeContext from 'layouts/geocode/context/geocode/geocodeContext';
-// import SimpleDialog from '../Info/SimpleDialog';
-// import SimpleDialog from '../Info/SimpleDialog';
-import negativeAreaByAddressContext from '../../context/negativeAreaByAddress/negativeAreaByAddressContext';
+
+
+export const initData = {
+  address: "",
+  city: "",
+  pincode: "",
+}
+
+export interface initTableData  {
+  address: string,
+  locationType: string,
+  dtName: string,
+  stName: string,
+}
+export const tableHeaders = [
+  "Location Type",
+  "Address",
+  "District Name",
+  "State Name"
+
+]
 
 function Header() {
-  const { negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, setIsLoading } = useContext(negativeAreaByAddressContext)
-  const [isEnabled, setIsEnabled] = useState(false)
-  const [open, setOpen] = React.useState(false);
-  const api_url = process.env.REACT_APP_API_URL_DEV
-  const api_key = process.env.REACT_APP_API_KEY
+  const [tableData, setTableData] = useState([] as initTableData[])
+  const [inputData, setInputData] = useState(initData)
+  const [isLoading, setIsLoading] = useState(false);
   const [isValidInput, setIsValidInput] = useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const api_url = process.env.REACT_APP_API_URL_DEV
+  const api_key = process.env.REACT_APP_API_KEY
 
-  const handleClose = (value) => {
-    setOpen(false);
-  };
+  // useEffect(()=>{
+  //   setTableData([])
+  // })
+
+  const columns: any = tableHeaders.map((item) => (
+    <th style={{border:'1px solid black',padding:'10px',textAlign:'center'}}>{item}</th>
+  ));
+
+
+  const rows: any = [tableData.map((item) => {
+    return (
+      <tr>
+        <td style={{border:'1px solid black',padding:'10px'}}>{item.locationType}</td>
+        <td style={{border:'1px solid black',padding:'10px'}}>{item.address}</td>
+        <td style={{border:'1px solid black',padding:'10px'}}>{item.dtName}</td>
+        <td style={{border:'1px solid black',padding:'10px'}}>{item.stName}</td>
+      </tr>
+    );
+  })];
 
   const validate = () => {
     if (
-      negativeAreaInputData.address === "" ||
-      negativeAreaInputData.city === "" ||
-      negativeAreaInputData.pincode === ""
+      inputData.address === "" ||
+      inputData.city === "" ||
+      inputData.pincode === ""
     ) {
       console.log("hiii")
       return false;
@@ -45,16 +65,17 @@ function Header() {
     }
   }
 
+
   const handleSubmit = async () => {
     setIsLoading(true);
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "negativeAreaByAddress", {
+        // const response = await axios.get(api_url + "urbanRuralCheck", {
         //   params: {
-        //     address: negativeAreaInputData['address'],
-        //     city: negativeAreaInputData['city'],
-        //     pincode: negativeAreaInputData['pincode'],
+        //     address: inputData['address'],
+        //     city: inputData['city'],
+        //     pincode: inputData['pincode']
         //   },
         //   headers: {
         //     'x-api-key': api_key,
@@ -62,45 +83,62 @@ function Header() {
         //   }
         // });
         const response = {
-          'data': {
-            'lat': 18.531905,
-            'lon': 73.847874,
-            'isInNegativeArea': true
+          "status": 200,
+          "message": "Data Fetched Successfully!!",
+          "data": {
+            "location_type": "Urban",
+            "town_name": "Pune",
+            "town_village_code": "802814",
+            "dt_name": "Pune",
+            "dt_code": "521",
+            "st_name": "MAHARASHTRA",
+            "st_code": "27"
           }
         }
-        console.log(response)
-        setNegativeAreaResponse(response)
+        const data:initTableData = {
+          address: inputData.address,
+          locationType: response?.data?.location_type,
+          dtName: response?.data?.dt_name,
+          stName: response?.data?.st_name,
+        }
+        const rows = [
+          ...tableData,
+          data
+          ];
+
+
+        setTableData(rows);
 
       } catch (error) {
         console.error(error);
       }
-      setIsEnabled(true)
     }
-    else {
+    else
       setIsValidInput(false);
-    }
     setIsLoading(false);
+
   };
 
   return (
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
-      <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
+      <div className='d-flex flex-row' style={{ flexWrap: 'wrap' }} >
+        {/* <div> */}
         <div className='' style={{ flex: '1', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Address</span>
             <i
               className='fas fa-exclamation-circle ms-2 fs-7'
               data-bs-toggle='tooltip'
-              title='Enter the Full Address'
+              title='Enter Address'
             ></i>
           </label>
           <input
             type='text'
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='address'
-            placeholder='address'
-            value={negativeAreaInputData.address}
-            onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, address: e.target.value })}
+            placeholder='Address'
+            value={inputData.address}
+            onChange={(e) => setInputData({ ...inputData, address: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -116,16 +154,16 @@ function Header() {
             <i
               className='fas fa-exclamation-circle ms-2 fs-7'
               data-bs-toggle='tooltip'
-              title='Enter the City'
+              title='Enter City'
             ></i>
           </label>
           <input
             type='text'
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='city'
-            placeholder='city'
-            value={negativeAreaInputData.city}
-            onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, city: e.target.value })}
+            placeholder='City'
+            value={inputData.city}
+            onChange={(e) => setInputData({ ...inputData, city: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -141,16 +179,16 @@ function Header() {
             <i
               className='fas fa-exclamation-circle ms-2 fs-7'
               data-bs-toggle='tooltip'
-              title='Enter the Pincode'
+              title='Enter Pincode'
             ></i>
           </label>
           <input
             type='text'
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='pincode'
-            placeholder='pincode'
-            value={negativeAreaInputData.pincode}
-            onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, pincode: e.target.value })}
+            placeholder='Pincode'
+            value={inputData.pincode}
+            onChange={(e) => setInputData({ ...inputData, pincode: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -160,6 +198,7 @@ function Header() {
             </div>
           )}
         </div>
+        {/* </div> */}
         <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
           <button
             type="button"
@@ -169,29 +208,20 @@ function Header() {
           >
             Submit
           </button>
-
-          {isEnabled &&
-            <button
-              type='button'
-              className='btn btn-lg btn-primary mb-2'
-              data-kt-stepper-action='view response'
-              onClick={handleClickOpen}>View Response</button>
-          }
-
-
         </div>
       </div>
-      <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
-        <label className='d-flex align-items-center fs-5 fw-semibold '>
-          {negativeAreaResponse.data.isInNegativeArea ? `Is In Negative Area : ${negativeAreaResponse.data.isInNegativeArea}` : " "}
-        </label>
+      <div className='d-flex flex-row flex-center'>
+        <table className='' style={{ width: '100%' ,border:'1px solid black'}}>
+          <thead>
+            <tr >
+              {columns}
+            </tr>
+          </thead>
+          {rows}
+        </table>
       </div>
-      <SimpleDialog
-        isOpen={open}
-        onRequestClose={handleClose}
-        negativeAreaResponse={negativeAreaResponse}
-      />
-    </div>
+
+    </div >
   );
 }
 

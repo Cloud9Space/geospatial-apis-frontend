@@ -29,30 +29,35 @@ export const initGeocodeData = {
   city: "",
   pincode: ""
 }
+export const initGeocodeResponse = {
+  full_address : "",
+  latitude: 18.463435,
+  longitude: 73.866851,
+}
 
 function Geocode() {
 
   const [geocodeInputData, setGeocodeInputData] = useState(initGeocodeData)
-  const [geocodeResponse, setGeocodeResponse] = useState({ latitude: 18.58339, longitude: 73.90823 })
+  const [geocodeResponse, setGeocodeResponse] = useState(initGeocodeResponse)
   const [isLoading, setIsLoading] = useState(false);
 
   // const google = window.google
   return (
     <div>
-      <div absolute isMini />
+      <div className="absolute isMini"/>
       <geocodeContext.Provider value={{ geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, isLoading, setIsLoading }}>
-        <div mt={4}>
-          <div mb={1}>
-            <div container spacing={3}>
-              <div item xs={12}>
+        <div className=" mt={4}">
+          <div className="mb={1}">
+            <div className="container spacing={3}">
+              <div className=" item xs={12}">
                 <Header />
                 {isLoading && <LinearIndeterminate />}
               </div>
             </div>
           </div>
-          <div mb={1}>
-            <div container spacing={3}>
-              <div item xs={12} md={12} lg={12}>
+          <div className=" mb={1}">
+            <div className=" container spacing={3}">
+              <div className = "item xs={12} md={12} lg={12}" style={{}}>
                 <GeocodeMap />
               </div>
             </div>

@@ -10,7 +10,7 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 // const api_url = process.env.REACT_APP_API_URL_DEV
 // const api_key = process.env.REACT_APP_API_KEY
 
-const NegativeAreaMap = () => {
+const GeoLimitMap = () => {
   // const defaultCenter = { lat: 18.531905, lng: 73.847874 };
   const { geolimitMapData, setGeolimitMapData, geolimitResponse, setGeolimitResponse } = useContext(geolimitContext)
   const defaultCenter = { lat: geolimitMapData.latitude, lng: geolimitMapData.longitude };
@@ -22,6 +22,7 @@ const NegativeAreaMap = () => {
 
 
   useEffect(() => {
+    console.log("geolimitResponse"+geolimitResponse);
     setMarkerPosition({
       lat: parseFloat(geolimitResponse.latitude),
       lng: parseFloat(geolimitResponse.longitude),
@@ -58,26 +59,26 @@ const NegativeAreaMap = () => {
 
   },[])
 
-  useEffect(() => {
-    // if (geolimitResponse.withInGeolimit){
-    //   setFillColor("#42f54b")
-    //   console.log(fillColor)
-    // }
-    // console.log(geolimitMapData)
-    // setMarkerPosition({
-    //   lat: geolimitMapData.latitude,
-    //   lng: geolimitMapData.longitude,
-    // });
-    // console.log(geolimitMapData)
-    setCenterPosition({
-      lat: geolimitMapData.latitude,
-      lng: geolimitMapData.longitude,
-    });
-  }, [geolimitMapData])
+  // useEffect(() => {
+  //   // if (geolimitResponse.withInGeolimit){
+  //   //   setFillColor("#42f54b")
+  //   //   console.log(fillColor)
+  //   // }
+  //   // console.log(geolimitMapData)
+  //   // setMarkerPosition({
+  //   //   lat: geolimitMapData.latitude,
+  //   //   lng: geolimitMapData.longitude,
+  //   // });
+  //   // console.log(geolimitMapData)
+  //   setCenterPosition({
+  //     lat: geolimitMapData.latitude,
+  //     lng: geolimitMapData.longitude,
+  //   });
+  // }, [geolimitMapData])
 
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
-      <div className=' d-flex flex-row flex-center' style={{borderBottom: "10px solid #dfdfdf"}}>
+      <div className=' d-flex flex-row flex-center' style={{}}>
         <div className=" pr={3}" style={{flex:'1',padding: "10px"}}>
           <label>Circle Radius:</label>
           <div className=' pl={3} width={200}'>
@@ -102,7 +103,7 @@ const NegativeAreaMap = () => {
           <span >{geolimitMapData.radius}</span>      
         </div>
         <div   className="" style={{flex:'1',padding: "auto",paddingLeft: "10px", }}>
-        <label>{`Within Geolimit : ${geolimitResponse.withInGeolimit?geolimitResponse.withInGeolimit:"Make a submission"}`}</label>
+        <label>{`Within Geolimit : ${geolimitResponse.withInGeolimit != null?geolimitResponse.withInGeolimit:"Make a submission"}`}</label>
         </div>
       </div>
       <GoogleMap
@@ -122,6 +123,7 @@ const NegativeAreaMap = () => {
           // onDragEnd={handleMarkerDragEnd}
         /> )}
 
+
         <Circle
           center={centerPosition}
           radius={geolimitMapData.radius*1000}
@@ -140,5 +142,5 @@ const NegativeAreaMap = () => {
 };
 
 
-export default NegativeAreaMap;
+export default GeoLimitMap;
 // GeocodeMap

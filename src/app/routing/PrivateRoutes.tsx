@@ -10,6 +10,10 @@ import Geocode from '../pages/geocode'
 import NegativeAreaByAddress from '../pages/negativeAreaByAddress'
 import NegativeAreaByLatLon from '../pages/negativeAreaByLatLon'
 import GeographicalLimitCheck from '../pages/geographicalLimitCheck'
+import ArielDistance from '../pages/arielDistance'
+import UrbanRural from '../pages/urbanRural'
+import DisasterZone from '../pages/disasterZone'
+import ReverseGeocode from '../pages/reverseGeocode'
 
 
 //import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
@@ -33,9 +37,13 @@ const PrivateRoutes = () => {
         <Route path='menu-test' element={<MenuTestPage />} />
         {/* Lazy Modules */}
         <Route path='geocode' element={<Geocode />} />
+        <Route path='reverseGeocode' element={<ReverseGeocode />} />
         <Route path='negativeAreaByAddress' element={<NegativeAreaByAddress />} />
         <Route path='negativeAreaByLatlon' element={<NegativeAreaByLatLon />} />
         <Route path='geographicalLimitCheck' element={<GeographicalLimitCheck/>} />
+        <Route path='arielDistance' element={<ArielDistance/>} />
+        <Route path='urbanRural' element={<UrbanRural/>} />
+        <Route path='disasterZone' element={<DisasterZone/>} />
 
         {/* <Route
           path='crafted/pages/profile/*'

@@ -4,7 +4,7 @@ import { KTIcon, toAbsoluteUrl } from '../../../../../_metronic/helpers';
 import { Link } from 'react-router-dom'
 import { Dropdown1 } from '../../../../../_metronic/partials'
 import { useLocation } from 'react-router'
-import SimpleDialog from '../Info/SimpleDialog';
+
 // Material Dashboard 2 React components
 // import MDInput from "components/MDInput";
 // import MDBox from "components/MDBox";
@@ -12,18 +12,20 @@ import SimpleDialog from '../Info/SimpleDialog';
 // import MDButton from "components/MDButton";
 // import geocodeContext from 'layouts/geocode/context/geocode/geocodeContext';
 // import SimpleDialog from '../Info/SimpleDialog';
-// import SimpleDialog from '../Info/SimpleDialog';
-import negativeAreaByAddressContext from '../../context/negativeAreaByAddress/negativeAreaByAddressContext';
+import SimpleDialog from '../Info/SimpleDialog';
+import geocodeContext from '../../context/geocode/geocodeContext';
 
 function Header() {
-  const { negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, setIsLoading } = useContext(negativeAreaByAddressContext)
+  const { geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, setIsLoading } = useContext(geocodeContext)
   const [isEnabled, setIsEnabled] = useState(false)
   const [open, setOpen] = React.useState(false);
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
+  const location = useLocation()
   const [isValidInput, setIsValidInput] = useState(true);
 
   const handleClickOpen = () => {
+    console.log("Hiiii");
     setOpen(true);
   };
 
@@ -33,9 +35,9 @@ function Header() {
 
   const validate = () => {
     if (
-      negativeAreaInputData.address === "" ||
-      negativeAreaInputData.city === "" ||
-      negativeAreaInputData.pincode === ""
+      geocodeInputData.address === "" ||
+      geocodeInputData.city === "" ||
+      geocodeInputData.pincode === ""
     ) {
       console.log("hiii")
       return false;
@@ -50,36 +52,39 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "negativeAreaByAddress", {
+        // const response = await axios.get(api_url + "geocode", {
         //   params: {
-        //     address: negativeAreaInputData['address'],
-        //     city: negativeAreaInputData['city'],
-        //     pincode: negativeAreaInputData['pincode'],
+        //     address: geocodeInputData['address'],
+        //     city: geocodeInputData['city'],
+        //     pincode: geocodeInputData['pincode'],
         //   },
         //   headers: {
         //     'x-api-key': api_key,
         //     'Accept': "*/*"
         //   }
         // });
+
         const response = {
-          'data': {
-            'lat': 18.531905,
-            'lon': 73.847874,
-            'isInNegativeArea': true
+          "data": {
+            'latitude': 18.463435,
+            'longitude': 73.866851,
+            'full_address': 'pune, maharashtra'
           }
         }
-        console.log(response)
-        setNegativeAreaResponse(response)
-
+        if ("data" in response) {
+          console.log(response)
+          setGeocodeResponse(response)
+        }
       } catch (error) {
         console.error(error);
       }
-      setIsEnabled(true)
     }
     else {
       setIsValidInput(false);
     }
+    setIsEnabled(true)
     setIsLoading(false);
+
   };
 
   return (
@@ -99,8 +104,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='address'
             placeholder='address'
-            value={negativeAreaInputData.address}
-            onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, address: e.target.value })}
+            value={geocodeInputData.address}
+            onChange={(e) => setGeocodeInputData({ ...geocodeInputData, address: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -124,8 +129,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='city'
             placeholder='city'
-            value={negativeAreaInputData.city}
-            onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, city: e.target.value })}
+            value={geocodeInputData.city}
+            onChange={(e) => setGeocodeInputData({ ...geocodeInputData, city: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -149,8 +154,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='pincode'
             placeholder='pincode'
-            value={negativeAreaInputData.pincode}
-            onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, pincode: e.target.value })}
+            value={geocodeInputData.pincode}
+            onChange={(e) => setGeocodeInputData({ ...geocodeInputData, pincode: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -181,15 +186,15 @@ function Header() {
 
         </div>
       </div>
-      <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+      {/* <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
         <label className='d-flex align-items-center fs-5 fw-semibold '>
-          {negativeAreaResponse.data.isInNegativeArea ? `Is In Negative Area : ${negativeAreaResponse.data.isInNegativeArea}` : " "}
+          {geocodeResponse.data.isInNegativeArea ? `Is In Negative Area : ${geocodeResponse.data.isInNegativeArea}` : " "}
         </label>
-      </div>
+      </div> */}
       <SimpleDialog
         isOpen={open}
         onRequestClose={handleClose}
-        negativeAreaResponse={negativeAreaResponse}
+        geocodeResponse={geocodeResponse}
       />
     </div>
   );

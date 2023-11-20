@@ -23,6 +23,12 @@ const SidebarMenuMain = () => {
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem
+        to='/reverseGeocode'
+        icon='element-11'
+        title='Reverse Geocode'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
         to='/negativeAreaByAddress'
         icon='element-11'
         title='Negative Area By Address'
@@ -40,6 +46,25 @@ const SidebarMenuMain = () => {
         title='Geographical Limit Check'
         fontIcon='bi-app-indicator'
       />
+      <SidebarMenuItem
+        to='/arielDistance'
+        icon='element-11'
+        title='Ariel Distance'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/urbanRural'
+        icon='element-11'
+        title='Urban Rural'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/disasterZone'
+        icon='element-11'
+        title='Disaster Zone'
+        fontIcon='bi-app-indicator'
+      />
+      
 
       {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
       <div className='menu-item'>
