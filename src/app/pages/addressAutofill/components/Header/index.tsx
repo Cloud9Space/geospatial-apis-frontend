@@ -299,7 +299,6 @@ function Header() {
           <label >Address</label>
           <input
             type="text"
-            // size="small"
             value={inputData.address}
             style={{ width: 300 }}
             onChange={e => setInputData({ ...inputData, address: e.target.value })}
