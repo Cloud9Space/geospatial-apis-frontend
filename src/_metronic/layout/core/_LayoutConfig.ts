@@ -85,9 +85,9 @@ export const DefaultConfig: ILayout = {
         mobile: false,
       },
       // custom settings,
-      filterButton: true,
+      filterButton: false,
       daterangepickerButton: false,
-      primaryButton: true,
+      primaryButton: false,
       primaryButtonLabel: 'Create',
       primaryButtonModal: 'create-app',
     },
@@ -130,7 +130,7 @@ export const DefaultConfig: ILayout = {
   engage: {
     componentName: 'engage',
     demos: {
-      enabled: true,
+      enabled: false,
     },
     purchase: {
       enabled: false,

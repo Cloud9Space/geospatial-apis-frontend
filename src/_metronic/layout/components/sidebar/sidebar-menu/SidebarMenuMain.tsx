@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
-import {useIntl} from 'react-intl'
-import {KTIcon} from '../../../../helpers'
-import {SidebarMenuItemWithSub} from './SidebarMenuItemWithSub'
-import {SidebarMenuItem} from './SidebarMenuItem'
+import { useIntl } from 'react-intl'
+import { KTIcon } from '../../../../helpers'
+import { SidebarMenuItemWithSub } from './SidebarMenuItemWithSub'
+import { SidebarMenuItem } from './SidebarMenuItem'
 
 const SidebarMenuMain = () => {
   const intl = useIntl()
@@ -13,16 +13,66 @@ const SidebarMenuMain = () => {
       <SidebarMenuItem
         to='/dashboard'
         icon='element-11'
-        title={intl.formatMessage({id: 'MENU.DASHBOARD'})}
+        title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
       />
-      <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
+      <SidebarMenuItem
+        to='/geocode'
+        icon='element-11'
+        title='Geocode'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/reverseGeocode'
+        icon='element-11'
+        title='Reverse Geocode'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/negativeAreaByAddress'
+        icon='element-11'
+        title='Negative Area By Address'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/negativeAreaByLatLon'
+        icon='element-11'
+        title='Negative Area By lat lon'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/geographicalLimitCheck'
+        icon='element-11'
+        title='Geographical Limit Check'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/arielDistance'
+        icon='element-11'
+        title='Ariel Distance'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/urbanRural'
+        icon='element-11'
+        title='Urban Rural'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
+        to='/disasterZone'
+        icon='element-11'
+        title='Disaster Zone'
+        fontIcon='bi-app-indicator'
+      />
+      
+
+      {/* <SidebarMenuItem to='/builder' icon='switch' title='Layout Builder' fontIcon='bi-layers' />
       <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Crafted</span>
         </div>
-      </div>
-      <SidebarMenuItemWithSub
+      </div> */}
+      {/* <SidebarMenuItemWithSub
         to='/crafted/pages'
         title='Pages'
         fontIcon='bi-archive'
@@ -46,17 +96,17 @@ const SidebarMenuMain = () => {
             title='Connections'
             hasBullet={true}
           />
-        </SidebarMenuItemWithSub>
+        </SidebarMenuItemWithSub> */}
 
-        <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='Wizards' hasBullet={true}>
+      {/* <SidebarMenuItemWithSub to='/crafted/pages/wizards' title='Wizards' hasBullet={true}>
           <SidebarMenuItem
             to='/crafted/pages/wizards/horizontal'
             title='Horizontal'
             hasBullet={true}
           />
           <SidebarMenuItem to='/crafted/pages/wizards/vertical' title='Vertical' hasBullet={true} />
-        </SidebarMenuItemWithSub>
-      </SidebarMenuItemWithSub>
+        </SidebarMenuItemWithSub> */}
+      {/* </SidebarMenuItemWithSub>
       <SidebarMenuItemWithSub
         to='/crafted/accounts'
         title='Accounts'
@@ -69,8 +119,8 @@ const SidebarMenuMain = () => {
       <SidebarMenuItemWithSub to='/error' title='Errors' fontIcon='bi-sticky' icon='cross-circle'>
         <SidebarMenuItem to='/error/404' title='Error 404' hasBullet={true} />
         <SidebarMenuItem to='/error/500' title='Error 500' hasBullet={true} />
-      </SidebarMenuItemWithSub>
-      <SidebarMenuItemWithSub
+      </SidebarMenuItemWithSub> */}
+      {/* <SidebarMenuItemWithSub
         to='/crafted/widgets'
         title='Widgets'
         icon='element-7'
@@ -82,8 +132,8 @@ const SidebarMenuMain = () => {
         <SidebarMenuItem to='/crafted/widgets/mixed' title='Mixed' hasBullet={true} />
         <SidebarMenuItem to='/crafted/widgets/tables' title='Tables' hasBullet={true} />
         <SidebarMenuItem to='/crafted/widgets/feeds' title='Feeds' hasBullet={true} />
-      </SidebarMenuItemWithSub>
-      <div className='menu-item'>
+      </SidebarMenuItemWithSub> */}
+      {/* <div className='menu-item'>
         <div className='menu-content pt-8 pb-2'>
           <span className='menu-section text-muted text-uppercase fs-8 ls-1'>Apps</span>
         </div>
@@ -115,9 +165,9 @@ const SidebarMenuMain = () => {
           </span>
           <span className='menu-title'>Changelog {process.env.REACT_APP_VERSION}</span>
         </a>
-      </div>
+      </div> */}
     </>
   )
 }
 
-export {SidebarMenuMain}
+export { SidebarMenuMain }
