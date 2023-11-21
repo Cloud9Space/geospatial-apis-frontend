@@ -93,7 +93,7 @@ function Header() {
               ></i>
             </label>
             <input
-              type='text'
+              type='number'
               className='form-control form-control-lg form-control-solid bg-light-dark '
               name='latitude'
               placeholder='latitude'
@@ -118,7 +118,7 @@ function Header() {
               ></i>
             </label>
             <input
-              type='text'
+              type='number'
               className='form-control form-control-lg form-control-solid bg-light-dark' 
               name='longitude'
               placeholder='longitude'

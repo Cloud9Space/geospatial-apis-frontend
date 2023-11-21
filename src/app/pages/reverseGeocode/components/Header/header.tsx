@@ -65,7 +65,7 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "reverseGeocode", {
+        // let response = await axios.get(api_url + "reverseGeocode", {
         //   params: {
         //     latitude: inputData['latitude'],
         //     longitude: inputData['longitude']
@@ -75,6 +75,7 @@ function Header() {
         //     'Accept': "*/*"
         //   }
         // });
+        // response = response.data;
         const response = {
           "message": "Data Fetched Successfully!!",
           "data": {

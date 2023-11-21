@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 //import geocodeContext from '../Context/geocode/geocodeContext';
-import geocodeContext from '../../context/geocode/geocodeContext';
+// import geocodeContext from '../../context/addressAutofill/geocodeContext';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import addressAutofill from '../../context/addressAutofill/addressAutofill';
 
 const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 
-const GeocodeMap = () => {
-  const { geocodeResponse } = useContext(geocodeContext)
+const AddressAutofillMap = () => {
+  const { geocodeResponse } = useContext(addressAutofill)
 
   const defaultCenter = { lat: geocodeResponse.latitude, lng: geocodeResponse.longitude };
 
   const [markerPosition, setMarkerPosition] = useState(defaultCenter);
-  const [markerVisible, setMarkerVisible] = useState(false);
 
+  const [markerVisible, setMarkerVisible] = useState(false);
 
   const handleMarkerDragEnd = (event) => {
     console.log(event)
@@ -21,19 +22,23 @@ const GeocodeMap = () => {
       lng: event.latLng.lng(),
     });
   };
+  // useEffect(()=>{
+  //   setMarkerVisible(false)
+  // })
 
   useEffect(() => {
-    console.log("geocodeResponse", geocodeResponse.data)
-    if ('data' in geocodeResponse) {
-      setMarkerPosition({
+    console.log("geocodeResponse" , geocodeResponse.data)
+    if ('data' in geocodeResponse){
+        setMarkerPosition({
         lat: geocodeResponse.data.latitude,
         lng: geocodeResponse.data.longitude
       });
+      console.log(markerPosition)
       setMarkerVisible(true)
+
     }
-    else {
+    else{
       setMarkerPosition(defaultCenter)
-      setMarkerVisible(false)
     }
   }, [geocodeResponse])
 
@@ -55,4 +60,4 @@ const GeocodeMap = () => {
   );
 };
 
-export default GeocodeMap;
+export default AddressAutofillMap;

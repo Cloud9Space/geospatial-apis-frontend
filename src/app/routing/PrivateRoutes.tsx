@@ -15,6 +15,7 @@ import UrbanRural from '../pages/urbanRural'
 import DisasterZone from '../pages/disasterZone'
 import ReverseGeocode from '../pages/reverseGeocode'
 import AddressAutofill from '../pages/addressAutofill'
+import DriveTimeDistance from '../pages/driveTimeDistance'
 
 
 //import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
@@ -43,6 +44,7 @@ const PrivateRoutes = () => {
         <Route path='negativeAreaByLatlon' element={<NegativeAreaByLatLon />} />
         <Route path='geographicalLimitCheck' element={<GeographicalLimitCheck/>} />
         <Route path='arielDistance' element={<ArielDistance/>} />
+        <Route path='driveTimeDistance' element={<DriveTimeDistance/>} />
         <Route path='urbanRural' element={<UrbanRural/>} />
         <Route path='disasterZone' element={<DisasterZone/>} />
         <Route path='addressAutofill' element={<AddressAutofill/>} />

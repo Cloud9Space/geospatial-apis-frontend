@@ -54,7 +54,7 @@ function Header() {
     if (
       geolimitInputData.latitude === "" ||
       geolimitInputData.longitude === "" ||
-      geolimitMapData.city === ""
+      geolimitInputData.city === ""
     ) {
       console.log("hiii")
       return false;
@@ -83,6 +83,7 @@ function Header() {
         //     'Accept': "*/*"
         //   }
         // });
+        // console.log(response)
         const response = {
           "data": {
             "data": {
@@ -99,7 +100,8 @@ function Header() {
               ...geolimitResponse,
               withInGeolimit: response['data']['data']['withInGeolimit'],
               latitude: response['data']['data']['latitude'],
-              longitude: response['data']['data']['longitude']
+              longitude: response['data']['data']['longitude'],
+
             })
         }
       } catch (error) {

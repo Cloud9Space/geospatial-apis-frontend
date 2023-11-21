@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from "axios";
 import { KTIcon, toAbsoluteUrl } from '../../../../../_metronic/helpers';
 import { Link } from 'react-router-dom'
@@ -16,22 +16,13 @@ import SimpleDialog from '../Info/SimpleDialog';
 import geocodeContext from '../../context/geocode/geocodeContext';
 
 function Header() {
-  const { geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, setIsLoading, isDataLoaded, setIsDataLoaded } = useContext(geocodeContext)
+  const { geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, setIsLoading } = useContext(geocodeContext)
   const [isEnabled, setIsEnabled] = useState(false)
   const [open, setOpen] = React.useState(false);
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
   const location = useLocation()
   const [isValidInput, setIsValidInput] = useState(true);
-
-  useEffect(() => {
-    console.log(isDataLoaded);
-    if (isDataLoaded)
-      handleSubmit();
-    console.log("hii")
-  }, [])
-
-
 
   const handleClickOpen = () => {
     console.log("Hiiii");
@@ -61,7 +52,7 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "geocode", {
+        // let response = await axios.get(api_url + "geocode", {
         //   params: {
         //     address: geocodeInputData['address'],
         //     city: geocodeInputData['city'],
@@ -72,7 +63,8 @@ function Header() {
         //     'Accept': "*/*"
         //   }
         // });
-
+        // console.log(response);
+        // response = response.data;
         const response = {
           "data": {
             'latitude': 18.463435,
@@ -80,22 +72,19 @@ function Header() {
             'full_address': 'pune, maharashtra'
           }
         }
-        console.log("response" + response)
-
         if ("data" in response) {
-          console.log("response" + response)
+          console.log(response)
           setGeocodeResponse(response)
         }
       } catch (error) {
         console.error(error);
       }
+    setIsEnabled(true)
     }
     else {
       setIsValidInput(false);
     }
-    setIsEnabled(true)
     setIsLoading(false);
-
   };
 
   return (
@@ -161,7 +150,7 @@ function Header() {
             ></i>
           </label>
           <input
-            type='text'
+            type='number'
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='pincode'
             placeholder='pincode'

@@ -17,18 +17,28 @@ export const tableHeaders = [
   "Data"
 ]
 
+// export const ExpandToggles = {
+//   data: false,
+//   earthquake: false,
+//   flood: false,
+//   wind: false,
+//   cyclone: false,
+//   landslide: false,
+// }
+
 function Header() {
   const [tableData, setTableData] = useState([] as initTableData[])
   const [inputData, setInputData] = useState(initData)
   const [isLoading, setIsLoading] = useState(false);
   const [isValidInput, setIsValidInput] = useState(true);
+  // const [expand, setExpand] = useState(ExpandToggles);
 
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
 
   // useEffect(()=>{
-  //   setTableData([])
-  // })
+  //   console.log("ExpandToggles"+ExpandToggles.earthquake)
+  // },[ExpandToggles])
 
   const columns: any = tableHeaders.map((item) => (
     <th style={{ border: '1px solid black', padding: '10px', textAlign: 'center', fontSize: '20px', fontWeight: 'bold' }}>{item}</th>
@@ -64,7 +74,7 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "disasterZone", {
+        // const response:any = await axios.get(api_url + "disasterZone", {
         //   params: {
         //     address: inputData['address'],
         //     city: inputData['city'],
@@ -106,9 +116,9 @@ function Header() {
           }
         }
 
-        console.log(Object.entries(response.data));
-        const dataOutput: any = Object.entries(response.data).map((item) => {
-          const tempsubHeader: any = Object.entries(item[1]).map((item) => {
+        console.log(response.data);
+        const dataOutput: any = Object.entries(response.data).map((item: any) => {
+          const tempsubHeader: any = Object.entries(item[1]).map((item: any) => {
             return (
               <tr>
                 < td style={{ padding: '10px' }}>
@@ -120,11 +130,23 @@ function Header() {
               </tr>
             )
           });
+          const expandUpdatedData = [
+            { [item[0]]: true }
+          ];
+          let bo = false;
           // const tempdata: any = Object.entries(item[1]).map(() => { <td style={{ fontSize: '20px' }}>{item[2]}</td> });
           return (
             <tr style={{ borderBottom: '1px solid black', borderStyle: 'dotted' }}>
-              <td style={{ fontSize: '20px', fontWeight: 'bold', borderRight: '1px solid black', borderStyle: 'dotted' }}>{item[0]}</td>
+              <td style={{ fontSize: '20px', fontWeight: 'bold', borderRight: '1px solid black', borderStyle: 'dotted' }}>{item[0]}
+    
+              {/* <button onClick={() => { ExpandToggles[item[0]] = true;bo=true }}>See More</button> */}
+
+              </td>
+              {/* <div id='expand'> */}
+              {/* {bo? tempsubHeader : null} */}
+              {/* </div> */}
               {tempsubHeader}
+
             </tr>
           )
         })
@@ -220,7 +242,7 @@ function Header() {
             ></i>
           </label>
           <input
-            type='text'
+            type='number'
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='pincode'
             placeholder='Pincode'

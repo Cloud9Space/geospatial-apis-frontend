@@ -53,6 +53,12 @@ const SidebarMenuMain = () => {
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem
+        to='/driveTimeDistance'
+        icon='element-11'
+        title='Drive Time Distance'
+        fontIcon='bi-app-indicator'
+      />
+      <SidebarMenuItem
         to='/urbanRural'
         icon='element-11'
         title='Urban Rural'

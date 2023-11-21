@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 // import geocodeContext from 'layouts/geocode/context/geocode/geocodeContext';
 import { Circle, GoogleMap, LoadScript, Marker, Polygon } from '@react-google-maps/api';
-import arielDistanceContext from '../../context/arielDistance/arielDistance';
+import driveTimeDistanceContext from '../../context/driveTimeDistance/driveTimeDistance';
 // import { test_data } from '../Data/data';
 // import axios from 'axios';
 
@@ -11,10 +11,10 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 // const api_url = process.env.REACT_APP_API_URL_DEV
 // const api_key = process.env.REACT_APP_API_KEY
 
-const ArielDistanceMap = () => {
+const DriveTimeDistanceMap = () => {
   // const defaultCenter = { lat: 18.531905, lng: 73.847874 };
-  const { arielDistanceMapData, setArielDistanceMapData, arielDistanceResponse, setArielDistanceResponse } = useContext(arielDistanceContext)
-  const defaultCenter = { lat: arielDistanceResponse.sourceLatitude, lng: arielDistanceResponse.sourceLongitude };
+  const { driveTimeDistanceMapData, setDriveTimeDistanceMapData, driveTimeDistanceResponse, setDriveTimeDistanceResponse } = useContext(driveTimeDistanceContext)
+  const defaultCenter = { lat: driveTimeDistanceResponse.sourceLatitude, lng: driveTimeDistanceResponse.sourceLongitude };
 
   const [markerPositionSource, setMarkerPositionSource] = useState(defaultCenter);
   const [markerPositionDestination, setMarkerPositionDestination] = useState(defaultCenter);
@@ -25,24 +25,24 @@ const ArielDistanceMap = () => {
 
   useEffect(() => {
     setMarkerPositionSource({
-      lat: parseFloat(arielDistanceResponse.sourceLatitude),
-      lng: parseFloat(arielDistanceResponse.sourceLongitude),
+      lat: parseFloat(driveTimeDistanceResponse.sourceLatitude),
+      lng: parseFloat(driveTimeDistanceResponse.sourceLongitude),
     });
     setMarkerPositionDestination({
-      lat: parseFloat(arielDistanceResponse.destinationLatitude),
-      lng: parseFloat(arielDistanceResponse.destinationLongitude),
+      lat: parseFloat(driveTimeDistanceResponse.destinationLatitude),
+      lng: parseFloat(driveTimeDistanceResponse.destinationLongitude),
     });
     setCenterPosition({
-      lat: arielDistanceResponse.sourceLatitude,
-      lng: arielDistanceResponse.sourceLongitude,
+      lat: driveTimeDistanceResponse.sourceLatitude,
+      lng: driveTimeDistanceResponse.sourceLongitude,
     });
     // setMarkerVisible(true)
     // setCenterPosition({
     //   lat: parseFloat(geolimitResponse.latitude),
     //   lng: parseFloat(geolimitResponse.longitude),
     // });
-    console.log(arielDistanceResponse.aerialDistance != undefined)
-    if (arielDistanceResponse.aerialDistance != undefined) {
+    // console.log(driveTimeDistanceResponse.driveTimeDistance != undefined)
+    if (driveTimeDistanceResponse.driveTimeDistance != undefined) {
       setMarkerVisible(true)
       // setRedMarkerVisible(false)
     }
@@ -50,17 +50,17 @@ const ArielDistanceMap = () => {
       // setRedMarkerVisible(true)
       setMarkerVisible(false)
     }
-  }, [arielDistanceResponse])
+  }, [driveTimeDistanceResponse])
 
   useEffect(() => {
     // setMarkerVisible(false)
     // setRedMarkerVisible(false)
     console.log("geolimitMapData in default")
-    console.log(arielDistanceResponse)
+    console.log(driveTimeDistanceResponse)
 
     setCenterPosition({
-      lat: arielDistanceResponse.sourceLatitude,
-      lng: arielDistanceResponse.sourceLongitude,
+      lat: driveTimeDistanceResponse.sourceLatitude,
+      lng: driveTimeDistanceResponse.sourceLongitude,
     });
     console.log(centerPosition.lat)
     setMarkerVisible(false)
@@ -91,7 +91,7 @@ const ArielDistanceMap = () => {
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
       <div className=' d-flex flex-row flex-center' style={{padding: '10px'}}>
-          <label>{`Aerial Distance : ${arielDistanceResponse.aerialDistance!=null ? arielDistanceResponse.aerialDistance : "Make a submission"}`}</label>
+          <label>{`Aerial Distance : ${driveTimeDistanceResponse.aerialDistance!=null ? driveTimeDistanceResponse.aerialDistance : "Make a submission"}`}"markerVisible"{markerVisible?"true":"false"}hi</label>
       </div>
       <GoogleMap
         mapContainerStyle={{ width: 'auto', height: '510px', margin: '5px' }}
@@ -136,5 +136,5 @@ const ArielDistanceMap = () => {
 };
 
 
-export default ArielDistanceMap;
+export default DriveTimeDistanceMap;
 // GeocodeMap
