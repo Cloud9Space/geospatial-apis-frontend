@@ -10,12 +10,12 @@ const SidebarMenuMain = () => {
 
   return (
     <>
-      <SidebarMenuItem
+      {/* <SidebarMenuItem
         to='/dashboard'
         icon='element-11'
         title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
-      />
+      /> */}
       <SidebarMenuItem
         to='/geocode'
         icon='element-11'

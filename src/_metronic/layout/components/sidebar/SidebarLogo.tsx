@@ -1,16 +1,16 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import clsx from 'clsx'
-import {KTIcon, toAbsoluteUrl} from '../../../helpers'
-import {useLayout} from '../../core'
-import {MutableRefObject, useEffect, useRef} from 'react'
-import {ToggleComponent} from '../../../assets/ts/components'
+import { KTIcon, toAbsoluteUrl } from '../../../helpers'
+import { useLayout } from '../../core'
+import { MutableRefObject, useEffect, useRef } from 'react'
+import { ToggleComponent } from '../../../assets/ts/components'
 
 type PropsType = {
   sidebarRef: MutableRefObject<HTMLDivElement | null>
 }
 
 const SidebarLogo = (props: PropsType) => {
-  const {config} = useLayout()
+  const { config } = useLayout()
   const toggleRef = useRef<HTMLDivElement>(null)
 
   const appSidebarDefaultMinimizeDesktopEnabled =
@@ -20,8 +20,8 @@ const SidebarLogo = (props: PropsType) => {
   const toggleType = appSidebarDefaultCollapseDesktopEnabled
     ? 'collapse'
     : appSidebarDefaultMinimizeDesktopEnabled
-    ? 'minimize'
-    : ''
+      ? 'minimize'
+      : ''
   const toggleState = appSidebarDefaultMinimizeDesktopEnabled ? 'active' : ''
   const appSidebarDefaultMinimizeDefault = config.app?.sidebar?.default?.minimize?.desktop?.default
 
@@ -49,13 +49,17 @@ const SidebarLogo = (props: PropsType) => {
 
   return (
     <div className='app-sidebar-logo px-6' id='kt_app_sidebar_logo'>
-      <Link to='/dashboard'>
-        {config.layoutType === 'dark-sidebar' ? (
-          <img
-            alt='Logo'
-            src={toAbsoluteUrl('/media/logos/default-dark.svg')}
-            className='h-25px app-sidebar-logo-default'
-          />
+      <Link to='/dashboard' className='' >
+        {config.layoutType === 'dark-sidebar'  && (appSidebarDefaultMinimizeDesktopEnabled == true || appSidebarDefaultCollapseDesktopEnabled == true)? (
+          // <img
+          //   alt='Logo'
+          //   src={toAbsoluteUrl('/media/logos/default-dark.svg')}
+          //   className='h-25px app-sidebar-logo-default'
+          // />
+          <div className='d-flex app-sidebar-logo-default h-25px'>
+            <p className='text-primary text-danger fs-2qx fw-bolder text-center' >Geo</p>
+            <p className='text-white fs-2qx fw-bolder text-center' >spatial</p>
+          </div>
         ) : (
           <>
             <img
@@ -68,14 +72,15 @@ const SidebarLogo = (props: PropsType) => {
               src={toAbsoluteUrl('/media/logos/default-dark.svg')}
               className='h-25px app-sidebar-logo-default theme-dark-show'
             />
+
           </>
         )}
 
-        <img
+        {/* <img
           alt='Logo'
           src={toAbsoluteUrl('/media/logos/default-small.svg')}
           className='h-20px app-sidebar-logo-minimize'
-        />
+        /> */}
       </Link>
 
       {(appSidebarDefaultMinimizeDesktopEnabled || appSidebarDefaultCollapseDesktopEnabled) && (
@@ -84,7 +89,7 @@ const SidebarLogo = (props: PropsType) => {
           id='kt_app_sidebar_toggle'
           className={clsx(
             'app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate',
-            {active: appSidebarDefaultMinimizeDefault}
+            { active: appSidebarDefaultMinimizeDefault }
           )}
           data-kt-toggle='true'
           data-kt-toggle-state={toggleState}
@@ -98,4 +103,4 @@ const SidebarLogo = (props: PropsType) => {
   )
 }
 
-export {SidebarLogo}
+export { SidebarLogo }
