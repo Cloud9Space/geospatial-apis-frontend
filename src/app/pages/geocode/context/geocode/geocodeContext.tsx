@@ -7,9 +7,7 @@ interface GeocodeContext {
     geocodeResponse: any,
     setGeocodeResponse: any,
     isLoading: any,
-    setIsLoading: any,
-    isDataLoaded: any,
-    setIsDataLoaded: any
+    setIsLoading: any
 }
 
 const geocodeContext = createContext<GeocodeContext>({} as GeocodeContext);

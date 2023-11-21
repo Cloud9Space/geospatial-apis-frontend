@@ -14,22 +14,22 @@ import SimpleDialog from '../Info/SimpleDialog';
 // import SimpleDialog from '../Info/SimpleDialog';
 // import SimpleDialog from '../Info/SimpleDialog';
 import { cityLatLongMapping } from '../Data/data';
-import arielDistanceContext from '../../context/arielDistance/arielDistance';
+import driveTimeDistanceContext from '../../context/driveTimeDistance/driveTimeDistance';
 
 
 
 function Header() {
-  const { arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse } = useContext(arielDistanceContext)
+  const { driveTimeDistanceInputData, setDriveTimeDistanceInputData, driveTimeDistanceMapData, setDriveTimeDistanceMapData, isLoading, setIsLoading, driveTimeDistanceResponse, setDriveTimeDistanceResponse } = useContext(driveTimeDistanceContext)
   const [isValidInput, setIsValidInput] = useState(true)
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
 
   const validate = () => {
     if (
-      arielDistanceInputData.sourceLatitude === "" ||
-      arielDistanceInputData.sourceLongitude === "" ||
-      arielDistanceInputData.destinationLatitude === "" ||
-      arielDistanceInputData.destinationLongitude === ""
+      driveTimeDistanceInputData.sourceLatitude === "" ||
+      driveTimeDistanceInputData.sourceLongitude === "" ||
+      driveTimeDistanceInputData.destinationLatitude === "" ||
+      driveTimeDistanceInputData.destinationLongitude === ""
     ) {
       console.log("hiii")
       return false;
@@ -42,17 +42,17 @@ function Header() {
   const handleSubmit = async () => {
     // console.log("Called ogl api")
     setIsLoading(true);
-    // console.log(arielDistanceInputData)
+    // console.log( validate())
     if (validate()) {
       setIsValidInput(true);
       console.log("hii")
       try {
-        // const response = await axios.get(api_url + "geocode", {
+        // const response = await axios.get(api_url + "driveTimeDistance", {
         //   params: {
-        //     sourceLatitude: arielDistanceInputData.sourceLatitude,
-        //     sourceLongitude: arielDistanceInputData.sourceLongitude,
-        //     destinationLatitude: arielDistanceInputData.destinationLongitude,
-        //     destinationLongitude: arielDistanceInputData.destinationlongitude
+        //     sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
+        //     sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
+        //     destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
+        //     destinationLongitude: driveTimeDistanceInputData.destinationlongitude
         //   },
         //   headers: {
         //     'x-api-key': api_key,
@@ -63,24 +63,24 @@ function Header() {
         const response = {
           "message": "Data Fetched Successfully!!",
           "data": {
-            "aerial_distance": "1162 m"
+            "drive_time_distance": "1162 m"
           }
         }
         // console.log(response['data']['data']['withInGeolimit'])
         if ('data' in response) {
           // console.log("arielDistanceInputData"+arielDistanceInputData.destinationLatitude )
-          setArielDistanceResponse(
+          setDriveTimeDistanceResponse(
             {
-              ...arielDistanceResponse,
-              aerialDistance: response['data']['aerial_distance'],
+              ...driveTimeDistanceResponse,
+              driveTimeDistance: response['data']['drive_time_distance'],
               sourceLatitude: 18.463435,
               sourceLongitude: 73.866851,
               destinationLatitude: 19.463435,
               destinationLongitude: 73.866851
-              // sourceLatitude: arielDistanceInputData.sourceLatitude,
-              // sourceLongitude: arielDistanceInputData.sourceLongitude,
-              // destinationLatitude: arielDistanceInputData.destinationLongitude,
-              // destinationLongitude: arielDistanceInputData.destinationlongitude
+              // sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
+              // sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
+              // destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
+              // destinationLongitude: driveTimeDistanceInputData.destinationlongitude
 
             })
         }
@@ -114,8 +114,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='sourceLatitude'
             placeholder='Source latitude'
-            value={arielDistanceInputData.sourceLatitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, sourceLatitude: e.target.value })}
+            value={driveTimeDistanceInputData.sourceLatitude}
+            onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, sourceLatitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -139,8 +139,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='sourceLongitude'
             placeholder='Source longitude'
-            value={arielDistanceInputData.sourceLongitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, sourceLongitude: e.target.value })}
+            value={driveTimeDistanceInputData.sourceLongitude}
+            onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, sourceLongitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -164,8 +164,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='destinationLatitude'
             placeholder='Destination latitude'
-            value={arielDistanceInputData.destinationLatitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, destinationLatitude: e.target.value })}
+            value={driveTimeDistanceInputData.destinationLatitude}
+            onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, destinationLatitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -189,8 +189,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='destinationLongitude'
             placeholder='Source longitude'
-            value={arielDistanceInputData.destinationLongitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, destinationLongitude: e.target.value })}
+            value={driveTimeDistanceInputData.destinationLongitude}
+            onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, destinationLongitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>

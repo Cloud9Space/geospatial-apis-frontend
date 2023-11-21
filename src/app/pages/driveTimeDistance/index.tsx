@@ -13,7 +13,7 @@
 // import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import Header from "./components/Header/header";
-import ArielDistanceMap from "./components/Map/map";
+import DriveTimeDistanceMap from "./components/Map/map";
 import LinearIndeterminate from "./components/Loader/Loader";
 // Billing page components
 // import Header from "./components/Header/header";
@@ -22,47 +22,47 @@ import LinearIndeterminate from "./components/Loader/Loader";
 
 //import geocodeContext from "./Context/geocode/geocodeContext";
 import { useState } from "react";
-import arielDistanceContext from "./context/arielDistance/arielDistance";
+import driveTimeDistanceContext from "./context/driveTimeDistance/driveTimeDistance";
 
-export const aerialDistanceInitData = {
+export const driveTimeDistanceInitData = {
   sourceLatitude: "",
   sourceLongitude: "",
   destinationLatitude: "",
   destinationLongitude: "",
 }
 
-export const arielDistanceInitResponse = {
+export const driveTimeDistanceInitResponse = {
   sourceLatitude: 18.463435,
   sourceLongitude: 73.866851,
   destinationLatitude: 18.463435,
   destinationLongitude:  73.870000,
-  response: {
-    arielDistance: null
-  }
+  // response: {
+  //   arielDistance: null
+  // }
 }
 
-export const arielDistanceInitMapData = {
+export const driveTimeDistanceInitMapData = {
   sourceLatitude: 18.463435,
   sourceLongitude: 73.866851,
   destinationLatitude: 18.463435,
   destinationLongitude:  73.870000,
-  response: {
-    arielDistance: null
-  }
+  // response: {
+  //   arielDistance: null
+  // }
 }
 
 
-function ArielDistance() {
+function DriveTimeDistance() {
 
-  const [arielDistanceInputData, setArielDistanceInputData] = useState(aerialDistanceInitData)
-  const [arielDistanceResponse, setArielDistanceResponse] = useState(arielDistanceInitResponse)
+  const [driveTimeDistanceInputData, setDriveTimeDistanceInputData] = useState(driveTimeDistanceInitData)
+  const [driveTimeDistanceResponse, setDriveTimeDistanceResponse] = useState(driveTimeDistanceInitResponse)
   const [isLoading, setIsLoading] = useState(false);
-  const [arielDistanceMapData, setArielDistanceMapData] = useState(arielDistanceInitMapData)
+  const [driveTimeDistanceMapData, setDriveTimeDistanceMapData] = useState(driveTimeDistanceInitMapData)
   // const google = window.google
   return (
     <div >
       <div className="absolute isMini" />
-      <arielDistanceContext.Provider value={{ arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse }}  >
+      <driveTimeDistanceContext.Provider value={{ driveTimeDistanceInputData,  setDriveTimeDistanceInputData, driveTimeDistanceMapData, setDriveTimeDistanceMapData, isLoading, setIsLoading, driveTimeDistanceResponse, setDriveTimeDistanceResponse }}  >
 
         <div className=" mt={4}" >
           <div className="mb={1}">
@@ -76,14 +76,14 @@ function ArielDistance() {
           <div className=" mb={1}">
             <div className=" container spacing={3}">
               <div className="item xs={12} md={12} lg={12}" style={{}}>
-                <ArielDistanceMap />
+                <DriveTimeDistanceMap />
               </div>
             </div>
           </div>
         </div>
-      </arielDistanceContext.Provider>
+      </driveTimeDistanceContext.Provider>
     </div>
   );
 }
 
-export default ArielDistance;
+export default DriveTimeDistance;

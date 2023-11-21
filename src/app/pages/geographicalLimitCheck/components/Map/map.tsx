@@ -59,22 +59,23 @@ const GeoLimitMap = () => {
 
   },[])
 
-  // useEffect(() => {
-  //   // if (geolimitResponse.withInGeolimit){
-  //   //   setFillColor("#42f54b")
-  //   //   console.log(fillColor)
-  //   // }
-  //   // console.log(geolimitMapData)
-  //   // setMarkerPosition({
-  //   //   lat: geolimitMapData.latitude,
-  //   //   lng: geolimitMapData.longitude,
-  //   // });
-  //   // console.log(geolimitMapData)
-  //   setCenterPosition({
-  //     lat: geolimitMapData.latitude,
-  //     lng: geolimitMapData.longitude,
-  //   });
-  // }, [geolimitMapData])
+  useEffect(() => {
+    // if (geolimitResponse.withInGeolimit){
+    //   setFillColor("#42f54b")
+    //   console.log(fillColor)
+    // }
+    // console.log(geolimitMapData)
+    // setMarkerPosition({
+    //   lat: geolimitMapData.latitude,
+    //   lng: geolimitMapData.longitude,
+    // });
+    // console.log(geolimitMapData)
+    setCenterPosition({
+      lat: geolimitMapData.latitude,
+      lng: geolimitMapData.longitude,
+    });
+    console.log(geolimitMapData)
+  }, [geolimitMapData])
 
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>

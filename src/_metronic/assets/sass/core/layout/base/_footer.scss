@@ -9,6 +9,8 @@
   align-items: center;
   background-color: var(--#{$prefix}app-footer-bg-color);
   border-top: var(--#{$prefix}app-footer-border-top);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 // Desktop mode
