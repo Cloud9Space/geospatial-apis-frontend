@@ -30,13 +30,13 @@ function DisasterZone() {
   const [tableDataToShow, setTableDataToShow] = useState([] as initTableData[])
   // const google = window.google
   return (
-    <div >
+    <div style={{}}>
       <div className="absolute isMini" />
       <disasterZoneContext.Provider value={{ tableData, setTableData, tableDataToShow, setTableDataToShow }}>
 
         <div className=" mt={4}" >
-          <div className=" container spacing={3}">
-            <div className="item xs={12} md={12} lg={12}" style={{}}>
+          <div className=" containr spacing={3}" >
+            <div className="item xs={12} md={12} lg={12}" >
               <Header />
             </div>
           </div>

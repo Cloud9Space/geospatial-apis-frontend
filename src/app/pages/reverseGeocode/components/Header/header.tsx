@@ -136,7 +136,7 @@ function Header() {
             value={inputData.latitude}
             onChange={(e) => setInputData({ ...inputData, latitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && inputData.latitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='latitude' data-validator='notEmpty' className='fv-help-block'>
                 Latitude is required
@@ -161,7 +161,7 @@ function Header() {
             value={inputData.longitude}
             onChange={(e) => setInputData({ ...inputData, longitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && inputData.longitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='longitude' data-validator='notEmpty' className='fv-help-block'>
                 Longitude is required

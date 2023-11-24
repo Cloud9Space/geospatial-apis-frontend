@@ -18,9 +18,11 @@ import LinearIndeterminate from "./components/Loader/Loader";
 import Header from "./components/Header/header";
 
 export const initAddressAutofillData = {
-  address: "",
   city: "",
-  pincode: ""
+  pincode: "",
+  locality: "",
+  sublocality: "",
+  address: ""
 }
 
 

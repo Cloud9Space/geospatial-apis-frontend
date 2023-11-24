@@ -100,7 +100,7 @@ function Header() {
               value={negativeAreaInputData.latitude}
               onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, latitude: e.target.value })}
             />
-            {!isValidInput && (
+            {!isValidInput && negativeAreaInputData.latitude === "" && (
               <div className='fv-plugins-message-container'>
                 <div data-field='latitude' data-validator='notEmpty' className='fv-help-block'>
                 latitude is required
@@ -125,7 +125,7 @@ function Header() {
               value={negativeAreaInputData.longitude}
               onChange={(e) => setnegativeAreaInputData({ ...negativeAreaInputData, longitude: e.target.value })}
             />
-            {!isValidInput && (
+            {!isValidInput && negativeAreaInputData.longitude === "" && (
               <div className='fv-plugins-message-container'>
                 <div data-field='longitude' data-validator='notEmpty' className='fv-help-block'>
                 longitude is required

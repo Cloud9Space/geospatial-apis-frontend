@@ -134,7 +134,7 @@ function Header() {
             value={geolimitInputData.city}
             onChange={(e) => setGeolimitInputData({ ...geolimitInputData, city: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput&& geolimitInputData.city === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='city' data-validator='notEmpty' className='fv-help-block'>
                 city is required
@@ -166,7 +166,7 @@ function Header() {
             value={geolimitInputData.latitude}
             onChange={(e) => setGeolimitInputData({ ...geolimitInputData, latitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && geolimitInputData.latitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='latitude' data-validator='notEmpty' className='fv-help-block'>
                 latitude is required
@@ -191,7 +191,7 @@ function Header() {
             value={geolimitInputData.longitude}
             onChange={(e) => setGeolimitInputData({ ...geolimitInputData, longitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && geolimitInputData.longitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='longitude' data-validator='notEmpty' className='fv-help-block'>
                 longitude is required

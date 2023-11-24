@@ -200,10 +200,17 @@ function Header() {
   }, [addressAutofillInputData.locality]);
 
   const validate = () => {
+    console.log(addressAutofillInputData)
     if (
-      addressAutofillInputData.address === "" ||
+      // addressAutofillInputData.address === "" ||
       addressAutofillInputData.city === "" ||
-      addressAutofillInputData.pincode === ""
+      addressAutofillInputData.pincode === ""||
+      addressAutofillInputData.locality === ""||
+      addressAutofillInputData.sublocality === ""||
+      addressAutofillInputData.city === "Default" ||
+      addressAutofillInputData.pincode === "Default"||
+      addressAutofillInputData.locality === "Default"||
+      addressAutofillInputData.sublocality === "Default"
     ) {
       console.log("hiii")
       return false;
@@ -214,7 +221,9 @@ function Header() {
   }
 
   const handleSubmit = async () => {
-    setIsLoading(true);
+      setIsValidInput(false);
+      setIsLoading(true);
+    console.log(validate())
     if (validate()) {
       setIsValidInput(true);
       try {
@@ -283,6 +292,13 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
+          {!isValidInput && (addressAutofillInputData.city === "Default" || addressAutofillInputData.city == "" )&& (
+            <div className='fv-plugins-message-container'>
+              <div data-field='city' data-validator='notEmpty' className='fv-help-block'>
+              City is required
+              </div>
+            </div>
+          )}
         </div>
         <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
@@ -307,6 +323,13 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
+          {!isValidInput && (addressAutofillInputData.pincode === "Default" || addressAutofillInputData.pincode == "") && (
+            <div className='fv-plugins-message-container'>
+              <div data-field='pincode' data-validator='notEmpty' className='fv-help-block'>
+              Pincode is required
+              </div>
+            </div>
+          )}
         </div>
         <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
@@ -331,6 +354,13 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
+          {!isValidInput && (addressAutofillInputData.locality === "Default" || addressAutofillInputData.locality == "")&& (
+            <div className='fv-plugins-message-container'>
+              <div data-field='locality' data-validator='notEmpty' className='fv-help-block'>
+              Locality is required
+              </div>
+            </div>
+          )}
         </div>
         <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
@@ -355,6 +385,13 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
+          {!isValidInput &&( addressAutofillInputData.sublocality === "Default"|| addressAutofillInputData.sublocality == "") && (
+            <div className='fv-plugins-message-container'>
+              <div data-field='subLocality' data-validator='notEmpty' className='fv-help-block'>
+              Sub-Locality is required
+              </div>
+            </div>
+          )}
         </div>
         <div className='' style={{width: '20vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>

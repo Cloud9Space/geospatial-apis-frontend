@@ -9,10 +9,11 @@ import { initTableData } from '../../..'
 
 type Props = {
   className?: string
-  title?: string
+  title1?: string
+  title2?: string
   tableProps: PropsWithChildren<HeaderProps<initTableData>>
 }
-const UserCustomHeader: FC<Props> = ({className, title, tableProps}) => {
+const UserCustomHeader: FC<Props> = ({className, title1, title2, tableProps}) => {
   const id = tableProps.column.id
   const {state, updateState} = useQueryRequest()
 
@@ -52,10 +53,11 @@ const UserCustomHeader: FC<Props> = ({className, title, tableProps}) => {
         className,
         isSelectedForSorting && order !== undefined && `table-sort-${order}`
       )}
-      style={{cursor: 'pointer'}}
+      style={{cursor: 'pointer',textAlign:'center'}}
       onClick={sortColumn}
     >
-      {title}
+      {title1}<br/>
+      {title2}
     </th>
   )
 }

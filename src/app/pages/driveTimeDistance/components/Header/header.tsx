@@ -140,7 +140,7 @@ function Header() {
             value={driveTimeDistanceInputData.sourceLatitude}
             onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, sourceLatitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && driveTimeDistanceInputData.sourceLatitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='sourceLatitude' data-validator='notEmpty' className='fv-help-block'>
                 Source latitude is required
@@ -165,7 +165,7 @@ function Header() {
             value={driveTimeDistanceInputData.sourceLongitude}
             onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, sourceLongitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && driveTimeDistanceInputData.sourceLongitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='sourceLongitude' data-validator='notEmpty' className='fv-help-block'>
                 Source longitude is required
@@ -190,7 +190,7 @@ function Header() {
             value={driveTimeDistanceInputData.destinationLatitude}
             onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, destinationLatitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && driveTimeDistanceInputData.destinationLatitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='destinationLatitude' data-validator='notEmpty' className='fv-help-block'>
                 Destination latitude is required
@@ -215,7 +215,7 @@ function Header() {
             value={driveTimeDistanceInputData.destinationLongitude}
             onChange={(e) => setDriveTimeDistanceInputData({ ...driveTimeDistanceInputData, destinationLongitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && driveTimeDistanceInputData.destinationLongitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='destinationLongitude' data-validator='notEmpty' className='fv-help-block'>
                 Destination longitude is required

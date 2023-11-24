@@ -117,7 +117,7 @@ function Header() {
             value={aerialDistanceInputData.sourceLatitude}
             onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, sourceLatitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && aerialDistanceInputData.sourceLatitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='sourceLatitude' data-validator='notEmpty' className='fv-help-block'>
                 Source latitude is required
@@ -142,7 +142,7 @@ function Header() {
             value={aerialDistanceInputData.sourceLongitude}
             onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, sourceLongitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && aerialDistanceInputData.sourceLongitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='sourceLongitude' data-validator='notEmpty' className='fv-help-block'>
                 Source longitude is required
@@ -192,7 +192,7 @@ function Header() {
             value={aerialDistanceInputData.destinationLongitude}
             onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, destinationLongitude: e.target.value })}
           />
-          {!isValidInput && (
+          {!isValidInput && aerialDistanceInputData.destinationLongitude === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='destinationLongitude' data-validator='notEmpty' className='fv-help-block'>
                 Destination longitude is required
