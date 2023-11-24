@@ -7,7 +7,11 @@ interface GeocodeContext {
     geocodeResponse: any,
     setGeocodeResponse: any,
     isLoading: any,
-    setIsLoading: any
+    setIsLoading: any,
+    tableData : any,
+    setTableData : any,
+    tableDataToShow:any,
+    setTableDataToShow : any
 }
 
 const geocodeContext = createContext<GeocodeContext>({} as GeocodeContext);

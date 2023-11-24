@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 //import geocodeContext from '../Context/geocode/geocodeContext';
 // import geocodeContext from '../../context/addressAutofill/geocodeContext';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import addressAutofill from '../../context/addressAutofill/addressAutofill';
+import addressAutofill from '../../context/addressAutofill/addressAutofillContext';
 
 const GOOGLE_MAP_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 

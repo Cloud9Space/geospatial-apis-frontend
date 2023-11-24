@@ -15,11 +15,12 @@ import SimpleDialog from '../Info/SimpleDialog';
 // import SimpleDialog from '../Info/SimpleDialog';
 import { cityLatLongMapping } from '../Data/data';
 import driveTimeDistanceContext from '../../context/driveTimeDistance/driveTimeDistance';
+import { initTableData } from '../..';
 
 
 
 function Header() {
-  const { driveTimeDistanceInputData, setDriveTimeDistanceInputData, driveTimeDistanceMapData, setDriveTimeDistanceMapData, isLoading, setIsLoading, driveTimeDistanceResponse, setDriveTimeDistanceResponse } = useContext(driveTimeDistanceContext)
+  const { driveTimeDistanceInputData, setDriveTimeDistanceInputData, driveTimeDistanceMapData, setDriveTimeDistanceMapData, isLoading, setIsLoading, driveTimeDistanceResponse, setDriveTimeDistanceResponse, tableData, setTableData, tableDataToShow, setTableDataToShow } = useContext(driveTimeDistanceContext)
   const [isValidInput, setIsValidInput] = useState(true)
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
@@ -83,6 +84,28 @@ function Header() {
               // destinationLongitude: driveTimeDistanceInputData.destinationlongitude
 
             })
+
+            const data: initTableData = {
+              id : new Date().getTime(),
+              driveTimeDistance: response['data']['drive_time_distance'],
+              sourceLatitude: 18.463435,
+              sourceLongitude: 73.866851,
+              destinationLatitude: 19.463435,
+              destinationLongitude: 73.866851
+              // sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
+              // sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
+              // destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
+              // destinationLongitude: driveTimeDistanceInputData.destinationlongitude
+            }
+
+            setDriveTimeDistanceResponse({...driveTimeDistanceResponse,...data})
+            const rows = [
+              ...tableData,
+              data
+            ];
+    
+            setTableData(rows);
+            setTableDataToShow(rows);
         }
       } catch (error) {
         console.error(error);
@@ -100,7 +123,7 @@ function Header() {
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='d-flex flex-row' style={{ flexWrap: 'wrap' }} >
         {/* <div> */}
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Source latitude</span>
             <i
@@ -125,7 +148,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Source longitude</span>
             <i
@@ -150,7 +173,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Destination latitude</span>
             <i
@@ -175,7 +198,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Destination longitude</span>
             <i
@@ -201,10 +224,10 @@ function Header() {
           )}
         </div>
         {/* </div> */}
-        <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+        <div className='' style={{alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
-            className="btn btn-lg btn-primary mb-2 "
+            className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
           >

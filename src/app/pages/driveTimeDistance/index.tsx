@@ -23,6 +23,7 @@ import LinearIndeterminate from "./components/Loader/Loader";
 //import geocodeContext from "./Context/geocode/geocodeContext";
 import { useState } from "react";
 import driveTimeDistanceContext from "./context/driveTimeDistance/driveTimeDistance";
+import { ListWrapper } from "./table/UsersList";
 
 export const driveTimeDistanceInitData = {
   sourceLatitude: "",
@@ -46,11 +47,17 @@ export const driveTimeDistanceInitMapData = {
   sourceLongitude: 73.866851,
   destinationLatitude: 18.463435,
   destinationLongitude:  73.870000,
-  // response: {
-  //   arielDistance: null
-  // }
+
 }
 
+export interface initTableData {
+  id: number,
+  sourceLatitude: any,
+  sourceLongitude: any,
+  destinationLatitude: any,
+  destinationLongitude:  any,
+  driveTimeDistance: any,
+}
 
 function DriveTimeDistance() {
 
@@ -58,11 +65,13 @@ function DriveTimeDistance() {
   const [driveTimeDistanceResponse, setDriveTimeDistanceResponse] = useState(driveTimeDistanceInitResponse)
   const [isLoading, setIsLoading] = useState(false);
   const [driveTimeDistanceMapData, setDriveTimeDistanceMapData] = useState(driveTimeDistanceInitMapData)
+  const [tableData, setTableData] = useState([] as initTableData[])
+  const [tableDataToShow, setTableDataToShow] = useState([] as initTableData[])
   // const google = window.google
   return (
     <div >
       <div className="absolute isMini" />
-      <driveTimeDistanceContext.Provider value={{ driveTimeDistanceInputData,  setDriveTimeDistanceInputData, driveTimeDistanceMapData, setDriveTimeDistanceMapData, isLoading, setIsLoading, driveTimeDistanceResponse, setDriveTimeDistanceResponse }}  >
+      <driveTimeDistanceContext.Provider value={{ driveTimeDistanceInputData,  setDriveTimeDistanceInputData, driveTimeDistanceMapData, setDriveTimeDistanceMapData, isLoading, setIsLoading, driveTimeDistanceResponse, setDriveTimeDistanceResponse,tableData,setTableData,tableDataToShow,setTableDataToShow }}  >
 
         <div className=" mt={4}" >
           <div className="mb={1}">
@@ -73,12 +82,15 @@ function DriveTimeDistance() {
               </div>
             </div>
           </div>
-          <div className=" mb={1}">
+          {/* <div className=" mb={1}">
             <div className=" container spacing={3}">
               <div className="item xs={12} md={12} lg={12}" style={{}}>
                 <DriveTimeDistanceMap />
               </div>
             </div>
+          </div> */}
+          <div style={{margin: "20px"}}>
+            <ListWrapper />
           </div>
         </div>
       </driveTimeDistanceContext.Provider>

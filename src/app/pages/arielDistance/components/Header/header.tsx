@@ -14,22 +14,22 @@ import SimpleDialog from '../Info/SimpleDialog';
 // import SimpleDialog from '../Info/SimpleDialog';
 // import SimpleDialog from '../Info/SimpleDialog';
 import { cityLatLongMapping } from '../Data/data';
-import arielDistanceContext from '../../context/arielDistance/arielDistance';
+import aerialDistanceContext from '../../context/aerialDistance/aerialDistance';
 
 
 
 function Header() {
-  const { arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse } = useContext(arielDistanceContext)
+  const { aerialDistanceInputData, setAerialDistanceInputData, aerialDistanceMapData, setAerialDistanceMapData, isLoading, setIsLoading, aerialDistanceResponse, setAerialDistanceResponse } = useContext(aerialDistanceContext)
   const [isValidInput, setIsValidInput] = useState(true)
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
 
   const validate = () => {
     if (
-      arielDistanceInputData.sourceLatitude === "" ||
-      arielDistanceInputData.sourceLongitude === "" ||
-      arielDistanceInputData.destinationLatitude === "" ||
-      arielDistanceInputData.destinationLongitude === ""
+      aerialDistanceInputData.sourceLatitude === "" ||
+      aerialDistanceInputData.sourceLongitude === "" ||
+      aerialDistanceInputData.destinationLatitude === "" ||
+      aerialDistanceInputData.destinationLongitude === ""
     ) {
       console.log("hiii")
       return false;
@@ -69,9 +69,9 @@ function Header() {
         // console.log(response['data']['data']['withInGeolimit'])
         if ('data' in response) {
           // console.log("arielDistanceInputData"+arielDistanceInputData.destinationLatitude )
-          setArielDistanceResponse(
+          setAerialDistanceResponse(
             {
-              ...arielDistanceResponse,
+              ...aerialDistanceResponse,
               aerialDistance: response['data']['aerial_distance'],
               sourceLatitude: 18.463435,
               sourceLongitude: 73.866851,
@@ -100,7 +100,7 @@ function Header() {
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='d-flex flex-row' style={{ flexWrap: 'wrap' }} >
         {/* <div> */}
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Source latitude</span>
             <i
@@ -114,8 +114,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='sourceLatitude'
             placeholder='Source latitude'
-            value={arielDistanceInputData.sourceLatitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, sourceLatitude: e.target.value })}
+            value={aerialDistanceInputData.sourceLatitude}
+            onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, sourceLatitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -125,7 +125,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Source longitude</span>
             <i
@@ -139,8 +139,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='sourceLongitude'
             placeholder='Source longitude'
-            value={arielDistanceInputData.sourceLongitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, sourceLongitude: e.target.value })}
+            value={aerialDistanceInputData.sourceLongitude}
+            onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, sourceLongitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -150,7 +150,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Destination latitude</span>
             <i
@@ -164,8 +164,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='destinationLatitude'
             placeholder='Destination latitude'
-            value={arielDistanceInputData.destinationLatitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, destinationLatitude: e.target.value })}
+            value={aerialDistanceInputData.destinationLatitude}
+            onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, destinationLatitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -175,7 +175,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Destination longitude</span>
             <i
@@ -189,8 +189,8 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='destinationLongitude'
             placeholder='Source longitude'
-            value={arielDistanceInputData.destinationLongitude}
-            onChange={(e) => setArielDistanceInputData({ ...arielDistanceInputData, destinationLongitude: e.target.value })}
+            value={aerialDistanceInputData.destinationLongitude}
+            onChange={(e) => setAerialDistanceInputData({ ...aerialDistanceInputData, destinationLongitude: e.target.value })}
           />
           {!isValidInput && (
             <div className='fv-plugins-message-container'>
@@ -201,10 +201,10 @@ function Header() {
           )}
         </div>
         {/* </div> */}
-        <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+        <div className='' style={{ alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
-            className="btn btn-lg btn-primary mb-2 "
+            className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
           >

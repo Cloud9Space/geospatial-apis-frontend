@@ -7,6 +7,8 @@ export default function LinearIndeterminate() {
     // <div sx={{ width: '100%' }}>
     //   <div variant='determinate' color="info" />
     // </div>  
-    <div>hii</div>
+    <div className="loader" style={{ width: '100%', height: '3px', backgroundColor: 'blue' }}></div>
+
+
   );
 }

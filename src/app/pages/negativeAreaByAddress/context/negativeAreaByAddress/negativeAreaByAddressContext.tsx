@@ -6,7 +6,9 @@ interface NegativeAreaByAddressContext {
     negativeAreaResponse: any,
     setNegativeAreaResponse: any,
     isLoading: any,
-    setIsLoading: any
+    setIsLoading: any,
+    tableData : any,
+    setTableData : any,
 }
 
 const negativeAreaByAddressContext = createContext<NegativeAreaByAddressContext>({} as NegativeAreaByAddressContext);

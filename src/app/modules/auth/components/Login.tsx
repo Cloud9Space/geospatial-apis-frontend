@@ -65,7 +65,7 @@ export function Login() {
       {/* begin::Heading */}
       <div className='text-center mb-11'>
         <h1 className='text-dark fw-bolder mb-3'>Sign In</h1>
-        <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div>
+        {/* <div className='text-gray-500 fw-semibold fs-6'>Your Social Campaigns</div> */}
       </div>
       {/* begin::Heading */}
 
@@ -125,12 +125,13 @@ export function Login() {
           <div className='alert-text font-weight-bold'>{formik.status}</div>
         </div>
       ) : (
-        <div className='mb-10 bg-light-info p-8 rounded'>
-          <div className='text-info'>
-            Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
-            continue.
-          </div>
-        </div>
+        <></>
+        // <div className='mb-10 bg-light-info p-8 rounded'>
+        //   <div className='text-info'>
+        //     Use account <strong>admin@demo.com</strong> and password <strong>demo</strong> to
+        //     continue.
+        //   </div>
+        // </div>
       )}
 
       {/* begin::Form group */}

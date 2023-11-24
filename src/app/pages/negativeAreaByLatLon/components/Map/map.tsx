@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, Polygon } from '@react-google-maps/api';
 import { test_data } from '../Data/data';
 // import axios from 'axios';
-import negativeAreaContext from '../../context/negativeAreaByAddress/negativeAreaByAddressContext';
+import negativeAreaContext from '../../context/negativeAreaByLatLon/negativeAreaByLatLonContext';
 // import MDBox from "components/MDBox";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY

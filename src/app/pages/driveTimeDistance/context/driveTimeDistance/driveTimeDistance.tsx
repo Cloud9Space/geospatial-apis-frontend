@@ -8,7 +8,11 @@ interface DriveTimeDistanceContext {
     isLoading:any,
     setIsLoading:any,
     driveTimeDistanceResponse:any,
-    setDriveTimeDistanceResponse:any
+    setDriveTimeDistanceResponse:any,
+    tableData : any,
+    setTableData : any,
+    tableDataToShow:any,
+    setTableDataToShow : any
 }
 
 const driveTimeDistanceContext = createContext<DriveTimeDistanceContext>({} as DriveTimeDistanceContext);

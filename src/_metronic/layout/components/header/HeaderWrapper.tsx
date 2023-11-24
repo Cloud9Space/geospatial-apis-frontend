@@ -35,12 +35,13 @@ export function HeaderWrapper() {
                 <KTIcon iconName='abstract-14' className=' fs-1' />
               </div>
               <div className='d-flex align-items-center flex-grow-1 flex-lg-grow-0'>
-                <Link to='/dashboard' className='d-lg-none'>
-                  <img
+                <Link to='/geocode' className='d-lg-none'>
+                  {/* <img
                     alt='Logo'
                     src={toAbsoluteUrl('/media/logos/default-small.svg')}
                     className='h-30px'
-                  />
+                  /> */}
+                  {/* <h1 className='text-black fs-2qx fw-bolder text-center mb-7'>Geosptial</h1> */}
                 </Link>
               </div>
             </div>

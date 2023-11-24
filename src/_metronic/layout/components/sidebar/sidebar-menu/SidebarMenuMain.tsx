@@ -10,12 +10,12 @@ const SidebarMenuMain = () => {
 
   return (
     <>
-      <SidebarMenuItem
+      {/* <SidebarMenuItem
         to='/dashboard'
-        icon='element-11'
+        icon='element-11' 
         title={intl.formatMessage({ id: 'MENU.DASHBOARD' })}
         fontIcon='bi-app-indicator'
-      />
+      /> */}
       <SidebarMenuItem
         to='/geocode'
         icon='element-11'
@@ -41,15 +41,15 @@ const SidebarMenuMain = () => {
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem
-        to='/geographicalLimitCheck'
+        to='/geolimitCheck'
         icon='element-11'
-        title='Geographical Limit Check'
+        title='Geolimit Limit Check'
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem
-        to='/arielDistance'
+        to='/aerialDistance'
         icon='element-11'
-        title='Ariel Distance'
+        title='Aerial Distance'
         fontIcon='bi-app-indicator'
       />
       <SidebarMenuItem

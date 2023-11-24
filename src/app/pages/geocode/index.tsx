@@ -23,6 +23,7 @@ import LinearIndeterminate from "./components/Loader/Loader";
 //import geocodeContext from "./Context/geocode/geocodeContext";
 import geocodeContext from "./context/geocode/geocodeContext";
 import { useState } from "react";
+import { ListWrapper } from "./components/ModelView/UsersList";
 
 export const initGeocodeData = {
   address: "",
@@ -35,17 +36,25 @@ export const initGeocodeResponse = {
   longitude: 73.866851,
 }
 
+export interface initTableData {
+  id:number,
+  key:any,
+  value:any
+}
+
 function Geocode() {
 
   const [geocodeInputData, setGeocodeInputData] = useState(initGeocodeData)
   const [geocodeResponse, setGeocodeResponse] = useState(initGeocodeResponse)
   const [isLoading, setIsLoading] = useState(false);
+  const [tableData, setTableData] = useState([] as initTableData[])
+  const [tableDataToShow, setTableDataToShow] = useState([] as initTableData[])
 
   // const google = window.google
   return (
     <div>
       <div className="absolute isMini"/>
-      <geocodeContext.Provider value={{ geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, isLoading, setIsLoading }}>
+      <geocodeContext.Provider value={{ geocodeInputData, setGeocodeInputData, geocodeResponse, setGeocodeResponse, isLoading, setIsLoading, tableData, setTableData, tableDataToShow, setTableDataToShow }}>
         <div className=" mt={4}">
           <div className="mb={1}">
             <div className="container spacing={3}">
@@ -61,6 +70,9 @@ function Geocode() {
                 <GeocodeMap />
               </div>
             </div>
+          </div>
+          <div style={{margin: "20px"}}>
+            <ListWrapper />
           </div>
         </div>
       </geocodeContext.Provider>
