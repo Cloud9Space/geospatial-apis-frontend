@@ -21,8 +21,7 @@ const UserSelectionHeader: FC<Props> = ({ tableProps }) => {
           data-kt-check-target='#kt_table_users .form-check-input'
           checked={isAllSelected}
           onChange={onSelectAll}
-          style={{ opacity: '0' }}
-
+          style={{ opacity: '0',display: 'none' }}
         />
       </div>
     </th>

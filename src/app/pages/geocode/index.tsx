@@ -71,9 +71,9 @@ function Geocode() {
               </div>
             </div>
           </div>
-          <div style={{margin: "20px"}}>
+          {/* <div style={{margin: "20px"}}>
             <ListWrapper />
-          </div>
+          </div> */}
         </div>
       </geocodeContext.Provider>
     </div>

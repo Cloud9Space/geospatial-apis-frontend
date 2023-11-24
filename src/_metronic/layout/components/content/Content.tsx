@@ -21,8 +21,9 @@ const Content = ({children}: WithChildren) => {
         classes.content.join(' '),
         config?.app?.content?.class
       )}
+      style={{paddingTop: '5px'  }}
     >
-      {appContentContainer ? (
+      {false ? (
         <div
           id='kt_app_content_container'
           className={clsx('app-container', classes.contentContainer.join(' '), {

@@ -24,9 +24,9 @@ const MasterLayout = () => {
           <HeaderWrapper />
           <div className='app-wrapper flex-column flex-row-fluid' id='kt_app_wrapper'>
             <Sidebar />
-            <div className='app-main flex-column flex-row-fluid' id='kt_app_main'>
-              <div className='d-flex flex-column flex-column-fluid'>
-                <ToolbarWrapper />
+            <div className='app-main flex-column flex-row-fluid' id='kt_app_main' style={{ }}>
+              <div className='d-flx flex-colmn flex-column-flui ' style={{display: 'flex' , flexDirection: 'column'}}>
+                {/* <ToolbarWrapper /> */}
                 <Content>
                   <Outlet />
                 </Content>
