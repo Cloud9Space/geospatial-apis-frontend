@@ -13,7 +13,7 @@
 // import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 import Header from "./components/Header/header";
-import ArielDistanceMap from "./components/Map/map";
+import AerialDistanceMap from "./components/Map/map";
 import LinearIndeterminate from "./components/Loader/Loader";
 // Billing page components
 // import Header from "./components/Header/header";
@@ -22,7 +22,7 @@ import LinearIndeterminate from "./components/Loader/Loader";
 
 //import geocodeContext from "./Context/geocode/geocodeContext";
 import { useState } from "react";
-import arielDistanceContext from "./context/arielDistance/arielDistance";
+import aerialDistanceContext from "./context/aerialDistance/aerialDistance";
 
 export const aerialDistanceInitData = {
   sourceLatitude: "",
@@ -31,7 +31,7 @@ export const aerialDistanceInitData = {
   destinationLongitude: "",
 }
 
-export const arielDistanceInitResponse = {
+export const aerialDistanceInitResponse = {
   sourceLatitude: 18.463435,
   sourceLongitude: 73.866851,
   destinationLatitude: 18.463435,
@@ -41,7 +41,7 @@ export const arielDistanceInitResponse = {
   }
 }
 
-export const arielDistanceInitMapData = {
+export const aerialDistanceInitMapData = {
   sourceLatitude: 18.463435,
   sourceLongitude: 73.866851,
   destinationLatitude: 18.463435,
@@ -52,17 +52,17 @@ export const arielDistanceInitMapData = {
 }
 
 
-function ArielDistance() {
+function AerialDistance() {
 
-  const [arielDistanceInputData, setArielDistanceInputData] = useState(aerialDistanceInitData)
-  const [arielDistanceResponse, setArielDistanceResponse] = useState(arielDistanceInitResponse)
+  const [aerialDistanceInputData, setAerialDistanceInputData] = useState(aerialDistanceInitData)
+  const [aerialDistanceResponse, setAerialDistanceResponse] = useState(aerialDistanceInitResponse)
   const [isLoading, setIsLoading] = useState(false);
-  const [arielDistanceMapData, setArielDistanceMapData] = useState(arielDistanceInitMapData)
+  const [aerialDistanceMapData, setAerialDistanceMapData] = useState(aerialDistanceInitMapData)
   // const google = window.google
   return (
     <div >
       <div className="absolute isMini" />
-      <arielDistanceContext.Provider value={{ arielDistanceInputData, setArielDistanceInputData, arielDistanceMapData, setArielDistanceMapData, isLoading, setIsLoading, arielDistanceResponse, setArielDistanceResponse }}  >
+      <aerialDistanceContext.Provider value={{ aerialDistanceInputData, setAerialDistanceInputData, aerialDistanceMapData, setAerialDistanceMapData, isLoading, setIsLoading, aerialDistanceResponse, setAerialDistanceResponse }}  >
 
         <div className=" mt={4}" >
           <div className="mb={1}">
@@ -76,14 +76,14 @@ function ArielDistance() {
           <div className=" mb={1}">
             <div className=" container spacing={3}">
               <div className="item xs={12} md={12} lg={12}" style={{}}>
-                <ArielDistanceMap />
+                <AerialDistanceMap />
               </div>
             </div>
           </div>
         </div>
-      </arielDistanceContext.Provider>
+      </aerialDistanceContext.Provider>
     </div>
   );
 }
 
-export default ArielDistance;
+export default AerialDistance;

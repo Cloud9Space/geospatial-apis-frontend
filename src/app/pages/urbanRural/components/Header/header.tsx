@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
+import { initTableData } from '../..';
+import urbanRuralContext from '../../context/urbanRural/urbanRural';
 
 
 export const initData = {
@@ -8,22 +10,22 @@ export const initData = {
   pincode: "",
 }
 
-export interface initTableData  {
-  address: string,
-  locationType: string,
-  dtName: string,
-  stName: string,
-}
+// export interface initTableData  {
+//   address: string,
+//   locationType: string,
+//   dtName: string,
+//   stName: string,
+// }
 export const tableHeaders = [
   "Location Type",
   "Address",
   "District Name",
   "State Name"
-
 ]
 
 function Header() {
-  const [tableData, setTableData] = useState([] as initTableData[])
+  const {tableData,setTableData}  = useContext(urbanRuralContext)
+  const {tableDataToShow,setTableDataToShow}  = useContext(urbanRuralContext)
   const [inputData, setInputData] = useState(initData)
   const [isLoading, setIsLoading] = useState(false);
   const [isValidInput, setIsValidInput] = useState(true);
@@ -35,21 +37,22 @@ function Header() {
   //   setTableData([])
   // })
 
-  const columns: any = tableHeaders.map((item) => (
-    <th style={{border:'1px solid black',padding:'10px',textAlign:'center'}}>{item}</th>
-  ));
+  // const columns: any = tableHeaders.map((item) => (
+  //   <th style={{border:'1px solid black',padding:'10px',textAlign:'center'}}>{item}</th>
+  // ));
 
 
-  const rows: any = [tableData.map((item) => {
-    return (
-      <tr>
-        <td style={{border:'1px solid black',padding:'10px'}}>{item.locationType}</td>
-        <td style={{border:'1px solid black',padding:'10px'}}>{item.address}</td>
-        <td style={{border:'1px solid black',padding:'10px'}}>{item.dtName}</td>
-        <td style={{border:'1px solid black',padding:'10px'}}>{item.stName}</td>
-      </tr>
-    );
-  })];
+  // const rows: any = [
+  //   tableData.map((item) => {
+  //   return (
+  //     <tr>
+  //       <td style={{border:'1px solid black',padding:'10px'}}>{item.locationType}</td>
+  //       <td style={{border:'1px solid black',padding:'10px'}}>{item.address}</td>
+  //       <td style={{border:'1px solid black',padding:'10px'}}>{item.dtName}</td>
+  //       <td style={{border:'1px solid black',padding:'10px'}}>{item.stName}</td>
+  //     </tr>
+  //   );
+  // })];
 
   const validate = () => {
     if (
@@ -96,6 +99,7 @@ function Header() {
           }
         }
         const data:initTableData = {
+          id : new Date().getTime(),
           address: inputData.address,
           locationType: response?.data?.location_type,
           dtName: response?.data?.dt_name,
@@ -106,9 +110,9 @@ function Header() {
           data
           ];
 
-
+        console.log(rows)
         setTableData(rows);
-
+        setTableDataToShow(rows);
       } catch (error) {
         console.error(error);
       }
@@ -123,7 +127,7 @@ function Header() {
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='d-flex flex-row' style={{ flexWrap: 'wrap' }} >
         {/* <div> */}
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '20vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Address</span>
             <i
@@ -148,7 +152,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>City</span>
             <i
@@ -173,7 +177,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Pincode</span>
             <i
@@ -199,10 +203,10 @@ function Header() {
           )}
         </div>
         {/* </div> */}
-        <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+        <div className='' style={{ alignSelf: "end", padding: '10px' }}>
           <button
             type="button"
-            className="btn btn-lg btn-primary mb-2 "
+            className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
           >
@@ -210,7 +214,7 @@ function Header() {
           </button>
         </div>
       </div>
-      <div className='d-flex flex-row flex-center'>
+      {/* <div className='d-flex flex-row flex-center'>
         <table className='' style={{ width: '100%' ,border:'1px solid black'}}>
           <thead>
             <tr >
@@ -219,7 +223,7 @@ function Header() {
           </thead>
           {rows}
         </table>
-      </div>
+      </div> */}
 
     </div >
   );

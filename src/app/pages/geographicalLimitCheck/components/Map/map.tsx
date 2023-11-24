@@ -22,7 +22,7 @@ const GeoLimitMap = () => {
 
 
   useEffect(() => {
-    console.log("geolimitResponse"+geolimitResponse);
+    console.log("geolimitResponse" + geolimitResponse);
     setMarkerPosition({
       lat: parseFloat(geolimitResponse.latitude),
       lng: parseFloat(geolimitResponse.longitude),
@@ -32,15 +32,15 @@ const GeoLimitMap = () => {
     //   lng: parseFloat(geolimitResponse.longitude),
     // });
 
-    if(geolimitResponse.withInGeolimit === true){
+    if (geolimitResponse.withInGeolimit === true) {
       setMarkerVisible(true)
       setRedMarkerVisible(false)
     }
-    else{
+    else {
       setRedMarkerVisible(true)
       setMarkerVisible(false)
     }
-  },[geolimitResponse])
+  }, [geolimitResponse])
 
   useEffect(() => {
     setMarkerVisible(false)
@@ -57,7 +57,7 @@ const GeoLimitMap = () => {
     //   lng: geolimitMapData.longitude,
     // });
 
-  },[])
+  }, [])
 
   useEffect(() => {
     // if (geolimitResponse.withInGeolimit){
@@ -79,8 +79,8 @@ const GeoLimitMap = () => {
 
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
-      <div className=' d-flex flex-row flex-center' style={{}}>
-        <div className=" pr={3}" style={{flex:'1',padding: "10px"}}>
+      <div className='' style={{display: 'flex', flexDirection: 'row'}}>
+        <div className=" pr={3}  align-items-center fs-5 fw-semibold" style={{alignSelf: "start", flex: '', padding: "10px" }}>
           <label>Circle Radius:</label>
           <div className=' pl={3} width={200}'>
             {/* <Slider 
@@ -98,36 +98,36 @@ const GeoLimitMap = () => {
               min={1}
               max={100}
               value={geolimitMapData.radius}
-              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value)})}
+              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value) })}
             />
           </div>
-          <span >{geolimitMapData.radius}</span>      
+          <span >{geolimitMapData.radius}</span>
         </div>
-        <div   className="" style={{flex:'1',padding: "auto",paddingLeft: "10px", }}>
-        <label>{`Within Geolimit : ${geolimitResponse.withInGeolimit != null?geolimitResponse.withInGeolimit:"Make a submission"}`}</label>
+        <div className="" style={{ alignSelf: "center", flex: '', padding: "auto", paddingLeft: "40px", }}>
+          <label className='d-flex align-items-center fs-5 fw-semibold' style={{ }}>{`Within Geolimit : ${geolimitResponse.withInGeolimit != null ? geolimitResponse.withInGeolimit==true?"True":"False" : "Make a submission"}`}</label>
         </div>
       </div>
       <GoogleMap
-        mapContainerStyle={{ width: 'auto', height: '510px', margin: '5px'}}
+        mapContainerStyle={{ width: 'auto', height: '510px', margin: '5px' }}
         center={centerPosition}
         zoom={13}
       >
-       {redMarkerVisible && ( <Marker
+        {redMarkerVisible && (<Marker
           position={markerPosition}
-          // draggable={true}
-          // onDragEnd={handleMarkerDragEnd}
-        /> )}
-        {markerVisible && ( <Marker
+        // draggable={true}
+        // onDragEnd={handleMarkerDragEnd}
+        />)}
+        {markerVisible && (<Marker
           position={markerPosition}
           icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-          // draggable={true}
-          // onDragEnd={handleMarkerDragEnd}
-        /> )}
+        // draggable={true}
+        // onDragEnd={handleMarkerDragEnd}
+        />)}
 
 
         <Circle
           center={centerPosition}
-          radius={geolimitMapData.radius*1000}
+          radius={geolimitMapData.radius * 1000}
           options={{
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,

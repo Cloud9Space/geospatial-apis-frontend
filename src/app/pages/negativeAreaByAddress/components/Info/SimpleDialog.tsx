@@ -1,26 +1,58 @@
 // ResponseModal.js
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from 'react-modal';
+import { ListWrapper } from '../ModelView/UsersList';
+import { initTableData } from '../..';
+import negativeAreaByAddressContext from '../../context/negativeAreaByAddress/negativeAreaByAddressContext';
 
 const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
 
+  const { tableData, setTableData } = useContext(negativeAreaByAddressContext)
 
   const createData = (key, value) => {
-    if (value === true) value = "Yes";
-    else if (value === false) value = "No";
-    if(key === "lat") key = "Latitude";
-    else if(key === "lon") key = "Longitude";
-    return { key, value };
+     if (key === "latitude") key = "Latitude";
+    else if (key === "longitude") key = "Longitude";
+    else if (value === true) value = "True";
+    else if (value === false) value = "False";
+    return {id: new Date().getTime(), key, value };
   };
 
   let rows: any = [];
 
-  if (negativeAreaResponse.data) {
-    rows = Object.keys(negativeAreaResponse.data).map((key) =>
-      createData(key, negativeAreaResponse.data[key])
-    );
-  }
-  console.log(rows)
+  useEffect(() => {
+    if (negativeAreaResponse.data) {
+      // data = Object.keys(geocodeResponse.data).map((key) =>
+      //   createData(key, geocodeResponse.data[key])
+      // );
+      // const data: initTableData = {
+      //   id : new Date().getTime(),
+      //   driveTimeDistance: response['data']['drive_time_distance'],
+      //   sourceLatitude: 18.463435,
+      //   sourceLongitude: 73.866851,
+      //   destinationLatitude: 19.463435,
+      //   destinationLongitude: 73.866851
+      //   // sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
+      //   // sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
+      //   // destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
+      //   // destinationLongitude: driveTimeDistanceInputData.destinationlongitude
+      // }
+      const temp:any = Object.keys(negativeAreaResponse.data).map((key) =>
+        createData(key, negativeAreaResponse.data[key])
+      );
+      // console.log("temp"+temp[0) //temp
+      const data = [...temp ];
+
+
+      // setDriveTimeDistanceResponse({...driveTimeDistanceResponse,...data})
+      // rows = [
+      //   ...tableData,
+      //   ...data
+      // ];
+      // console.log("rows",rows)
+      setTableData([...data]);
+    }
+  }, [negativeAreaResponse])
+  
 
   return (
     <Modal
@@ -60,7 +92,7 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
           height: 'auto',
           minHeight: 'auto',
           fontSize: '20px',
-          padding: '3vw',
+          // padding: '3vw',
           marginLeft: 'auto',
           marginRight: 'auto',
           marginTop: 'auto',
@@ -69,13 +101,16 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
           // WebkitOverflowScrolling: 'touch',
           // borderRadius: '4px',
           // outline: 'none',
-          // padding: '20px'
+          padding: '0px',
+          border: 'none',
         }
       }}
 
     >
-
-      <div className='d-flex flex-column  '>
+      <div style={{ }}>
+        <ListWrapper />
+      </div>
+      {/* <div className='d-flex flex-column  '>
         <h2 className='text-center' style={{fontSize: '30px'}}>NegativeArea Response</h2><br />
         <table  style={{ width: 'auto', border: '1px solid black' }}>
           <thead>
@@ -93,7 +128,7 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </Modal>
   );
 };

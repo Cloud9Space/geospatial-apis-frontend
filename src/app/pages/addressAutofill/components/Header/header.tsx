@@ -15,7 +15,7 @@ import axios from "axios";
 import fetchCsvData from '../Data/data';
 import { useNavigate } from 'react-router-dom';
 import SimpleDialog from '../Info/SimpleDialog';
-import addressAutofill from '../../context/addressAutofill/addressAutofill';
+import addressAutofill from '../../context/addressAutofill/addressAutofillContext';
 
 
 export const initData = {
@@ -238,6 +238,10 @@ function Header() {
             'full_address': 'pune, maharashtra'
           }
         }
+        // response = {
+        //   "data":
+        //   "error":
+        // }
         if ("data" in response) {
           console.log(response)
           setGeocodeResponse(response)
@@ -256,7 +260,7 @@ function Header() {
   return (
     <div id="address-autofill">
       <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>City</span>
             <i
@@ -280,7 +284,7 @@ function Header() {
             ))}
           </select>
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Pincode</span>
             <i
@@ -304,7 +308,7 @@ function Header() {
             ))}
           </select>
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Locality</span>
             <i
@@ -328,7 +332,7 @@ function Header() {
             ))}
           </select>
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Sub-Locality</span>
             <i
@@ -352,7 +356,7 @@ function Header() {
             ))}
           </select>
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '20vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Address</span>
             <i
@@ -371,10 +375,11 @@ function Header() {
             onChange={e => setAddressAutofillInputData({ ...addressAutofillInputData, address: e.target.value })}
           />
         </div>
-        <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+        <div className='' style={{alignSelf : 'end', padding: '10px' }}>
           <button
             type="button"
-            className="btn btn-lg btn-primary mb-2 "
+            style={{marginRight : '10px'}}
+            className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
           >
@@ -384,7 +389,7 @@ function Header() {
           {isEnabled &&
             <button
               type='button'
-              className='btn btn-lg btn-primary mb-2'
+              className='btn btn-lg btn-primary mb2'
               data-kt-stepper-action='view response'
               onClick={handleClickOpen}>View Response</button>
           }

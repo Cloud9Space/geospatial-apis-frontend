@@ -117,7 +117,7 @@ function Header() {
   return (
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>City</span>
             <i
@@ -149,7 +149,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Latitude</span>
             <i
@@ -174,7 +174,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Longitude</span>
             <i
@@ -200,10 +200,10 @@ function Header() {
           )}
         </div>
 
-        <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+        <div className='' style={{alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
-            className="btn btn-lg btn-primary mb-2 "
+            className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
           >

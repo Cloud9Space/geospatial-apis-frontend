@@ -90,8 +90,8 @@ const DriveTimeDistanceMap = () => {
 
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
-      <div className=' d-flex flex-row flex-center' style={{padding: '10px'}}>
-          <label>{`Aerial Distance : ${driveTimeDistanceResponse.aerialDistance!=null ? driveTimeDistanceResponse.aerialDistance : "Make a submission"}`}"markerVisible"{markerVisible?"true":"false"}hi</label>
+      <div className=' d-flex flex-row flex-center fs-5 fw-semibold' style={{padding: '10px'}}>
+          <label>{`Drive Time Distance : ${driveTimeDistanceResponse.aerialDistance!=null ? driveTimeDistanceResponse.aerialDistance : "Make a submission"}`}</label>
       </div>
       <GoogleMap
         mapContainerStyle={{ width: 'auto', height: '510px', margin: '5px' }}

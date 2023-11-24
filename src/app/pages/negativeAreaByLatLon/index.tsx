@@ -21,7 +21,7 @@ import LinearIndeterminate from "./components/Loader/Loader";
 // import LinearIndeterminate from "./components/Loader/Loader";
 
 //import geocodeContext from "./Context/geocode/geocodeContext";
-import negativeAreaByAddressContext from "./context/negativeAreaByAddress/negativeAreaByAddressContext";
+import negativeAreaByLatLonContext from "./context/negativeAreaByLatLon/negativeAreaByLatLonContext";
 import { useState } from "react";
 
 export const initnegativeAreaData = {
@@ -31,7 +31,7 @@ export const initnegativeAreaData = {
 
 export const negativeAreaInitResponse = {
   data: {
-    isInNegativeArea: "",
+    isInNegativeArea: undefined,
     lat: 18.5568147,
     lon: 73.79745869999999,
     geo_accuracy: "",
@@ -40,8 +40,14 @@ export const negativeAreaInitResponse = {
     mis_match: ""}
 }
 
-function NegativeAreaByLatLon() {
+export interface initTableData {
+  id:number,
+  key:any,
+  value:any
+}
 
+function NegativeAreaByLatLon() {
+  const [tableData, setTableData] = useState([] as initTableData[])
   const [negativeAreaInputData, setnegativeAreaInputData] = useState(initnegativeAreaData)
   const [negativeAreaResponse, setNegativeAreaResponse] = useState(negativeAreaInitResponse)
   const [isLoading, setIsLoading] = useState(false);
@@ -50,7 +56,7 @@ function NegativeAreaByLatLon() {
   return (
     <div>
       <div className="absolute isMini"/>
-      <negativeAreaByAddressContext.Provider value={{ negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, isLoading, setIsLoading }}>
+      <negativeAreaByLatLonContext.Provider value={{ negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, isLoading, setIsLoading, tableData, setTableData }}>
         <div className=" mt={4}">
           <div className="mb={1}">
             <div className="container spacing={3}">
@@ -68,7 +74,7 @@ function NegativeAreaByLatLon() {
             </div>
           </div>
         </div>
-      </negativeAreaByAddressContext.Provider>
+      </negativeAreaByLatLonContext.Provider>
     </div>
   );
 }

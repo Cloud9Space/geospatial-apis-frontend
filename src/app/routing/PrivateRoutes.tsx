@@ -1,4 +1,4 @@
-import {FC, Suspense} from 'react'
+import {FC, Suspense, lazy} from 'react'
 import {Route, Routes, Navigate} from 'react-router-dom'
 import {MasterLayout} from '../../_metronic/layout/MasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
@@ -10,7 +10,7 @@ import Geocode from '../pages/geocode'
 import NegativeAreaByAddress from '../pages/negativeAreaByAddress'
 import NegativeAreaByLatLon from '../pages/negativeAreaByLatLon'
 import GeographicalLimitCheck from '../pages/geographicalLimitCheck'
-import ArielDistance from '../pages/arielDistance'
+import AerialDistance from '../pages/arielDistance'
 import UrbanRural from '../pages/urbanRural'
 import DisasterZone from '../pages/disasterZone'
 import ReverseGeocode from '../pages/reverseGeocode'
@@ -26,7 +26,7 @@ const PrivateRoutes = () => {
   // const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
   //const WidgetsPage = lazy(() => import('../modules/widgets/WidgetsPage'))
   // const ChatPage = lazy(() => import('../modules/apps/chat/ChatPage'))
-  // const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
+  const UsersPage = lazy(() => import('../modules/apps/user-management/UsersPage'))
 
   return (
     <Routes>
@@ -43,12 +43,20 @@ const PrivateRoutes = () => {
         <Route path='reverseGeocode' element={<ReverseGeocode />} />
         <Route path='negativeAreaByAddress' element={<NegativeAreaByAddress />} />
         <Route path='negativeAreaByLatlon' element={<NegativeAreaByLatLon />} />
-        <Route path='geographicalLimitCheck' element={<GeographicalLimitCheck/>} />
-        <Route path='arielDistance' element={<ArielDistance/>} />
+        <Route path='geolimitCheck' element={<GeographicalLimitCheck/>} />
+        <Route path='aerialDistance' element={<AerialDistance/>} />
         <Route path='driveTimeDistance' element={<DriveTimeDistance/>} />
         <Route path='urbanRural' element={<UrbanRural/>} />
         <Route path='disasterZone' element={<DisasterZone/>} />
         <Route path='addressAutofill' element={<AddressAutofill/>} />
+
+        <Route
+        path='apps/user-management/*'
+          element={
+            <SuspensedView>
+              <UsersPage />
+            </SuspensedView>
+          }/>
 
         {/* <Route
           path='crafted/pages/profile/*'

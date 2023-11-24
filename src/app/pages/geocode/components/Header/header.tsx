@@ -89,8 +89,8 @@ function Header() {
 
   return (
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
-      <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+      <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap'  }} >
+        <div className='' style={{ width: '20vw',flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Address</span>
             <i
@@ -115,7 +115,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{ width: '15vw',flex: '', padding: '10px'  }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>City</span>
             <i
@@ -126,6 +126,7 @@ function Header() {
           </label>
           <input
             type='text'
+            style={{ width: '100%' }}
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='city'
             placeholder='city'
@@ -140,7 +141,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{ flex: '1', padding: '10px' }}>
+        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Pincode</span>
             <i
@@ -165,10 +166,11 @@ function Header() {
             </div>
           )}
         </div>
-        <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+        <div className='' style={{alignSelf: 'end', padding: '10px'  }}>
           <button
             type="button"
-            className="btn btn-lg btn-primary mb-2 "
+            style={{marginRight: '10px'}}
+            className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
           >
@@ -178,7 +180,7 @@ function Header() {
           {isEnabled &&
             <button
               type='button'
-              className='btn btn-lg btn-primary mb-2'
+              className='btn btn-lg btn-primary mb2'
               data-kt-stepper-action='view response'
               onClick={handleClickOpen}>View Response</button>
           }

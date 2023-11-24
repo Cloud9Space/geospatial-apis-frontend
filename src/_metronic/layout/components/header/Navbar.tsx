@@ -1,7 +1,8 @@
 import clsx from 'clsx'
-import {KTIcon, toAbsoluteUrl} from '../../../helpers'
-import {HeaderNotificationsMenu, HeaderUserMenu, Search, ThemeModeSwitcher} from '../../../partials'
-import {useLayout} from '../../core'
+import { KTIcon, toAbsoluteUrl } from '../../../helpers'
+import { HeaderNotificationsMenu, HeaderUserMenu, Search, ThemeModeSwitcher } from '../../../partials'
+import { useLayout } from '../../core'
+import { useAuth } from '../../../../app/modules/auth'
 
 const itemClass = 'ms-1 ms-md-4'
 const btnClass =
@@ -10,20 +11,21 @@ const userAvatarClass = 'symbol-35px'
 const btnIconClass = 'fs-2'
 
 const Navbar = () => {
-  const {config} = useLayout()
+  const {currentUser, logout} = useAuth()
+  const { config } = useLayout()
   return (
-    <div className='app-navbar flex-shrink-0'>
-      <div className={clsx('app-navbar-item align-items-stretch', itemClass)}>
+    <div className='app-navba flex-shrink-0' style={{display: 'flex',flexDirection: 'row', alignItems: 'center'}}>
+      {/* <div className={clsx('app-navbar-item align-items-stretch', itemClass)}>
         <Search />
-      </div>
+      </div> */}
 
-      <div className={clsx('app-navbar-item', itemClass)}>
+      {/* <div className={clsx('app-navbar-item', itemClass)}>
         <div id='kt_activities_toggle' className={btnClass}>
           <KTIcon iconName='chart-simple' className={btnIconClass} />
         </div>
-      </div>
+      </div> */}
 
-      <div className={clsx('app-navbar-item', itemClass)}>
+      {/* <div className={clsx('app-navbar-item', itemClass)}>
         <div
           data-kt-menu-trigger="{default: 'click'}"
           data-kt-menu-attach='parent'
@@ -33,20 +35,20 @@ const Navbar = () => {
           <KTIcon iconName='element-plus' className={btnIconClass} />
         </div>
         <HeaderNotificationsMenu />
-      </div>
+      </div> */}
 
-      <div className={clsx('app-navbar-item', itemClass)}>
+      {/* <div className={clsx('app-navbar-item', itemClass)}>
         <div className={clsx('position-relative', btnClass)} id='kt_drawer_chat_toggle'>
           <KTIcon iconName='message-text-2' className={btnIconClass} />
           <span className='bullet bullet-dot bg-success h-6px w-6px position-absolute translate-middle top-0 start-50 animation-blink' />
         </div>
-      </div>
+      </div> */}
 
-      <div className={clsx('app-navbar-item', itemClass)}>
+      {/* <div className={clsx('app-navbar-item', itemClass)}>
         <ThemeModeSwitcher toggleBtnClass={clsx('btn-active-light-primary btn-custom')} />
-      </div>
+      </div> */}
 
-      <div className={clsx('app-navbar-item', itemClass)}>
+      {/* <div className={clsx('app-navbar-item', itemClass)}>
         <div
           className={clsx('cursor-pointer symbol', userAvatarClass)}
           data-kt-menu-trigger="{default: 'click'}"
@@ -56,8 +58,17 @@ const Navbar = () => {
           <img src={toAbsoluteUrl('/media/avatars/300-3.jpg')} alt='' />
         </div>
         <HeaderUserMenu />
-      </div>
+      </div> */}
 
+      <button
+        type="button"
+        style={{ marginRight: '10px' }}
+        className="btn btn-lg btn-danger mb2 "
+        data-kt-stepper-action="submit"
+        onClick={logout}
+      >
+        Logout
+      </button>
       {config.app?.header?.default?.menu?.display && (
         <div className='app-navbar-item d-lg-none ms-2 me-n3' title='Show header menu'>
           <div
@@ -72,4 +83,4 @@ const Navbar = () => {
   )
 }
 
-export {Navbar}
+export { Navbar }
