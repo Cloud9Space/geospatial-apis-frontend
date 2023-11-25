@@ -85,7 +85,7 @@ function Header() {
   return (
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-        <div className='' style={{width: '20vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '20vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Address</span>
             <i
@@ -110,7 +110,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>City</span>
             <i
@@ -135,7 +135,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Pincode</span>
             <i
@@ -160,7 +160,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{alignSelf: 'end', padding: '10px' }}>
+        <div className='' style={{ alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
             style={{ marginRight: '10px' }}
@@ -178,15 +178,14 @@ function Header() {
               data-kt-stepper-action='view response'
               onClick={handleClickOpen}>View Response</button>
           }
-
-
         </div>
+        {/* <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
+          <label className='d-flex align-items-center fs-4 fw-semibold '>
+            {negativeAreaResponse.data.isInNegativeArea != undefined ? 'In Negative Area : ' + `${negativeAreaResponse.data.isInNegativeArea ? "True" : "False"}` : ""}
+          </label>
+        </div> */}
       </div>
-      <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
-        <label className='d-flex align-items-center fs-5 fw-semibold '>
-        Is In Negative Area : {negativeAreaResponse.data.isInNegativeArea != undefined ? ` ${negativeAreaResponse.data.isInNegativeArea?"True":"False"}` : ""}
-        </label>
-      </div>
+
       <SimpleDialog
         isOpen={open}
         onRequestClose={handleClose}

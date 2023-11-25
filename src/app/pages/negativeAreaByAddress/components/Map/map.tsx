@@ -5,6 +5,7 @@ import { test_data } from '../Data/data';
 // import axios from 'axios';
 import negativeAreaContext from '../../context/negativeAreaByAddress/negativeAreaByAddressContext';
 // import MDBox from "components/MDBox";
+// const google = window.google
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 // const api_url = process.env.REACT_APP_API_URL_DEV
@@ -72,7 +73,11 @@ const NegativeAreaMap = () => {
   //   });
   // };
 
-
+  // var greenMarkerIcon = {
+  //   url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png', // URL of the custom icon
+  //   // url: '/media/GoogleMapGreenMarker.png', // URL of the custom icon
+  //   scaledSize: new google.maps.Size(45, 45), // Size of the icon
+  // };
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
       {/* <MDBox pl={1}>
@@ -103,8 +108,10 @@ const NegativeAreaMap = () => {
         
         {markerVisible && ( <Marker
           position={markerPosition}
+
           // draggable={true}
           icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+          // icon={greenMarkerIcon}
           // onDragEnd={handleMarkerDragEnd}
         /> )}
         {redMarkerVisible && ( <Marker

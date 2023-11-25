@@ -199,6 +199,29 @@ function Header() {
             </div>
           )}
         </div>
+        <div className=" pr={3}  align-items-center fs-5 fw-semibold" style={{ alignSelf: "start", flex: '', padding: "10px" }}>
+          <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>Circle Radius:</label>
+          <div className=' pl={3} width={200}'>
+            {/* <Slider   
+              sx={{backgroundColor: "#dfdfdf"}}
+              defaultValue={3} 
+              min={1}
+              max={100}            
+              value={geolimitMapData.radius} 
+              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value)})}
+              aria-label="Default" 
+              valueLabelDisplay="auto"
+            /> */}
+            <input
+              type="range"
+              min={1}
+              max={100}
+              value={geolimitMapData.radius}
+              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value) })}
+            />
+          </div>
+          <span >{geolimitMapData.radius}</span>
+        </div>
 
         <div className='' style={{ alignSelf: 'end', padding: '10px' }}>
           <button
@@ -209,40 +232,18 @@ function Header() {
           >
             Submit
           </button>
-
-
         </div>
 
+        <div className='' style={{ display: 'flex', flexDirection: 'row', padding: '10px',  alignSelf: 'end',  }}>
 
-        <div className='' style={{ display: 'flex', flexDirection: 'row', paddingLeft: '20px  ',paddingRight: 'auto'  }}>
-          <div className=" pr={3}  align-items-center fs-5 fw-semibold" style={{ alignSelf: "start", flex: '', padding: "10px" }}>
-            <label>Circle Radius:</label>
-            <div className=' pl={3} width={200}'>
-              {/* <Slider   
-              sx={{backgroundColor: "#dfdfdf"}}
-              defaultValue={3} 
-              min={1}
-              max={100}            
-              value={geolimitMapData.radius} 
-              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value)})}
-              aria-label="Default" 
-              valueLabelDisplay="auto"
-            /> */}
-              <input
-                type="range"
-                min={1}
-                max={100}
-                value={geolimitMapData.radius}
-                onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value) })}
-              />
-            </div>
-            <span >{geolimitMapData.radius}</span>
-          </div>
           <div className="" style={{ alignSelf: "center", flex: '', padding: "auto", paddingLeft: "40px", }}>
-            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`Within Geolimit : ${geolimitResponse.withInGeolimit != "" ? (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
+            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`${geolimitResponse.withInGeolimit != "" ?'Within Geolimit : '+ (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
           </div>
         </div>
       </div>
+
+
+
 
     </div>
   );

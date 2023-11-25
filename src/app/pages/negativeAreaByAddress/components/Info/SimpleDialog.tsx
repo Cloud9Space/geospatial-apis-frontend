@@ -10,9 +10,10 @@ const SimpleDialog = ({ isOpen, onRequestClose, negativeAreaResponse }) => {
   const { tableData, setTableData } = useContext(negativeAreaByAddressContext)
 
   const createData = (key, value) => {
-     if (key === "latitude") key = "Latitude";
-    else if (key === "longitude") key = "Longitude";
-    else if (value === true) value = "True";
+     if (key === "lat") key = "Latitude";
+    else if (key === "lon") key = "Longitude";
+    else if (key === "isInNegativeArea") key = "Is In Negative Area";
+    if (value === true) value = "True";
     else if (value === false) value = "False";
     return {id: new Date().getTime(), key, value };
   };
