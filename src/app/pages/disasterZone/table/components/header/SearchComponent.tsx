@@ -27,14 +27,15 @@ const UsersListSearchComponent = () => {
     // More details about useDebounce: https://usehooks.com/useDebounce/
   )
 
+
   const search=(query) =>{
     if(query === ""){
       console.log(tableData)
       return tableData;
     }
     let newData = tableData.filter((item)=>{
-      // console.log("hiiasdfaeasd",item.locationType === query,item.locationType)
-      if(item.locationType === query || item.dtname === query || item.stname === query || item.id === query){
+      console.log("hiiasdfaeasd",item)
+      if(item.address == query || item.earthquakeHazardZoneCode == query || item.earthquakeHazardZoneValue == query || item.floodRiskZoneCode == query || item.floodRiskZoneValue == query || item.floodMaxSurgeHeight == query || item.windHazardZoneCode == query || item.windHazardZoneValue == query || item.windMaxSpeed == query || item.cycloneRiskZoneCode ==query || item.cycloneRiskZoneValue == query || item.cycloneMaxSpeed == query || item.cycloneOccurance ==query || item.LandSlideRiskZoneValue == query || item.LandSlideRiskZoneCode == query){
         return true;  
       }
       return false;
@@ -56,7 +57,7 @@ const UsersListSearchComponent = () => {
           type='text'
           data-kt-user-table-filter='search'
           className='form-control form-control-solid w-250px ps-14'
-          placeholder='Search user'
+          placeholder='Search'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

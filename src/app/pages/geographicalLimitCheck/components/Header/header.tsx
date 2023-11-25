@@ -43,7 +43,7 @@ function Header() {
 
       } catch (e) {
         console.log("Invalid City Name");
-          setIsValidCity(false);
+        setIsValidCity(false);
       }
     }
     else
@@ -134,7 +134,7 @@ function Header() {
             value={geolimitInputData.city}
             onChange={(e) => setGeolimitInputData({ ...geolimitInputData, city: e.target.value })}
           />
-          {!isValidInput&& geolimitInputData.city === "" && (
+          {!isValidInput && geolimitInputData.city === "" && (
             <div className='fv-plugins-message-container'>
               <div data-field='city' data-validator='notEmpty' className='fv-help-block'>
                 city is required
@@ -149,7 +149,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Latitude</span>
             <i
@@ -174,7 +174,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Longitude</span>
             <i
@@ -200,7 +200,7 @@ function Header() {
           )}
         </div>
 
-        <div className='' style={{alignSelf: 'end', padding: '10px' }}>
+        <div className='' style={{ alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
             className="btn btn-lg btn-primary mb2 "
@@ -211,6 +211,36 @@ function Header() {
           </button>
 
 
+        </div>
+
+
+        <div className='' style={{ display: 'flex', flexDirection: 'row', paddingLeft: '20px  ',paddingRight: 'auto'  }}>
+          <div className=" pr={3}  align-items-center fs-5 fw-semibold" style={{ alignSelf: "start", flex: '', padding: "10px" }}>
+            <label>Circle Radius:</label>
+            <div className=' pl={3} width={200}'>
+              {/* <Slider   
+              sx={{backgroundColor: "#dfdfdf"}}
+              defaultValue={3} 
+              min={1}
+              max={100}            
+              value={geolimitMapData.radius} 
+              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value)})}
+              aria-label="Default" 
+              valueLabelDisplay="auto"
+            /> */}
+              <input
+                type="range"
+                min={1}
+                max={100}
+                value={geolimitMapData.radius}
+                onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value) })}
+              />
+            </div>
+            <span >{geolimitMapData.radius}</span>
+          </div>
+          <div className="" style={{ alignSelf: "center", flex: '', padding: "auto", paddingLeft: "40px", }}>
+            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`Within Geolimit : ${geolimitResponse.withInGeolimit != "" ? (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
+          </div>
         </div>
       </div>
 

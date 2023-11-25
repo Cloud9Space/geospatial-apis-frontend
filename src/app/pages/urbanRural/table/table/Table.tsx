@@ -69,7 +69,7 @@ const Table = () => {
           </tbody>
         </table>
       </div>
-      <UsersListPagination />
+      {/* <UsersListPagination /> */}
       {isLoading && <UsersListLoading />}
     </KTCardBody>
   )

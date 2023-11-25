@@ -158,7 +158,7 @@ function Header() {
         </div>
         <div className=' d-flex flex-column flex-center' style={{ padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold '>
-            {negativeAreaResponse.data.isInNegativeArea !== undefined ? `Is In Negative Area : ${negativeAreaResponse.data.isInNegativeArea?"True":"False"}` : "Make A Submission"}
+          Is In Negative Area : {negativeAreaResponse.data.isInNegativeArea !== undefined ? `${negativeAreaResponse.data.isInNegativeArea?"True":"False"}` : ""}
           </label>
         </div>
         <SimpleDialog
