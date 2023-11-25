@@ -104,11 +104,11 @@ export function Registration() {
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
-            <img
+            {/* <img
               alt='Logo'
               src={toAbsoluteUrl('/media/svg/brand-logos/google-icon.svg')}
               className='h-15px me-3'
-            />
+            /> */}
             Sign in with Google
           </a>
           {/* end::Google link */}
@@ -122,7 +122,7 @@ export function Registration() {
             href='#'
             className='btn btn-flex btn-outline btn-text-gray-700 btn-active-color-primary bg-state-light flex-center text-nowrap w-100'
           >
-            <img
+            {/* <img
               alt='Logo'
               src={toAbsoluteUrl('/media/svg/brand-logos/apple-black.svg')}
               className='theme-light-show h-15px me-3'
@@ -131,7 +131,7 @@ export function Registration() {
               alt='Logo'
               src={toAbsoluteUrl('/media/svg/brand-logos/apple-black-dark.svg')}
               className='theme-dark-show h-15px me-3'
-            />
+            /> */}
             Sign in with Apple
           </a>
           {/* end::Google link */}
