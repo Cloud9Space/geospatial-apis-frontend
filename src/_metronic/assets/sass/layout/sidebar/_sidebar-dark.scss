@@ -72,7 +72,8 @@
           $icon-color: var(--#{$prefix}primary-inverse),
           $bullet-color: var(--#{$prefix}primary-inverse),
           $arrow-color: var(--#{$prefix}primary-inverse),
-          $bg-color: $app-sidebar-dark-menu-link-bg-color-active
+          // $bg-color: $app-sidebar-dark-menu-link-bg-color-active
+          $bg-color: #187de4
         );
 
         .menu-sub {

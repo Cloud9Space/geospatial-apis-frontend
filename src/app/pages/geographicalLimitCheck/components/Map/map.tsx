@@ -79,34 +79,7 @@ const GeoLimitMap = () => {
 
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
-      <div className='' style={{display: 'flex', flexDirection: 'row'}}>
-        <div className=" pr={3}  align-items-center fs-5 fw-semibold" style={{alignSelf: "start", flex: '', padding: "10px" }}>
-          <label>Circle Radius:</label>
-          <div className=' pl={3} width={200}'>
-            {/* <Slider 
-              sx={{backgroundColor: "#dfdfdf"}}
-              defaultValue={3} 
-              min={1}
-              max={100}            
-              value={geolimitMapData.radius} 
-              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value)})}
-              aria-label="Default" 
-              valueLabelDisplay="auto"
-            /> */}
-            <input
-              type="range"
-              min={1}
-              max={100}
-              value={geolimitMapData.radius}
-              onChange={e => setGeolimitMapData({ ...geolimitMapData, radius: parseInt(e.target.value) })}
-            />
-          </div>
-          <span >{geolimitMapData.radius}</span>
-        </div>
-        <div className="" style={{ alignSelf: "center", flex: '', padding: "auto", paddingLeft: "40px", }}>
-          <label className='d-flex align-items-center fs-5 fw-semibold' style={{ }}>{`Within Geolimit : ${geolimitResponse.withInGeolimit != null ? geolimitResponse.withInGeolimit==true?"True":"False" : "Make a submission"}`}</label>
-        </div>
-      </div>
+      
       <GoogleMap
         mapContainerStyle={{ width: 'auto', height: '510px', margin: '5px' }}
         center={centerPosition}

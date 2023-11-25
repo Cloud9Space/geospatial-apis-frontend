@@ -32,8 +32,9 @@ const UsersListSearchComponent = () => {
       return tableData;
     }
     let newData = tableData.filter((item)=>{
-      // console.log("hiiasdfaeasd",item.locationType === query,item.locationType)
-      if(item.locationType === query || item.dtname === query || item.stname === query || item.id === query){
+      console.log("hiiasdfaeasd",item)
+      // if(item.locationType === query || item.dtname === query || item.stname === query || item.id === query){
+      if(item.locationType === query || item.address === query|| item.dtName === query || item.stName === query || item.id === query){
         return true;  
       }
       return false;
@@ -55,7 +56,7 @@ const UsersListSearchComponent = () => {
           type='text'
           data-kt-user-table-filter='search'
           className='form-control form-control-solid w-250px ps-14'
-          placeholder='Search user'
+          placeholder='Search'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

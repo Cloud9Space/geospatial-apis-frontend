@@ -6,6 +6,7 @@ import { test_data } from '../Data/data';
 import negativeAreaContext from '../../context/negativeAreaByLatLon/negativeAreaByLatLonContext';
 // import MDBox from "components/MDBox";
 
+
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 // const api_url = process.env.REACT_APP_API_URL_DEV
 // const api_key = process.env.REACT_APP_API_KEY
@@ -72,7 +73,26 @@ const NegativeAreaMap = () => {
   //   });
   // };
 
+  // function ensureGoogleLoaded() {
+  //   return new Promise(waitForGoogle);
+  //   function waitForGoogle(resolve, reject) {
+  //   if (window.google && window.google.maps) resolve(window.google.maps);
+  //   else setTimeout(waitForGoogle.bind(this, resolve, reject), 30);
+  //   }
+  //   }
+  //   ensureGoogleLoaded().then(() => {
+  //   this.map = window.initMap();
+  //   this.addMarkers();
+  //   this.zoomToFitMarkers();
+  //   });
 
+
+  // var greenMarkerIcon = {
+  //   url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png', // URL of the custom icon
+  //   // url: '/media/GoogleMapGreenMarker.png', // URL of the custom icon
+  //   scaledSize: new window.google.maps.Size(45, 45), // Size of the icon
+  //   // google.maps.Size(45, 45), // Size of the icon
+  // };
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
       {/* <MDBox pl={1}>
@@ -105,6 +125,7 @@ const NegativeAreaMap = () => {
           position={markerPosition}
           // draggable={true}
           icon='http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+          // icon={greenMarkerIcon}
           // onDragEnd={handleMarkerDragEnd}
         /> )}
         {redMarkerVisible && ( <Marker
