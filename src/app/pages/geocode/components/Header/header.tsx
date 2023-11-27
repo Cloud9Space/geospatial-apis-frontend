@@ -52,30 +52,31 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // let response = await axios.get(api_url + "geocode", {
-        //   params: {
-        //     address: geocodeInputData['address'],
-        //     city: geocodeInputData['city'],
-        //     pincode: geocodeInputData['pincode'],
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        // console.log(response);
-        // response = response.data;
-        const response = {
-          "data": {
-            'latitude': 18.463435,
-            'longitude': 73.866851,
-            'full_address': 'pune, maharashtra'
+        let response = await axios.get(api_url + "geocode", {
+          params: {
+            address: geocodeInputData['address'],
+            city: geocodeInputData['city'],
+            pincode: geocodeInputData['pincode'],
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
+        });
+        console.log(response);
+        response = response.data;
+        // const response = {
+        //   "data": {
+        //     'latitude': 18.463435,
+        //     'longitude': 73.866851,
+        //     'full_address': 'pune, maharashtra'
+        //   }
+        // }
         if ("data" in response) {
           console.log(response)
           setGeocodeResponse(response)
         }
+        console.log("done")
       } catch (error) {
         console.error(error);
       }

@@ -33,8 +33,8 @@ const AerialDistanceMap = () => {
       lng: parseFloat(aerialDistanceResponse.destinationLongitude),
     });
     setCenterPosition({
-      lat: aerialDistanceResponse.sourceLatitude,
-      lng: aerialDistanceResponse.sourceLongitude,
+      lat: parseFloat(aerialDistanceResponse.sourceLatitude),
+      lng: parseFloat(aerialDistanceResponse.sourceLongitude),
     });
     // setMarkerVisible(true)
     // setCenterPosition({

@@ -33,8 +33,8 @@ export const initnegativeAreaData = {
 export const negativeAreaInitResponse = {
   data: {
     isInNegativeArea: undefined,
-    lat: 18.5568147,
-    lon: 73.79745869999999,
+    latitude: 18.5568147,
+    longitude: 73.79745869999999,
     geo_accuracy: "",
     input_quality: "",
     city: "",

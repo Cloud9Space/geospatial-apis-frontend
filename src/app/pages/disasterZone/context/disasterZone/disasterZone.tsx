@@ -4,7 +4,9 @@ interface DisasterZoneContext {
     tableData : any,
     setTableData : any,
     tableDataToShow:any,
-    setTableDataToShow : any
+    setTableDataToShow : any,
+    isLoading:any,
+    setIsLoading:any,
 }
 
 const disasterZoneContext = createContext<DisasterZoneContext>({} as DisasterZoneContext);

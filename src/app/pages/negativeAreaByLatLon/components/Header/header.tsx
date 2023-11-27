@@ -47,24 +47,25 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
     try {
-      // const response = await axios.get(api_url + "negativeAreaByLatLon", {
-      //   params: {
-      //     latitude: negativeAreaInputData['latitude'],
-      //     longitude: negativeAreaInputData['longitude'],
-      //   },
-      //   headers: {
-      //     'x-api-key': api_key,
-      //     'Accept': "*/*"
-      //   }
-      // });
-      const response = {
-        'data': {
-          'lat': 18.531905,
-          'lon': 73.847874,
-          'isInNegativeArea': false
+      let response = await axios.get(api_url + "negativeAreaByLatLong", {
+        params: {
+          latitude: negativeAreaInputData['latitude'],
+          longitude: negativeAreaInputData['longitude'],
+        },
+        headers: {
+          'x-api-key': api_key,
+          'Accept': "*/*"
         }
-      }
-      console.log(response)
+      });
+      response = response.data
+      // const response = {
+      //   'data': {
+      //     'lat': 18.531905,
+      //     'lon': 73.847874,
+      //     'isInNegativeArea': false
+      //   }
+      // }
+      console.log("response"+JSON.stringify(response))
       setNegativeAreaResponse(response)
 
     } catch (error) {

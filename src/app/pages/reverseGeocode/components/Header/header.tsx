@@ -24,9 +24,8 @@ export const tableHeaders = [
 function Header() {
   // const [tableData, setTableData] = useState([] as initTableData[])
   const {tableData,setTableData}  = useContext(reverseGeocodeContext)
-  const {tableDataToShow,setTableDataToShow}  = useContext(reverseGeocodeContext)
+  const {tableDataToShow,setTableDataToShow, setIsLoading}  = useContext(reverseGeocodeContext)
   const [inputData, setInputData] = useState(initData)
-  const [isLoading, setIsLoading] = useState(false);
   const [isValidInput, setIsValidInput] = useState(true);
 
   const api_url = process.env.REACT_APP_API_URL_DEV
@@ -70,25 +69,25 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // let response = await axios.get(api_url + "reverseGeocode", {
-        //   params: {
-        //     latitude: inputData['latitude'],
-        //     longitude: inputData['longitude']
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        // response = response.data;
-        const response = {
-          "message": "Data Fetched Successfully!!",
-          "data": {
-            "latitude": 18.4634268,
-            "longitude": 73.86686279999999,
-            "address": "B 21, Bansilal Path, Upper Indira Nagar, Bibwewadi, Pune, Maharashtra 411037, India"
+        let response = await axios.get(api_url + "reverseGeocode", {
+          params: {
+            latitude: inputData['latitude'],
+            longitude: inputData['longitude']
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
+        });
+        response = response.data;
+        // const response = {
+        //   "message": "Data Fetched Successfully!!",
+        //   "data": {
+        //     "latitude": 18.4634268,
+        //     "longitude": 73.86686279999999,
+        //     "address": "B 21, Bansilal Path, Upper Indira Nagar, Bibwewadi, Pune, Maharashtra 411037, India"
+        //   }
+        // }
         console.log(response)
         const data: initTableData = {
           // id : uuidv4(),

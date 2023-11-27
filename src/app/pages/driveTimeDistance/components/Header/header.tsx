@@ -48,64 +48,65 @@ function Header() {
       setIsValidInput(true);
       console.log("hii")
       try {
-        // const response = await axios.get(api_url + "driveTimeDistance", {
-        //   params: {
-        //     sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
-        //     sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
-        //     destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
-        //     destinationLongitude: driveTimeDistanceInputData.destinationlongitude
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        // console.log("response",response)
-        const response = {
-          "message": "Data Fetched Successfully!!",
-          "data": {
-            "drive_time_distance": "1162 m"
+        let response = await axios.get(api_url + "driveTimeDistance", {
+          params: {
+            source_latitude: driveTimeDistanceInputData.sourceLatitude,
+            source_longitude: driveTimeDistanceInputData.sourceLongitude,
+            destination_latitude: driveTimeDistanceInputData.destinationLatitude,
+            destination_longitude: driveTimeDistanceInputData.destinationLongitude
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
+        });
+        response = response.data
+        console.log("response", response)
+        // const response = {
+        //   "message": "Data Fetched Successfully!!",
+        //   "data": {
+        //     "drive_time_distance": "1162 m"
+        //   }
+        // }
         // console.log(response['data']['data']['withInGeolimit'])
         if ('data' in response) {
-          // console.log("arielDistanceInputData"+arielDistanceInputData.destinationLatitude )
+          console.log("arielDistanceInputData"+response['data']['drive_distance'])
           setDriveTimeDistanceResponse(
             {
               ...driveTimeDistanceResponse,
-              driveTimeDistance: response['data']['drive_time_distance'],
-              sourceLatitude: 18.463435,
-              sourceLongitude: 73.866851,
-              destinationLatitude: 19.463435,
-              destinationLongitude: 73.866851
-              // sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
-              // sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
-              // destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
-              // destinationLongitude: driveTimeDistanceInputData.destinationlongitude
+              driveTimeDistance: response['data']['drive_distance'],
+              // sourceLatitude: 18.463435,
+              // sourceLongitude: 73.866851,
+              // destinationLatitude: 19.463435,
+              // destinationLongitude: 73.866851
+              sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
+              sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
+              destinationLatitude: driveTimeDistanceInputData.destinationLatitude,
+              destinationLongitude: driveTimeDistanceInputData.destinationLongitude
 
             })
 
-            const data: initTableData = {
-              id : new Date().getTime(),
-              driveTimeDistance: response['data']['drive_time_distance'],
-              sourceLatitude: 18.463435,
-              sourceLongitude: 73.866851,
-              destinationLatitude: 19.463435,
-              destinationLongitude: 73.866851
-              // sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
-              // sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
-              // destinationLatitude: driveTimeDistanceInputData.destinationLongitude,
-              // destinationLongitude: driveTimeDistanceInputData.destinationlongitude
-            }
+          const data: initTableData = {
+            id: new Date().getTime(),
+            driveTimeDistance: response['data']['drive_distance'],
+            // sourceLatitude: 18.463435,
+            // sourceLongitude: 73.866851,
+            // destinationLatitude: 19.463435,
+            // destinationLongitude: 73.866851
+            sourceLatitude: driveTimeDistanceInputData.sourceLatitude,
+            sourceLongitude: driveTimeDistanceInputData.sourceLongitude,
+            destinationLatitude: driveTimeDistanceInputData.destinationLatitude,
+            destinationLongitude: driveTimeDistanceInputData.destinationLongitude
+          }
 
-            setDriveTimeDistanceResponse({...driveTimeDistanceResponse,...data})
-            const rows = [
-              ...tableData,
-              data
-            ];
-    
-            setTableData(rows);
-            setTableDataToShow(rows);
+          setDriveTimeDistanceResponse({ ...driveTimeDistanceResponse, ...data })
+          const rows = [
+            ...tableData,
+            data
+          ];
+
+          setTableData(rows);
+          setTableDataToShow(rows);
         }
       } catch (error) {
         console.error(error);
@@ -123,7 +124,7 @@ function Header() {
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='d-flex flex-row' style={{ flexWrap: 'wrap' }} >
         {/* <div> */}
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Source latitude</span>
             <i
@@ -148,7 +149,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Source longitude</span>
             <i
@@ -173,7 +174,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Destination latitude</span>
             <i
@@ -198,7 +199,7 @@ function Header() {
             </div>
           )}
         </div>
-        <div className='' style={{width: '15vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '15vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Destination longitude</span>
             <i
@@ -224,7 +225,7 @@ function Header() {
           )}
         </div>
         {/* </div> */}
-        <div className='' style={{alignSelf: 'end', padding: '10px' }}>
+        <div className='' style={{ alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
             className="btn btn-lg btn-primary mb2 "

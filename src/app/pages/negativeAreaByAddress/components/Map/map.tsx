@@ -21,7 +21,7 @@ const NegativeAreaMap = () => {
   const [redMarkerVisible, setRedMarkerVisible] = useState(false);
 
   useEffect(()=>{
-    setMarkerPosition({...markerPosition, lat: negativeAreaResponse.data.lat, lng: negativeAreaResponse.data.lon})
+    setMarkerPosition({...markerPosition, lat: negativeAreaResponse.data.latitude, lng: negativeAreaResponse.data.longitude})
     if (negativeAreaResponse.data.isInNegativeArea === false){
       setRedMarkerVisible(false)
       setMarkerVisible(true)

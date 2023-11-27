@@ -204,12 +204,12 @@ function Header() {
     if (
       // addressAutofillInputData.address === "" ||
       addressAutofillInputData.city === "" ||
-      addressAutofillInputData.pincode === ""||
-      addressAutofillInputData.locality === ""||
-      addressAutofillInputData.sublocality === ""||
+      addressAutofillInputData.pincode === "" ||
+      addressAutofillInputData.locality === "" ||
+      addressAutofillInputData.sublocality === "" ||
       addressAutofillInputData.city === "Default" ||
-      addressAutofillInputData.pincode === "Default"||
-      addressAutofillInputData.locality === "Default"||
+      addressAutofillInputData.pincode === "Default" ||
+      addressAutofillInputData.locality === "Default" ||
       addressAutofillInputData.sublocality === "Default"
     ) {
       console.log("hiii")
@@ -221,32 +221,40 @@ function Header() {
   }
 
   const handleSubmit = async () => {
-      setIsValidInput(false);
-      setIsLoading(true);
+    setIsValidInput(false);
+    setIsLoading(true);
     console.log(validate())
     if (validate()) {
       setIsValidInput(true);
       try {
-        // let response = await axios.get(api_url + "geocode", {
-        //   params: {
-        //     address: addressAutofillInputData['address'],
-        //     city: addressAutofillInputData['city'],
-        //     pincode: addressAutofillInputData['pincode'],
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        // response = response.data
-
-        const response = {
-          "data": {
-            'latitude': 18.463435,
-            'longitude': 73.866851,
-            'full_address': 'pune, maharashtra'
-          }
+        // console.log("addressAutofillInputData"+JSON.stringify(addressAutofillInputData))
+        let address;
+        if (addressAutofillInputData.address == "") {
+          address = addressAutofillInputData.sublocality + ', ' + addressAutofillInputData.locality + ', ' + addressAutofillInputData.city + ', ' + addressAutofillInputData.pincode
         }
+        else
+          address = addressAutofillInputData.address
+        console.log(address)
+        let response = await axios.get(api_url + "geocode", {
+          params: {
+            address: address,
+            city: addressAutofillInputData['city'],
+            pincode: parseInt(addressAutofillInputData['pincode']),
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
+          }
+        });
+        response = response.data
+        // console.log("response"+response)
+        // const response = {
+        //   "data": {
+        //     'latitude': 18.463435,
+        //     'longitude': 73.866851,
+        //     'full_address': 'pune, maharashtra'
+        //   }
+        // }
         // response = {
         //   "data":
         //   "error":
@@ -269,7 +277,7 @@ function Header() {
   return (
     <div id="address-autofill">
       <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
-        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>City</span>
             <i
@@ -292,15 +300,15 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
-          {!isValidInput && (addressAutofillInputData.city === "Default" || addressAutofillInputData.city == "" )&& (
+          {!isValidInput && (addressAutofillInputData.city === "Default" || addressAutofillInputData.city == "") && (
             <div className='fv-plugins-message-container'>
               <div data-field='city' data-validator='notEmpty' className='fv-help-block'>
-              City is required
+                City is required
               </div>
             </div>
           )}
         </div>
-        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Pincode</span>
             <i
@@ -326,12 +334,12 @@ function Header() {
           {!isValidInput && (addressAutofillInputData.pincode === "Default" || addressAutofillInputData.pincode == "") && (
             <div className='fv-plugins-message-container'>
               <div data-field='pincode' data-validator='notEmpty' className='fv-help-block'>
-              Pincode is required
+                Pincode is required
               </div>
             </div>
           )}
         </div>
-        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Locality</span>
             <i
@@ -354,15 +362,15 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
-          {!isValidInput && (addressAutofillInputData.locality === "Default" || addressAutofillInputData.locality == "")&& (
+          {!isValidInput && (addressAutofillInputData.locality === "Default" || addressAutofillInputData.locality == "") && (
             <div className='fv-plugins-message-container'>
               <div data-field='locality' data-validator='notEmpty' className='fv-help-block'>
-              Locality is required
+                Locality is required
               </div>
             </div>
           )}
         </div>
-        <div className='' style={{width: '10vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '10vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Sub-Locality</span>
             <i
@@ -385,15 +393,15 @@ function Header() {
               <option key={index} value={item}>{item}</option >
             ))}
           </select>
-          {!isValidInput &&( addressAutofillInputData.sublocality === "Default"|| addressAutofillInputData.sublocality == "") && (
+          {!isValidInput && (addressAutofillInputData.sublocality === "Default" || addressAutofillInputData.sublocality == "") && (
             <div className='fv-plugins-message-container'>
               <div data-field='subLocality' data-validator='notEmpty' className='fv-help-block'>
-              Sub-Locality is required
+                Sub-Locality is required
               </div>
             </div>
           )}
         </div>
-        <div className='' style={{width: '20vw', flex: '', padding: '10px' }}>
+        <div className='' style={{ width: '20vw', flex: '', padding: '10px' }}>
           <label className='d-flex align-items-center fs-5 fw-semibold mb-2'>
             <span className='required'>Address</span>
             <i
@@ -412,10 +420,10 @@ function Header() {
             onChange={e => setAddressAutofillInputData({ ...addressAutofillInputData, address: e.target.value })}
           />
         </div>
-        <div className='' style={{alignSelf : 'end', padding: '10px' }}>
+        <div className='' style={{ alignSelf: 'end', padding: '10px' }}>
           <button
             type="button"
-            style={{marginRight : '10px'}}
+            style={{ marginRight: '10px' }}
             className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}

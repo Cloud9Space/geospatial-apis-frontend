@@ -25,9 +25,8 @@ export const tableHeaders = [
 
 function Header() {
   const {tableData,setTableData}  = useContext(urbanRuralContext)
-  const {tableDataToShow,setTableDataToShow}  = useContext(urbanRuralContext)
+  const {tableDataToShow,setTableDataToShow,setIsLoading}  = useContext(urbanRuralContext)
   const [inputData, setInputData] = useState(initData)
-  const [isLoading, setIsLoading] = useState(false);
   const [isValidInput, setIsValidInput] = useState(true);
 
   const api_url = process.env.REACT_APP_API_URL_DEV
@@ -74,30 +73,32 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "urbanRuralCheck", {
-        //   params: {
-        //     address: inputData['address'],
-        //     city: inputData['city'],
-        //     pincode: inputData['pincode']
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        const response = {
-          "status": 200,
-          "message": "Data Fetched Successfully!!",
-          "data": {
-            "location_type": "Urban",
-            "town_name": "Pune",
-            "town_village_code": "802814",
-            "dt_name": "Pune",
-            "dt_code": "521",
-            "st_name": "MAHARASHTRA",
-            "st_code": "27"
+        let response = await axios.get(api_url + "locationTypeCheck", {
+          params: {
+            address: inputData['address'],
+            city: inputData['city'],
+            pincode: inputData['pincode']
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
+        });
+        response = response.data;
+        console.log("response"+JSON.stringify(response))
+        // const response = {
+        //   "status": 200,
+        //   "message": "Data Fetched Successfully!!",
+        //   "data": {
+        //     "location_type": "Urban",
+        //     "town_name": "Pune",
+        //     "town_village_code": "802814",
+        //     "dt_name": "Pune",
+        //     "dt_code": "521",
+        //     "st_name": "MAHARASHTRA",
+        //     "st_code": "27"
+        //   }
+        // }
         const data:initTableData = {
           id : new Date().getTime(),
           address: inputData.address,

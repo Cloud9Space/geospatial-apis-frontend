@@ -43,6 +43,12 @@ export const geolimitInitMapData = {
   }
 }
 
+export interface initTableData {
+  id:number,
+  key:any,
+  value:any
+}
+
 
 function GeographicalLimitCheck() {
 
@@ -50,11 +56,13 @@ function GeographicalLimitCheck() {
   const [geolimitResponse, setGeolimitResponse] = useState(geolimitInitResponse)
   const [isLoading, setIsLoading] = useState(false);
   const [geolimitMapData, setGeolimitMapData] = useState(geolimitInitMapData)
+  const [tableData, setTableData] = useState([] as initTableData[])
+  const [tableDataToShow, setTableDataToShow] = useState([] as initTableData[])
   // const google = window.google
   return (
     <div >
       <div className="absolute isMini" />
-      <geolimitContext.Provider value={{geolimitInputData, setGeolimitInputData, geolimitMapData, setGeolimitMapData, isLoading, setIsLoading, geolimitResponse, setGeolimitResponse}}  >
+      <geolimitContext.Provider value={{geolimitInputData, setGeolimitInputData, geolimitMapData, setGeolimitMapData, isLoading, setIsLoading, geolimitResponse, setGeolimitResponse, tableData, setTableData, tableDataToShow, setTableDataToShow}}  >
       
         <div className=" mt={4}" >
           <div className="mb={1}">

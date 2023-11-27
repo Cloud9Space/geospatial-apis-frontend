@@ -47,41 +47,42 @@ function Header() {
       setIsValidInput(true);
       console.log("hii")
       try {
-        // const response = await axios.get(api_url + "geocode", {
-        //   params: {
-        //     sourceLatitude: arielDistanceInputData.sourceLatitude,
-        //     sourceLongitude: arielDistanceInputData.sourceLongitude,
-        //     destinationLatitude: arielDistanceInputData.destinationLongitude,
-        //     destinationLongitude: arielDistanceInputData.destinationlongitude
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        // console.log("response",response)
-        const response = {
-          "message": "Data Fetched Successfully!!",
-          "data": {
-            "aerial_distance": "1162 m"
+        let response = await axios.get(api_url + "aerialDistance", {
+          params: {
+            source_latitude: aerialDistanceInputData.sourceLatitude,
+            source_longitude: aerialDistanceInputData.sourceLongitude,
+            destination_latitude: aerialDistanceInputData.destinationLatitude,
+            destination_longitude: aerialDistanceInputData.destinationLongitude
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
-        // console.log(response['data']['data']['withInGeolimit'])
+        });
+        response = response.data
+
+        // console.log("response",response)
+        // const response = {
+        //   "message": "Data Fetched Successfully!!",
+        //   "data": {
+        //     "aerial_distance": "1162 m"
+        //   }
+        // }
+        // console.log("response"+Object.entries(response.data.data))
         if ('data' in response) {
           // console.log("arielDistanceInputData"+arielDistanceInputData.destinationLatitude )
           setAerialDistanceResponse(
             {
               ...aerialDistanceResponse,
               aerialDistance: response['data']['aerial_distance'],
-              sourceLatitude: 18.463435,
-              sourceLongitude: 73.866851,
-              destinationLatitude: 19.463435,
-              destinationLongitude: 73.866851
-              // sourceLatitude: arielDistanceInputData.sourceLatitude,
-              // sourceLongitude: arielDistanceInputData.sourceLongitude,
-              // destinationLatitude: arielDistanceInputData.destinationLongitude,
-              // destinationLongitude: arielDistanceInputData.destinationlongitude
-
+              // sourceLatitude: 18.463435,
+              // sourceLongitude: 73.866851,
+              // destinationLatitude: 19.463435,
+              // destinationLongitude: 73.866851
+              sourceLatitude: aerialDistanceInputData.sourceLatitude,
+              sourceLongitude: aerialDistanceInputData.sourceLongitude,
+              destinationLatitude: aerialDistanceInputData.destinationLatitude,
+              destinationLongitude: aerialDistanceInputData.destinationLongitude
             })
         }
       } catch (error) {

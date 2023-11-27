@@ -23,7 +23,9 @@ function Header() {
   const { geolimitInputData, setGeolimitInputData, geolimitMapData, setGeolimitMapData, isLoading, setIsLoading, geolimitResponse, setGeolimitResponse } = useContext(geolimitContext)
   const api_url = process.env.REACT_APP_API_URL_DEV
   const api_key = process.env.REACT_APP_API_KEY
-  const [disabled, setDisabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false)
+  const [open, setOpen] = React.useState(false);
+
   const [isValidInput, setIsValidInput] = useState(true);
   const [isValidCity, setIsValidCity] = useState(true);
 
@@ -31,7 +33,7 @@ function Header() {
   useEffect(() => {
 
     if (geolimitInputData.latitude && geolimitInputData.longitude) {
-      setDisabled(true)
+      // setDisabled(true)
     }
 
     if (geolimitInputData.city != '' && geolimitInputData.city != undefined) {
@@ -70,50 +72,60 @@ function Header() {
     if (valid) {
       setIsValidInput(true);
       try {
-        // const response = await axios.get(api_url + "outOfGeolimit", {
-        //   params: {
-        //     latitude: geolimitInputData.latitude,
-        //     longitude: geolimitInputData.longitude,
-        //     radius: geolimitMapData.radius,
-        //     city_lat: geolimitMapData.latitude,
-        //     city_lon: geolimitMapData.longitude
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        // console.log(response)
-        const response = {
-          "data": {
-            "data": {
-              "withInGeolimit": true,
-              "latitude": 18.463435,
-              "longitude": 73.866851
-            }
+        const response = await axios.get(api_url + "geolimitCheck", {
+          params: {
+            latitude: geolimitInputData.latitude,
+            longitude: geolimitInputData.longitude,
+            radius: geolimitMapData.radius,
+            city_lat: geolimitMapData.latitude,
+            city_lon: geolimitMapData.longitude
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
+        });
+        console.log(response)
+        // const response = {
+        //   "data": {
+        //     "data": {
+        //       "withInGeolimit": true,
+        //       "latitude": 18.463435,
+        //       "longitude": 73.866851
+        //     }
+        //   }
+        // }
         // console.log(response['data']['data']['withInGeolimit'])
         if ('data' in response) {
           setGeolimitResponse(
             {
               ...geolimitResponse,
               withInGeolimit: response['data']['data']['withInGeolimit'],
-              latitude: response['data']['data']['latitude'],
-              longitude: response['data']['data']['longitude'],
+              latitude: geolimitInputData.latitude,
+              longitude: geolimitInputData.longitude,
 
             })
         }
       } catch (error) {
         console.error(error);
       }
+    setIsEnabled(true)
     }
     else
       setIsValidInput(false)
     setIsLoading(false);
 
+
   };
 
+  const handleClickOpen = () => {
+    console.log("Hiiii");
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
   return (
     <div className='current' style={{}} data-kt-stepper-element='content' /*style={{ width: "1200px" }}*/>
       <div className='' style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }} >
@@ -229,22 +241,36 @@ function Header() {
             className="btn btn-lg btn-primary mb2 "
             data-kt-stepper-action="submit"
             onClick={handleSubmit}
+            style={{marginRight: "10px"}}
           >
             Submit
           </button>
+          
+           {isEnabled &&
+            <button
+              type='button'
+              className='btn btn-lg btn-primary mb2'
+              data-kt-stepper-action='view response'
+              onClick={handleClickOpen}>View Response</button>
+          }
         </div>
+       
 
         <div className='' style={{ display: 'flex', flexDirection: 'row', padding: '10px',  alignSelf: 'end',  }}>
 
           <div className="" style={{ alignSelf: "center", flex: '', padding: "auto", paddingLeft: "40px", }}>
-            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`${geolimitResponse.withInGeolimit != "" ?'Within Geolimit : '+ (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
+            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`${geolimitResponse.withInGeolimit != null ?'Within Geolimit : '+ (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
           </div>
         </div>
       </div>
 
 
 
-
+      <SimpleDialog
+        isOpen={open}
+        onRequestClose={handleClose}
+        geolimitResponse={geolimitResponse}
+      />
     </div>
   );
 }

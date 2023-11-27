@@ -8,7 +8,11 @@ interface GeolimitContext {
     isLoading:any,
     setIsLoading:any,
     geolimitResponse:any,
-    setGeolimitResponse:any
+    setGeolimitResponse:any,
+    tableData : any,
+    setTableData : any,
+    tableDataToShow:any,
+    setTableDataToShow : any
 }
 
 const geolimitContext = createContext<GeolimitContext>({} as GeolimitContext);

@@ -4,7 +4,9 @@ interface UrbanRuralContext {
     tableData : any,
     setTableData : any,
     tableDataToShow:any,
-    setTableDataToShow : any
+    setTableDataToShow : any,
+    isLoading: any,
+    setIsLoading: any,
 }
 
 const urbanRuralContext = createContext<UrbanRuralContext>({} as UrbanRuralContext);

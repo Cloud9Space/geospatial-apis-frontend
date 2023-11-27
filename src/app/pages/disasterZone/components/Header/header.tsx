@@ -31,10 +31,10 @@ export const tableHeaders = [
 function Header() {
   // const [tableData, setTableData] = useState([] as initTableData[])
   const [inputData, setInputData] = useState(initData)
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [isValidInput, setIsValidInput] = useState(true);
   const { tableData, setTableData } = useContext(disasterZoneContext)
-  const { tableDataToShow, setTableDataToShow } = useContext(disasterZoneContext)
+  const { tableDataToShow, setTableDataToShow ,setIsLoading} = useContext(disasterZoneContext)
   // const [expand, setExpand] = useState(ExpandToggles);
 
   const api_url = process.env.REACT_APP_API_URL_DEV
@@ -78,49 +78,51 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        // const response:any = await axios.get(api_url + "disasterZone", {
-        //   params: {
-        //     address: inputData['address'],
-        //     city: inputData['city'],
-        //     pincode: inputData['pincode']
-        //   },
-        //   headers: {
-        //     'x-api-key': api_key,
-        //     'Accept': "*/*"
-        //   }
-        // });
-        const response = {
-          "status": 200,
-          "message": "Data Fetched Successfully!!",
-          "data": {
-            "earthquake": {
-              "hazard_zone_code": "Zone III",
-              "hazard_zone_value": "Moderate Damage Risk Zone"
-            },
-            "flood": {
-              "risk_zone_code": "Zone II",
-              "risk_zone_value": "Not liable to floods",
-              "max_surge_height": ""
-            },
-            "wind": {
-              "hazard_zone_code": "Zone II",
-              "hazard_zone_value": "Moderate Damage Risk Zone-B",
-              "max_speed": "39 m/s"
-            },
-            "cyclone": {
-              "risk_zone_code": "Zone 0",
-              "risk_zone_value": "No Risk Zone",
-              "max_speed": "",
-              "occurance": "None"
-            },
-            "landslide": {
-              "risk_zone_code": "Zone III",
-              "risk_zone_value": "Moderate Risk Zone"
-            }
+        let response:any = await axios.get(api_url + "disasterZone", {
+          params: {
+            address: inputData['address'],
+            city: inputData['city'],
+            pincode: inputData['pincode']
+          },
+          headers: {
+            'x-api-key': api_key,
+            'Accept': "*/*"
           }
-        }
+        });
+        response = response.data;
+        // const response = {
+        //   "status": 200,
+        //   "message": "Data Fetched Successfully!!",
+        //   "data": {
+        //     "earthquake": {
+        //       "hazard_zone_code": "Zone III",
+        //       "hazard_zone_value": "Moderate Damage Risk Zone"
+        //     },
+        //     "flood": {
+        //       "risk_zone_code": "Zone II",
+        //       "risk_zone_value": "Not liable to floods",
+        //       "max_surge_height": ""
+        //     },
+        //     "wind": {
+        //       "hazard_zone_code": "Zone II",
+        //       "hazard_zone_value": "Moderate Damage Risk Zone-B",
+        //       "max_speed": "39 m/s"
+        //     },
+        //     "cyclone": {
+        //       "risk_zone_code": "Zone 0",
+        //       "risk_zone_value": "No Risk Zone",
+        //       "max_speed": "",
+        //       "occurance": "None"
+        //     },
+        //     "landslide": {
+        //       "risk_zone_code": "Zone III",
+        //       "risk_zone_value": "Moderate Risk Zone"
+        //     }
+        //   }
+        // }
 
-        // console.log(response.data);
+        
+        console.log("response",Object.keys(response.data).length);
         {
           // const dataOutput: any = Object.entries(response.data).map((item: any) => {
           //   const tempsubHeader: any = Object.entries(item[1]).map((item: any) => {
@@ -166,7 +168,7 @@ function Header() {
           // }
         }
         let data:initTableData;
-        if ("data" in response) {
+        if ("data" in response && Object.keys(response.data).length >0) {
           const data:initTableData = {
             id: new Date().getTime(),
             address: inputData.address,
