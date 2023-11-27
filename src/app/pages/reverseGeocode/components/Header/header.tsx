@@ -93,7 +93,7 @@ function Header() {
           // id : uuidv4(),
           id : new Date().getTime(),
           latitude: inputData.latitude,
-          longitude: inputData.latitude,
+          longitude: inputData.longitude,
           address: response?.data?.address
         }
         const rows = [

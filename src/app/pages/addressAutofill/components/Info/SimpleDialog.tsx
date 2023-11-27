@@ -10,9 +10,9 @@ const SimpleDialog = ({ isOpen, onRequestClose, geocodeResponse }) => {
   const { tableData, setTableData,  } = useContext(addressAutofill)
 
   const createData = (key, value) => {
-    if (key === "full_address") key = "Address";
-    else if (key === "latitude") key = "Latitude";
-    else if (key === "longitude") key = "Longitude";
+    if (key === "address") key = "Address";
+    if (key === "latitude") key = "Latitude";
+    if (key === "longitude") key = "Longitude";
     return {id: new Date().getTime(), key, value };
   };
 

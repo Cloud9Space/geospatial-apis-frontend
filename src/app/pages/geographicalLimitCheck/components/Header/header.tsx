@@ -259,7 +259,7 @@ function Header() {
         <div className='' style={{ display: 'flex', flexDirection: 'row', padding: '10px',  alignSelf: 'end',  }}>
 
           <div className="" style={{ alignSelf: "center", flex: '', padding: "auto", paddingLeft: "40px", }}>
-            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`${geolimitResponse.withInGeolimit != null ?'Within Geolimit : '+ (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
+            <label className='d-flex align-items-center fs-5 fw-semibold' style={{}}>{`${geolimitResponse.withInGeolimit != "" ?'Within Geolimit : '+ (geolimitResponse.withInGeolimit == true ? "True" : "False") : ""}`}</label>
           </div>
         </div>
       </div>
