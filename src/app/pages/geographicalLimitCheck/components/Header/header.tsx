@@ -58,7 +58,6 @@ function Header() {
       geolimitInputData.longitude === "" ||
       geolimitInputData.city === ""
     ) {
-      console.log("hiii")
       return false;
     }
     else {
@@ -86,16 +85,6 @@ function Header() {
           }
         });
         console.log(response)
-        // const response = {
-        //   "data": {
-        //     "data": {
-        //       "withInGeolimit": true,
-        //       "latitude": 18.463435,
-        //       "longitude": 73.866851
-        //     }
-        //   }
-        // }
-        // console.log(response['data']['data']['withInGeolimit'])
         if ('data' in response) {
           setGeolimitResponse(
             {
@@ -143,8 +132,9 @@ function Header() {
             className='form-control form-control-lg form-control-solid bg-light-dark '
             name='city'
             placeholder='city'
-            value={geolimitInputData.city}
-            onChange={(e) => setGeolimitInputData({ ...geolimitInputData, city: e.target.value })}
+            value='DELHI'
+            disabled
+            // onChange={(e) => setGeolimitInputData({ ...geolimitInputData, city: e.target.value })}
           />
           {!isValidInput && geolimitInputData.city === "" && (
             <div className='fv-plugins-message-container'>

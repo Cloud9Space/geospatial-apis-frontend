@@ -77,58 +77,12 @@ function Header() {
       setPincodeList(pincodeList)
       setLocalityList([])
       setSubLocalityList([])
-      // console.log("getPincodes api called")
-
-      // try {
-      //   const response = axios.get(api_url + "addressAutofill/getPincodes", {
-      //     params: {
-      //       city: inputData['city']
-      //     },
-      //     headers: {
-      //       'x-api-key': api_key,
-      //       'Accept': "*/*"
-      //     }
-      //   });
-      //   console.log(response)
-      //   // setIsLoading(false);
-
-      // } catch (error) {
-      //   console.error(error);
-      // }
     };
     if (addressAutofillInputData.city != '') {
       fetchPincodes();
     }
   }, [addressAutofillInputData.city]);
 
-  // useEffect(() => {
-  //   console.log("pincode has been changed")
-  //   console.log(inputData.pincode)
-
-  //   const fetchCity = () => {
-
-  //     // console.log("getCity api called")
-  //     // try {
-  //     //   const response = axios.get(api_url + "addressAutofill/getCity", {
-  //     //     params: {
-  //     //       city: inputData['pincode']
-  //     //     },
-  //     //     headers: {
-  //     //       'x-api-key': api_key,
-  //     //       'Accept': "*/*"
-  //     //     }
-  //     //   });
-  //     //   console.log(response)
-  //     //   // setIsLoading(false);
-
-  //     // } catch (error) {
-  //     //   console.error(error);
-  //     // }
-  //   };
-  //   if (inputData.pincode != ''){
-  //     fetchCity();
-  //   }
-  // }, [inputData.pincode]);
 
   useEffect(() => {
     console.log("locality has been changed")
@@ -141,24 +95,6 @@ function Header() {
 
       setLocalityList(localityList)
       setSubLocalityList([])
-      // console.log("getLocalities api called")
-      // try {
-      //   const response = axios.get(api_url + "addressAutofill/getLocalities", {
-      //     params: {
-      //       city: inputData['city'],
-      //       pincode: inputData['pincode']
-      //     },
-      //     headers: {
-      //       'x-api-key': api_key,
-      //       'Accept': "*/*"
-      //     }
-      //   });
-      //   console.log(response)
-      //   // setIsLoading(false);
-
-      // } catch (error) {
-      //   console.error(error);
-      // }
     };
     if (addressAutofillInputData.city != '' && addressAutofillInputData.pincode != '') {
       fetchLocality();
@@ -174,25 +110,6 @@ function Header() {
         .map(item => item.sublocality))];
 
       setSubLocalityList(subLocalityList)
-
-      // try {
-      //   const response = axios.get(api_url + "addressAutofill/getSubLocalities", {
-      //     params: {
-      //       city: inputData['city'],
-      //       pincode: inputData['pincode'],
-      //       locality: inputData['locality']
-      //     },
-      //     headers: {
-      //       'x-api-key': api_key,
-      //       'Accept': "*/*"
-      //     }
-      //   });
-      //   console.log(response)
-      //   // setIsLoading(false);
-
-      // } catch (error) {
-      //   console.error(error);
-      // }
     };
     if (addressAutofillInputData.city != '' && addressAutofillInputData.pincode != '' && addressAutofillInputData.locality != '') {
       fetchSubLocality();
@@ -247,18 +164,6 @@ function Header() {
           }
         });
         response = response.data
-        // console.log("response"+response)
-        // const response = {
-        //   "data": {
-        //     'latitude': 18.463435,
-        //     'longitude': 73.866851,
-        //     'full_address': 'pune, maharashtra'
-        //   }
-        // }
-        // response = {
-        //   "data":
-        //   "error":
-        // }
         
         if ("data" in response) {
           response.data.address = address

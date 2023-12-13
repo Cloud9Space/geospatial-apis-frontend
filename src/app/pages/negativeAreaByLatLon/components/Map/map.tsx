@@ -12,7 +12,7 @@ const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 // const api_key = process.env.REACT_APP_API_KEY
 
 const NegativeAreaMap = () => {
-  const defaultCenter = { lat: 18.531905, lng: 73.847874 };
+  const defaultCenter = { lat: 28.5665423236694, lng: 77.1687006758955 };
   const { negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, setIsLoading } = useContext(negativeAreaContext)
   const [markerPosition, setMarkerPosition] = useState(defaultCenter);
   const [multiPolygonCoordinates, setMultiPolygonCoordinates] = useState([]);

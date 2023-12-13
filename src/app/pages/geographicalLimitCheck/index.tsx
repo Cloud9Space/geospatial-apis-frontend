@@ -35,8 +35,8 @@ export const geolimitInitResponse = {
 }
 
 export const geolimitInitMapData = {
-  latitude: 18.463435,
-  longitude: 73.866851,
+  latitude: 28.5665423236694,
+  longitude: 77.1687006758955,
   radius: 2,
   response: {
     isOgl: null

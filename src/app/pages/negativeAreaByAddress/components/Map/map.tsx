@@ -1,18 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-// import geocodeContext from 'layouts/geocode/context/geocode/geocodeContext';
 import { GoogleMap, LoadScript, Marker, Polygon } from '@react-google-maps/api';
 import { test_data } from '../Data/data';
-// import axios from 'axios';
 import negativeAreaContext from '../../context/negativeAreaByAddress/negativeAreaByAddressContext';
-// import MDBox from "components/MDBox";
-// const google = window.google
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
-// const api_url = process.env.REACT_APP_API_URL_DEV
-// const api_key = process.env.REACT_APP_API_KEY
 
 const NegativeAreaMap = () => {
-  const defaultCenter = { lat: 18.531905, lng: 73.847874 };
+  const defaultCenter = { lat: 28.5665423236694, lng: 77.1687006758955 };
   const { negativeAreaInputData, setnegativeAreaInputData, negativeAreaResponse, setNegativeAreaResponse, setIsLoading } = useContext(negativeAreaContext)
   const [markerPosition, setMarkerPosition] = useState(defaultCenter);
   const [multiPolygonCoordinates, setMultiPolygonCoordinates] = useState([]);
@@ -65,28 +59,8 @@ const NegativeAreaMap = () => {
 
 
 
-  // const handleMarkerDragEnd = (event) => {
-  //   console.log(event)
-  //   setMarkerPosition({
-  //     lat: event.latLng.lat(),
-  //     lng: event.latLng.lng(),
-  //   });
-  // };
-
-  // var greenMarkerIcon = {
-  //   url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png', // URL of the custom icon
-  //   // url: '/media/GoogleMapGreenMarker.png', // URL of the custom icon
-  //   scaledSize: new google.maps.Size(45, 45), // Size of the icon
-  // };
   return (
     <LoadScript googleMapsApiKey={API_KEY!}>
-      {/* <MDBox pl={1}>
-        <span>Is In Negative Area : </span>
-        <label>{`${negativeAreaResponse.data.isInNegativeArea}`}</label>
-        <span>
-
-        </span>
-      </MDBox> */}
       <GoogleMap
         mapContainerStyle={{ width: 'auto', height: '510px', margin: '5px'}}
         center={markerPosition}
