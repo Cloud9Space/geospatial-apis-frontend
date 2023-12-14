@@ -47,7 +47,7 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
     try {
-      let response = await axios.get(api_url + "negativeAreaByLatLong", {
+      let response = await axios.get(api_url + "negativeAreaCheckByLatLong", {
         params: {
           latitude: negativeAreaInputData['latitude'],
           longitude: negativeAreaInputData['longitude'],
