@@ -68,13 +68,13 @@ const Login = () => {
         <div className='d-flex flex-column flex-column-fluid flex-lg-row'>
           <div className='d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10'>
             <div className='d-flex flex-center flex-lg-start flex-column'>
-              <a href='../../demo2/dist/index.html' className='mb-7'>
+              {/* <a href='../../demo2/dist/index.html' className='mb-7'> */}
                 {/* <img alt='Logo' src='assets/media/logos/custom-3.svg' /> */}
                 <div className='d-flex app-sidebar-logo-default h-25px' style={{paddingBottom: "20px"}}>
                   <p className='text-white text-white fs2qx fw-bolder text-center' style={{fontSize: "70px" ,}}>Geo</p>
                   <p className='textwhite fsqx fw-bolder text-center' style={{fontSize: "70px",  color: 'yellow'}}>APIs</p>
                 </div>
-              </a>
+              {/* </a> */}
               {/* <h2 className='text-white fw-normal m-0'>
                 Human Resource Management System
               </h2> */}
