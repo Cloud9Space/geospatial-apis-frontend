@@ -52,6 +52,20 @@ function Header() {
       setIsValidCity(true);
   }, [geolimitInputData.city]);
 
+  useEffect(()=>{
+    try {
+      setGeolimitInputData({ ...geolimitInputData, city: "DELHI" })
+      // const filteredData = cityLatLongMapping.filter(item => item.name === geolimitInputData.city);
+      const filteredData = cityLatLongMapping.filter(item => item.name === "DELHI");
+      // console.log(filteredData)
+      setGeolimitMapData({ ...geolimitMapData, latitude: filteredData[0]['latitude'], longitude: filteredData[0]['longitude'] })
+      setIsValidCity(true);
+
+    } catch (e) {
+      console.log("Invalid City Name");
+      setIsValidCity(false);
+    }
+  },[])
   const validate = () => {
     if (
       geolimitInputData.latitude === "" ||
