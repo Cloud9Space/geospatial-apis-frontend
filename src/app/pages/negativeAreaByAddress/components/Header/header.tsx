@@ -50,7 +50,7 @@ function Header() {
     if (validate()) {
       setIsValidInput(true);
       try {
-        let response = await axios.get(api_url + "negativeAreaByAddress", {
+        let response = await axios.get(api_url + "negativeAreaCheckByAddress", {
           params: {
             address: negativeAreaInputData['address'],
             city: negativeAreaInputData['city'],
